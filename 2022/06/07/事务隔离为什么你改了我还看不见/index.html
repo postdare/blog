@@ -232,9 +232,9 @@
             </time>
             
             
-                <time datetime="2025-06-12T02:00:43.935Z" class="flex items-center">
+                <time datetime="2025-07-17T06:22:26.486Z" class="flex items-center">
                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m-4.991 4.992"></path></svg>
-                    更新于 2025年06月12日
+                    更新于 2025年07月17日
                 </time>
             
             
@@ -621,7 +621,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <p><strong>“串行化”<strong>的隔离级别下直接使用</strong>加锁的方式避免并行访问</strong>。</p>
 <p>在 MySQL 中，实际上每条记录在更新的时候都会同时记录一条回滚操作。记录上的最新值，通过回滚操作，都可以得到前一个状态的值。</p>
 <p>假设一个值从 1 被按顺序改成了 2、3、4，在回滚日志里面就会有类似下面的记录。<br>
-<img src="http://qiniu.deveye.cn/blog/img/20220607152436.png" alt=""></p>
+<img src="http://oss.buzhidao.cc/blog/img/20220607152436.png" alt=""></p>
 <p>当前值是 4，但是在查询这条记录的时候，不同时刻启动的事务会有不同的 read-view。如图中看到的，在视图 A、B、C 里面，这一个记录的值分别是 1、2、4，同一条记录在系统中可以存在多个版本，就是数据库的多版本并发控制（MVCC）。对于 read-view A，要得到 1，就必须将当前值依次执行图中所有的回滚操作得到。</p>
 <p>同时你会发现，即使现在有另外一个事务正在将 4 改成 5，这个事务跟 read-view A、B、C 对应的事务是不会冲突的。</p>
 <p><strong>回滚日志系统会判断，当系统中没有比这个回滚日志更早的read-view的时候，日志会被删除。</strong></p>

@@ -232,9 +232,9 @@
             </time>
             
             
-                <time datetime="2025-06-12T02:00:43.934Z" class="flex items-center">
+                <time datetime="2025-07-17T06:22:26.493Z" class="flex items-center">
                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m-4.991 4.992"></path></svg>
-                    更新于 2025年06月12日
+                    更新于 2025年07月17日
                 </time>
             
             
@@ -598,7 +598,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <h3 id="Description">Description</h3>
 <p><code>git rebase</code> 和 <code>git merge</code> 一样都是用于从一个分支获取并且合并到当前分支，但是他们采取不同的工作方式，以下面的一个工作场景说明其区别.</p>
 <p>如图所示：你在一个feature分支进行新特性的开发，与此同时，master 分支的也有新的提交。</p>
-<p><img src="http://qiniu.deveye.cn/b454bf1d01ec3dee808830b24dd87c2e.png" alt="http://qiniu.deveye.cn/b454bf1d01ec3dee808830b24dd87c2e.png"><br>
+<p><img src="http://oss.buzhidao.cc/b454bf1d01ec3dee808830b24dd87c2e.png" alt="http://oss.buzhidao.cc/b454bf1d01ec3dee808830b24dd87c2e.png"><br>
 为了将master 上新的提交合并到你的feature分支上，你有两种选择：<code>merging or rebasing</code></p>
 <h3 id="merge">merge</h3>
 <p>执行以下命令:</p>
@@ -607,14 +607,14 @@ document.addEventListener('DOMContentLoaded', function() {
 <code>git merge master feature</code></p>
 <p>那么此时在feature上git 自动会产生一个新的commit(merge commit)<br>
 look like this：</p>
-<p><img src="http://qiniu.deveye.cn/2cebea59e5f82803cb35f99f85b6653d.png" alt="http://qiniu.deveye.cn/2cebea59e5f82803cb35f99f85b6653d.png"></p>
+<p><img src="http://oss.buzhidao.cc/2cebea59e5f82803cb35f99f85b6653d.png" alt="http://oss.buzhidao.cc/2cebea59e5f82803cb35f99f85b6653d.png"></p>
 <p>**merge 特点：**自动创建一个新的commit,如果合并的时候遇到冲突，仅需要修改后重新commit<br>
 **优点：**记录了真实的commit情况，包括每个分支的详情<br>
 **缺点：**因为每次merge会自动产生一个merge commit，所以在使用一些git 的GUI tools，特别是commit比较频繁时，看到分支很杂乱。</p>
 <h3 id="rebase">rebase</h3>
 <p>本质是变基,执行以下命令：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout feature</span><br><span class="line">git rebase master</span><br></pre></td></tr></table></figure>
-<p><img src="http://qiniu.deveye.cn/245938aba30e1d7ff14f759eea81eb37.png" alt="http://qiniu.deveye.cn/245938aba30e1d7ff14f759eea81eb37.png"><br>
+<p><img src="http://oss.buzhidao.cc/245938aba30e1d7ff14f759eea81eb37.png" alt="http://oss.buzhidao.cc/245938aba30e1d7ff14f759eea81eb37.png"><br>
 **rebase 特点：**会合并之前的commit历史<br>
 **优点：**得到更简洁的项目历史，去掉了merge commit<br>
 **缺点：**如果合并出现代码问题不容易定位，因为re-write了history<br>
@@ -629,7 +629,7 @@ look like this：</p>
 <em><strong>The Golden Rule of Rebasing rebase</strong></em> 的黄金法则:<br>
 <strong>never use it on public branches(不要在公共分支上使用)</strong><br>
 比如说如下场景：如图所示<br>
-<img src="http://qiniu.deveye.cn/ac37304e85f5ddf56f1fc302b9e42781.png" alt="http://qiniu.deveye.cn/ac37304e85f5ddf56f1fc302b9e42781.png"></p>
+<img src="http://oss.buzhidao.cc/ac37304e85f5ddf56f1fc302b9e42781.png" alt="http://oss.buzhidao.cc/ac37304e85f5ddf56f1fc302b9e42781.png"></p>
 <p>如果你rebase master 到你的feature分支：<br>
 rebase 将所有master的commit移动到你的feature 的顶端。问题是：其他人还在original master上开发，由于你使用了rebase移动了master，git 会认为你的主分支的历史与其他人的有分歧，会产生冲突。<br>
 所以在执行git rebase 之前 问问自己，</p>

@@ -232,9 +232,9 @@
             </time>
             
             
-                <time datetime="2025-06-12T02:00:43.935Z" class="flex items-center">
+                <time datetime="2025-07-17T06:22:26.493Z" class="flex items-center">
                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m-4.991 4.992"></path></svg>
-                    更新于 2025年06月12日
+                    更新于 2025年07月17日
                 </time>
             
             
@@ -599,7 +599,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <p>如果执行语句如:<code>select ID from T where k between 3 and 5</code>，这是只需要查ID的值，而ID的值已经在k索引树上了，因此可以直接提供查询结果，不需要回表，这种情况我们称为<strong>覆盖索引</strong>。</p>
 <p><strong>由于覆盖索引可以减少树的搜索次数，显著提升查询性能，所以使用覆盖索引是一个常用的性能优化手段。</strong></p>
 <h2 id="最左前缀原则">最左前缀原则</h2>
-<p><img src="http://qiniu.deveye.cn/blog/img/20220608105848.png" alt=""><br>
+<p><img src="http://oss.buzhidao.cc/blog/img/20220608105848.png" alt=""><br>
 可以看到，索引是按照索引定义里面出现的字段排序的。</p>
 <p>只要满足最左前缀，就可以利用索引来加速检索。这个最左前缀可以是联合索引的最左 N 个字段，也可以是字符串索引的最左 M 个字符。</p>
 <h3 id="在建立联合索引的时候，如何安排索引内的字段顺序">在建立联合索引的时候，如何安排索引内的字段顺序?</h3>
@@ -609,9 +609,9 @@ document.addEventListener('DOMContentLoaded', function() {
 <p>例如以下查询语句：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from tuser where name like &#x27;张 %&#x27; and age=10 and ismale=1;</span><br></pre></td></tr></table></figure>
 <center>无索引下推</center>
-<p><img src="http://qiniu.deveye.cn/blog/img/20220608110650.png" alt=""></p>
+<p><img src="http://oss.buzhidao.cc/blog/img/20220608110650.png" alt=""></p>
 <center>有索引下推</center>
-<p><img src="http://qiniu.deveye.cn/blog/img/20220608110743.png" alt=""></p>
+<p><img src="http://oss.buzhidao.cc/blog/img/20220608110743.png" alt=""></p>
 <p>可以明显的看出，有索引下推的情况下减少了回表的次数。</p>
 
     </div>

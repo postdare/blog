@@ -232,9 +232,9 @@
             </time>
             
             
-                <time datetime="2025-06-12T02:00:43.933Z" class="flex items-center">
+                <time datetime="2025-07-17T06:22:26.493Z" class="flex items-center">
                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m-4.991 4.992"></path></svg>
-                    更新于 2025年06月12日
+                    更新于 2025年07月17日
                 </time>
             
             
@@ -616,7 +616,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <p>堆允许全局访问，并且在应用程序的生存期内，堆中的数据存储可用于所有线程，而堆栈上的数据存储具有私有作用域，只有所有者线程可以访问它们。</p>
 <p>堆栈将数据存储在连续的存储块中，并允许随机访问。如果类需要池中的随机<em>String</em>，则由于堆栈的LIFO（后进先出）规则，该类可能不可用。相反，堆会动态分配内存，并允许我们以任何方式访问数据。</p>
 <p>假设我们有一个由不同类型的变量组成的代码段。堆栈将存储<em>int</em>文字的值以及<em>String</em>和Demo对象的引用*。<em>任何对象的值都将存储在堆中，所有</em>String*文字都放入堆中的池中：</p>
-<p><img src="http://qiniu.deveye.cn/blog/img/20210324222316.png" alt=""></p>
+<p><img src="http://oss.buzhidao.cc/blog/img/20210324222316.png" alt=""></p>
 <p>线程完成执行后，将立即释放在堆栈上创建的变量。相反，垃圾收集器回收堆中的资源。同样，垃圾收集器从池中收集未引用的项目。</p>
 <p>**池的默认大小在不同平台上可能会有所不同。**无论如何，它仍然比可用堆栈大小大得多。在JDK 7之前，该池是permgen空间的一部分，从JDK 7到现在，它是主堆内存的一部分。</p>
 <h2 id="3-结论">3.结论</h2>

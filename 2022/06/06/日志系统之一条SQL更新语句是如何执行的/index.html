@@ -232,9 +232,9 @@
             </time>
             
             
-                <time datetime="2025-06-12T02:00:43.935Z" class="flex items-center">
+                <time datetime="2025-07-17T06:22:26.493Z" class="flex items-center">
                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m-4.991 4.992"></path></svg>
-                    更新于 2025年06月12日
+                    更新于 2025年07月17日
                 </time>
             
             
@@ -597,7 +597,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="post-content" id="post-content" style="font-size: 18px; line-height: 1.9; letter-spacing: 0.025em;">
         <h3 id="redo-log（重做日志）">redo log（重做日志）</h3>
 <p>InnoDB 的 redo log 是固定大小的，比如可以配置为一组 4 个文件，每个文件的大小是 1GB，那么总共就可以记录 4GB 的操作。从头开始写，写到末尾就又回到开头循环写，如下面这个图所示。<br>
-<img src="http://qiniu.deveye.cn/blog/img/20220606110553.png" alt=""></p>
+<img src="http://oss.buzhidao.cc/blog/img/20220606110553.png" alt=""></p>
 <p>write pos 是当前记录的位置，一边写一边后移，写到第 3 号文件末尾后就回到 0 号文件开头。checkpoint 是当前要擦除的位置，也是往后推移并且循环的，擦除记录前要把记录更新到数据文件。</p>
 <p>有了 redo log，InnoDB 就可以保证即使数据库发生异常重启，之前提交的记录都不会丢失，这个能力称为crash-safe。</p>
 <h3 id="binlog（归档日志）">binlog（归档日志）</h3>
@@ -635,7 +635,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </li>
 </ol>
 <p>流程图如下所示：<br>
-<img src="http://qiniu.deveye.cn/blog/img/20220606112558.png" alt=""></p>
+<img src="http://oss.buzhidao.cc/blog/img/20220606112558.png" alt=""></p>
 <h3 id="如何让数据库恢复到半个月任意一秒？">如何让数据库恢复到半个月任意一秒？</h3>
 <ul>
 <li>首先，找到最近的一次全量备份，如果你运气好，可能就是昨天晚上的一个备份，从这个备份恢复到临时库；</li>

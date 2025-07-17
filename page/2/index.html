@@ -1081,7 +1081,7 @@
 </tbody>
 </table>
 <h2 id="二、Prometheus是什么">二、Prometheus是什么?</h2>
-<p><img src="http://qiniu.deveye.cn/blog/img/20220228204837.png" alt=""></p>
+<p><img src="http://oss.buzhidao.cc/blog/img/20220228204837.png" alt=""></p>
 <p><a href="https://github.com/prometheus">Prometheus</a> 是由 SoundCloud 开发的开源监控报警系统和时序列数据库(TSDB)。</p>
 <p>Prometheus由Go语言编写而成，采用Pull方式获取监控信息，并提供了多维度的数据模型和灵活的查询接口。<br>
 Prometheus不仅可以通过静态文件配置监控对象，还支持自动发现机制，能通过Kubernetes、Consl、DNS等多种方式动态获取监控对象。<br>
@@ -1126,12 +1126,12 @@ Prometheus不仅可以通过静态文件配置监控对象，还支持自动发�
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">go run main -p 8080</span><br><span class="line">go run main -p 8081</span><br></pre></td></tr></table></figure>
 <h3 id="4、Prometheus-Dashboard">4、Prometheus Dashboard</h3>
 <p>打开仪表盘：<a href="http://localhost:9090/targets">http://localhost:9090/targets</a>，我们可以看到我们的两个节点已经是up状态了。</p>
-<p><img src="http://qiniu.deveye.cn/blog/img/20220228204908.png" alt=""></p>
+<p><img src="http://oss.buzhidao.cc/blog/img/20220228204908.png" alt=""></p>
 <p>下面我们使用<strong>ab</strong> 工具模拟接口访问，使请求速度超过我们设定的阈值，此时alertmanages会给我们钉钉进行通知。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ab -n 1000  -c 5  http://localhost:8080/hello</span><br></pre></td></tr></table></figure>
 <p>我可以查看Prometheus控制台，查看消息警告发送情况，此时，我们的钉钉已经收到通知警告：</p>
-<p><img src="http://qiniu.deveye.cn/blog/img/20220228204941.png" alt=""></p>
-<p><img src="http://qiniu.deveye.cn/blog/img/20220228205009.png" alt=""></p>
+<p><img src="http://oss.buzhidao.cc/blog/img/20220228204941.png" alt=""></p>
+<p><img src="http://oss.buzhidao.cc/blog/img/20220228205009.png" alt=""></p>
 <h3 id="5、总结">5、总结</h3>
 <p>我们通过一个简单的实验，实现了一个接口请求速率监控的例子，实际业务中我们还可以做更多服务监控的功能。也可以结合Grafana进行Dashbords数据报表展示等功能。同时可以监控服务器、JVM、k8s等等，当服务按照我们设置的规则达到阈值时通知到我们，我们可以在第一时间做应对处理，避免造成不必要的损失。</p>
 
@@ -1190,7 +1190,7 @@ Prometheus不仅可以通过静态文件配置监控对象，还支持自动发�
 </tbody>
 </table>
 <h2 id="二、Prometheus是什么">二、Prometheus是什么?</h2>
-<p><img src="http://qiniu.deveye.cn/blog/img/20220228204837.png" alt=""></p>
+<p><img src="http://oss.buzhidao.cc/blog/img/20220228204837.png" alt=""></p>
 <p><a href="https://github.com/prometheus">Prometheus</a> 是由 SoundCloud 开发的开源监控报警系统和时序列数据库(TSDB)。</p>
 <p>Prometheus由Go语言编写而成，采用Pull方式获取监控信息，并提供了多维度的数据模型和灵活的查询接口。<br>
 Prometheus不仅可以通过静态文件配置监控对象，还支持自动发现机制，能通过Kubernetes、Consl、DNS等多种方式动态获取监控对象。<br>
@@ -1235,12 +1235,12 @@ Prometheus不仅可以通过静态文件配置监控对象，还支持自动发�
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">go run main -p 8080</span><br><span class="line">go run main -p 8081</span><br></pre></td></tr></table></figure>
 <h3 id="4、Prometheus-Dashboard">4、Prometheus Dashboard</h3>
 <p>打开仪表盘：<a href="http://localhost:9090/targets">http://localhost:9090/targets</a>，我们可以看到我们的两个节点已经是up状态了。</p>
-<p><img src="http://qiniu.deveye.cn/blog/img/20220228204908.png" alt=""></p>
+<p><img src="http://oss.buzhidao.cc/blog/img/20220228204908.png" alt=""></p>
 <p>下面我们使用<strong>ab</strong> 工具模拟接口访问，使请求速度超过我们设定的阈值，此时alertmanages会给我们钉钉进行通知。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ab -n 1000  -c 5  http://localhost:8080/hello</span><br></pre></td></tr></table></figure>
 <p>我可以查看Prometheus控制台，查看消息警告发送情况，此时，我们的钉钉已经收到通知警告：</p>
-<p><img src="http://qiniu.deveye.cn/blog/img/20220228204941.png" alt=""></p>
-<p><img src="http://qiniu.deveye.cn/blog/img/20220228205009.png" alt=""></p>
+<p><img src="http://oss.buzhidao.cc/blog/img/20220228204941.png" alt=""></p>
+<p><img src="http://oss.buzhidao.cc/blog/img/20220228205009.png" alt=""></p>
 <h3 id="5、总结">5、总结</h3>
 <p>我们通过一个简单的实验，实现了一个接口请求速率监控的例子，实际业务中我们还可以做更多服务监控的功能。也可以结合Grafana进行Dashbords数据报表展示等功能。同时可以监控服务器、JVM、k8s等等，当服务按照我们设置的规则达到阈值时通知到我们，我们可以在第一时间做应对处理，避免造成不必要的损失。</p>
 
@@ -1455,7 +1455,7 @@ Prometheus不仅可以通过静态文件配置监控对象，还支持自动发�
 <p>多写单元测试，代码小步提交</p>
 </li>
 </ul>
-<p><img src="http://qiniu.deveye.cn/blog/img/20210514103356.png" alt=""></p>
+<p><img src="http://oss.buzhidao.cc/blog/img/20210514103356.png" alt=""></p>
 
                                         </div>
                                     </div>

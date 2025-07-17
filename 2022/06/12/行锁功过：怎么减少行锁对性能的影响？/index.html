@@ -232,9 +232,9 @@
             </time>
             
             
-                <time datetime="2025-06-12T02:00:43.936Z" class="flex items-center">
+                <time datetime="2025-07-17T06:22:26.485Z" class="flex items-center">
                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m-4.991 4.992"></path></svg>
-                    更新于 2025年06月12日
+                    更新于 2025年07月17日
                 </time>
             
             
@@ -596,7 +596,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <article class="prose prose-lg prose-gray dark:prose-invert max-w-none mb-16">
     <div class="post-content" id="post-content" style="font-size: 18px; line-height: 1.9; letter-spacing: 0.025em;">
         <h2 id="从两阶段锁说起">从两阶段锁说起</h2>
-<p><img src="http://qiniu.deveye.cn/blog/img/20220614094047.png" alt=""></p>
+<p><img src="http://oss.buzhidao.cc/blog/img/20220614094047.png" alt=""></p>
 <p>实际上事务B的update语句会被阻塞，直至事务A执行commit之后，事务B才能继续执行。</p>
 <p><strong>在InnoDB事务中，行锁是在需要的时候才加上的，但并不是不需要了就立刻释放，而是等到事务结束才释放，这就是两阶段锁协议。</strong></p>
 <blockquote>
@@ -604,7 +604,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </blockquote>
 <h2 id="死锁和死锁检测">死锁和死锁检测</h2>
 <p>当并发系统出现资源循环依赖，就会导致这几个线程处于无限等待状态，称为<strong>死锁</strong>。</p>
-<p><img src="http://qiniu.deveye.cn/blog/img/20220614095944.png" alt=""></p>
+<p><img src="http://oss.buzhidao.cc/blog/img/20220614095944.png" alt=""></p>
 <p>两种解决死锁的策略：</p>
 <ul>
 <li>

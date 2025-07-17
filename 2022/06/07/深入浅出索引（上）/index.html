@@ -232,9 +232,9 @@
             </time>
             
             
-                <time datetime="2025-06-12T02:00:43.935Z" class="flex items-center">
+                <time datetime="2025-07-17T06:22:26.495Z" class="flex items-center">
                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m-4.991 4.992"></path></svg>
-                    更新于 2025年06月12日
+                    更新于 2025年07月17日
                 </time>
             
             
@@ -598,7 +598,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <p><strong>索引的出现其实就是为了提高数据查询的效率，就像书的目录一样。</strong></p>
 <h2 id="索引常见模型">索引常见模型</h2>
 <h3 id="哈希表">哈希表</h3>
-<p><img src="http://qiniu.deveye.cn/blog/img/20220607160718.png" alt=""></p>
+<p><img src="http://oss.buzhidao.cc/blog/img/20220607160718.png" alt=""></p>
 <p>哈希表是一种以键值对存储的数据结构，只要输入key，就可以根据key找到对应的vaule。不可避免的是会存在hash冲突，处理这种情况方法是拉出一个链表。（类比Java中HashMap结构）。</p>
 <p>优点：</p>
 <ul>
@@ -610,18 +610,18 @@ document.addEventListener('DOMContentLoaded', function() {
 </ul>
 <p>哈希表这种结构适用于只有等值查询的场景，比如 Memcached 及其他一些 NoSQL 引擎。</p>
 <h3 id="有序数组">有序数组</h3>
-<p><img src="http://qiniu.deveye.cn/blog/img/20220607160727.png" alt=""></p>
+<p><img src="http://oss.buzhidao.cc/blog/img/20220607160727.png" alt=""></p>
 <p>有序数组查询时，可以使用二分法进行搜索，时间复杂度是O(log(N))，并且有序数据还支持范围查询。但是需要插入的时候，就需要进行数据挪动（因为要保证顺序），成本是非常高的。</p>
 <p>因此，<strong>有序数组索引只适用于静态存储引擎</strong>。</p>
 <h3 id="搜索树">搜索树</h3>
-<p><img src="http://qiniu.deveye.cn/blog/img/20220607160741.png" alt=""></p>
+<p><img src="http://oss.buzhidao.cc/blog/img/20220607160741.png" alt=""></p>
 <p>二叉树的特点是：每个节点的左儿子小于父节点，父节点又小于右儿子。这样如果你要查 ID_card_n2 的话，按照图中的搜索顺序就是按照 UserA -&gt; UserC -&gt; UserF -&gt; User2 这个路径得到。这个时间复杂度是 O(log(N))。</p>
 <p>当然为了维持 O(log(N)) 的查询复杂度，你就需要保持这棵树是平衡二叉树。为了做这个保证，更新的时间复杂度也是 O(log(N))。</p>
 <p>二叉树的主要缺点是：当数据量很大的时候，树高会非常高，假如树高为20。一次查询可能需要访问 20 个数据块。在机械硬盘时代，从磁盘随机读一个数据块需要 10 ms 左右的寻址时间。也就是说，对于一个 100 万行的表，如果使用二叉树来存储，单独访问一个行可能需要 20 个 10 ms 的时间，这个查询可真够慢的。</p>
 <h2 id="InnoDB-的索引模型">InnoDB 的索引模型</h2>
 <p>在InnoDB中，表都是根据主键顺序以索引的形式存放的，这种存储方式的表称为索引组织表。<strong>InnoDB使用的是B+树索引模型</strong>，所以数据都是存储在B+树中的。</p>
 <p><strong>每一个索引在InnoDB中对应一颗B+树。</strong></p>
-<p><img src="http://qiniu.deveye.cn/blog/img/20220607162535.png" alt=""></p>
+<p><img src="http://oss.buzhidao.cc/blog/img/20220607162535.png" alt=""></p>
 <p>从上图来看，索引类型分为：主键索引和非主键索引。</p>
 <p><strong>主键索引在InnoDB中也成为聚簇索引（clustered index），非主键索引在InnoDB中成为二级索引（secondary index）。</strong></p>
 <h3 id="基于主键索引和非主键索引搜索的区别：">基于主键索引和非主键索引搜索的区别：</h3>
