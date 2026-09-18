@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build:css": "npx tailwindcss -i ./themes/hexo-deveye/source/css/tailwind.css -o ./themes/hexo-deveye/source/css/main.css",
-    "watch:css": "npx tailwindcss -i ./themes/hexo-deveye/source/css/tailwind.css -o ./themes/hexo-deveye/source/css/main.css --watch",
+    "build:css": "npx tailwindcss -i ./themes/hexo-theme/source/css/tailwind.css -o ./themes/hexo-theme/source/css/main.css",
+    "watch:css": "npx tailwindcss -i ./themes/hexo-theme/source/css/tailwind.css -o ./themes/hexo-theme/source/css/main.css --watch",
     "dev": "npm run watch:css & hexo server",
     "build": "npm run build:css && hexo generate"
   },

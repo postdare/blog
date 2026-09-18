@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<%- partial('_partial/head') %>
+<% var page_class = is_post() ? 'single' : 'category'; %>
+<body class="<%= page_class %>">
+    <div class="flex min-h-screen flex-col">
+        <%- partial('_partial/header') %>
+
+        <main class="flex-1">
+            <div class="mx-auto w-full max-w-6xl px-5 sm:px-8 py-12 md:py-16">
+                <div class="main-layout">
+                    <div class="main-content">
+                        <%- body %>
+                    </div>
+
+                    <% if (is_post()) { %>
+                        <aside class="main-toc">
+                            <%- partial('_partial/toc') %>
+                        </aside>
+                    <% } else { %>
+                        <aside class="main-sidebar">
+                            <%- partial('_partial/sidebar') %>
+                        </aside>
+                    <% } %>
+                </div>
+            </div>
+        </main>
+
+        <%- partial('_partial/footer') %>
+    </div>
+
+    <script src="<%- url_for('js/plugins.js') %>" defer></script>
+    <% if (config.mermaid && config.mermaid.enable) { %>
+        <script src="<%- url_for('js/mermaid.min.js') %>"></script>
+        <script src="<%- url_for('js/mermaid-init.js') %>"></script>
+        <%- css('css/mermaid.css') %>
+    <% } %>
+</body>
+</html>

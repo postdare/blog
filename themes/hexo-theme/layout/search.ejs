@@ -1,0 +1,119 @@
+<section class="mb-12">
+    <div class="rule-label mb-7">
+        <span class="mono-label mono-label-accent">搜索</span>
+    </div>
+
+    <h1 class="text-3xl md:text-[2.5rem] font-bold tracking-tight leading-[1.15] mb-8">
+        找一篇文章。
+    </h1>
+
+    <input type="search" id="search-input" autocomplete="off" placeholder="输入关键词…"
+        class="block w-full max-w-xl py-3 text-lg">
+
+    <p class="mono-meta mt-3">支持标题、正文与标签</p>
+</section>
+
+<div class="rule-label mb-2">
+    <span class="mono-label">结果</span>
+    <span id="search-count" class="mono-label shrink-0 order-last"></span>
+</div>
+
+<div id="search-results"></div>
+
+<div id="no-results" class="hidden py-16">
+    <p class="mono-label mb-3">无结果</p>
+    <p class="text-secondary">换个关键词试试。</p>
+</div>
+
+<div id="search-loading" class="hidden py-16">
+    <p class="mono-label">搜索中…</p>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const searchInput = document.getElementById('search-input');
+        const searchResults = document.getElementById('search-results');
+        const searchCount = document.getElementById('search-count');
+        const noResults = document.getElementById('no-results');
+        const searchLoading = document.getElementById('search-loading');
+
+        let searchData = [];
+
+        fetch('<%- url_for("/search.json") %>')
+            .then(function (response) { return response.json(); })
+            .then(function (data) { searchData = data; })
+            .catch(function (error) { console.error('Error loading search data:', error); });
+
+        function escapeRegExp(str) {
+            return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
+        function highlightText(text, query) {
+            if (!query.trim()) return text;
+            return text.replace(new RegExp('(' + escapeRegExp(query) + ')', 'gi'),
+                '<mark class="bg-accent-wash text-accent px-0.5">$1</mark>');
+        }
+
+        function performSearch(query) {
+            if (!query.trim()) {
+                searchResults.innerHTML = '';
+                searchCount.textContent = '';
+                noResults.classList.add('hidden');
+                return;
+            }
+
+            searchLoading.classList.remove('hidden');
+            noResults.classList.add('hidden');
+
+            setTimeout(function () {
+                const lower = query.toLowerCase();
+                const results = searchData.filter(function (item) {
+                    return (item.title + ' ' + (item.content || '') + ' ' + (item.tags || []).join(' '))
+                        .toLowerCase().includes(lower);
+                });
+
+                searchLoading.classList.add('hidden');
+                searchCount.textContent = results.length + ' 项';
+
+                if (!results.length) {
+                    searchResults.innerHTML = '';
+                    noResults.classList.remove('hidden');
+                    return;
+                }
+
+                noResults.classList.add('hidden');
+
+                searchResults.innerHTML = results.map(function (item) {
+                    const meta = [
+                        item.date ? '<time>' + item.date.substring(0, 10) + '</time>' : '',
+                        item.categories && item.categories.length ? '<span>' + item.categories.join(' / ') + '</span>' : ''
+                    ].filter(Boolean).join('');
+
+                    return '<article class="entry">' +
+                        (meta ? '<div class="mb-3 flex flex-wrap items-center gap-x-4 mono-meta">' + meta + '</div>' : '') +
+                        '<h2 class="entry-title mb-3"><a href="' + item.url + '">' + highlightText(item.title, query) + '</a></h2>' +
+                        (item.content ? '<p class="text-secondary text-[0.9375rem] leading-relaxed line-clamp-3 mb-4">' +
+                            highlightText(item.content.substring(0, 220) + '…', query) + '</p>' : '') +
+                        '<div class="flex"><a href="' + item.url + '" class="mono-label ml-auto hover:text-accent transition-colors">阅读全文 →</a></div>' +
+                    '</article>';
+                }).join('');
+            }, 150);
+        }
+
+        let searchTimeout;
+        searchInput.addEventListener('input', function () {
+            clearTimeout(searchTimeout);
+            const value = this.value;
+            searchTimeout = setTimeout(function () { performSearch(value); }, 250);
+        });
+
+        searchInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                clearTimeout(searchTimeout);
+                performSearch(this.value);
+            }
+        });
+
+        searchInput.focus();
+    });
+</script>

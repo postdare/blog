@@ -1,0 +1,23 @@
+<footer class="border-t border-hairline mt-20">
+    <div class="mx-auto w-full max-w-6xl px-5 sm:px-8 py-10">
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <p class="mono-meta">
+                <%= theme.footer %>
+            </p>
+            <div class="flex items-center gap-5">
+                <% if (theme.rss) { %>
+                    <a href="<%- url_for(theme.rss) %>" class="mono-label hover:text-accent transition-colors">RSS</a>
+                <% } %>
+                <% if (theme.beian) { %>
+                    <span class="mono-meta"><%- theme.beian %></span>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<button id="back-to-top"
+    class="fixed bottom-8 right-8 z-50 flex h-10 w-10 items-center justify-center rounded-sm border border-hairline-strong bg-surface text-muted transition-all duration-300 opacity-0 invisible hover:text-accent hover:border-hairline-strong"
+    aria-label="回到顶部">
+    <%- icon('arrow-up', 'w-4 h-4') %>
+</button>

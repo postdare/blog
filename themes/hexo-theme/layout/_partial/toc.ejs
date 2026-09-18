@@ -1,0 +1,110 @@
+<div id="toc-rail" class="toc-rail" hidden>
+    <span class="toc-rail-heading">On this page</span>
+    <nav class="toc-nav" data-toc></nav>
+</div>
+
+<script>
+    (function () {
+        function initTOC() {
+            const postContent = document.getElementById('post-content');
+            const targets = document.querySelectorAll('[data-toc]');
+            if (!postContent || !targets.length) return;
+
+            const headings = Array.from(postContent.querySelectorAll('h1, h2, h3'))
+                .filter(function (h) { return (h.textContent || '').trim().length > 0; });
+
+            if (headings.length < 2) return;
+
+            // 扁平列表 —— 让左侧发丝线保持连续，靠缩进表达层级
+            const items = headings.map(function (heading, index) {
+                if (!heading.id) heading.id = 'toc-' + index;
+                const level = parseInt(heading.tagName.charAt(1), 10);
+                return {
+                    id: heading.id,
+                    level: level,
+                    text: (heading.textContent || '').trim(),
+                    el: heading
+                };
+            });
+
+            const html = '<ul class="toc-list">' + items.map(function (item) {
+                return '<li class="toc-item toc-level-' + item.level + '">' +
+                    '<a class="toc-link" href="#' + item.id + '" data-target="' + item.id + '">' +
+                    '<span class="toc-text">' + item.text.replace(/[&<>"]/g, function (c) {
+                        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+                    }) + '</span></a></li>';
+            }).join('') + '</ul>';
+
+            targets.forEach(function (nav) { nav.innerHTML = html; });
+
+            const rail = document.getElementById('toc-rail');
+            if (rail) rail.hidden = false;
+            document.querySelectorAll('[data-toc-wrapper]').forEach(function (el) { el.hidden = false; });
+
+            const links = Array.from(document.querySelectorAll('.toc-link'));
+
+            function setActive(id) {
+                links.forEach(function (link) {
+                    link.classList.toggle('active', link.getAttribute('data-target') === id);
+                });
+            }
+
+            // 点击平滑滚动（考虑固定头部）
+            document.querySelectorAll('[data-toc]').forEach(function (nav) {
+                nav.addEventListener('click', function (e) {
+                    const link = e.target.closest('.toc-link');
+                    if (!link) return;
+                    e.preventDefault();
+                    const target = document.getElementById(link.getAttribute('data-target'));
+                    if (!target) return;
+                    const top = target.getBoundingClientRect().top + window.pageYOffset - 88;
+                    window.scrollTo({ top: top, behavior: 'smooth' });
+                    setActive(link.getAttribute('data-target'));
+                    history.replaceState(null, '', '#' + link.getAttribute('data-target'));
+                });
+            });
+
+            // 滚动高亮 + 目录自动跟随滚动
+            let ticking = false;
+
+            function onScroll() {
+                if (ticking) return;
+                ticking = true;
+                requestAnimationFrame(function () {
+                    let activeId = items[0].id;
+                    for (let i = items.length - 1; i >= 0; i--) {
+                        if (items[i].el.getBoundingClientRect().top <= 100) {
+                            activeId = items[i].id;
+                            break;
+                        }
+                    }
+                    setActive(activeId);
+
+                    // 让高亮项始终留在可视区内
+                    const nav = rail && rail.querySelector('[data-toc]');
+                    if (nav && nav.scrollHeight > nav.clientHeight) {
+                        const active = nav.querySelector('.toc-link.active');
+                        if (active) {
+                            const navRect = nav.getBoundingClientRect();
+                            const linkRect = active.getBoundingClientRect();
+                            if (linkRect.top < navRect.top || linkRect.bottom > navRect.bottom) {
+                                nav.scrollTop += linkRect.top - navRect.top - nav.clientHeight / 2;
+                            }
+                        }
+                    }
+
+                    ticking = false;
+                });
+            }
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initTOC);
+        } else {
+            initTOC();
+        }
+    })();
+</script>

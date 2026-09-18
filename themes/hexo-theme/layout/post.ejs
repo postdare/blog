@@ -1,0 +1,92 @@
+<article>
+    <!-- 文章头部 -->
+    <header class="mb-12">
+        <div class="rule-label mb-8">
+            <% if (page.categories && page.categories.length) { %>
+                <span class="mono-label mono-label-accent">
+                    <% page.categories.each(function(cat, i) { %><%= i ? ' / ' : '' %><%= cat.name %><% }); %>
+                </span>
+            <% } else { %>
+                <span class="mono-label mono-label-accent">文章</span>
+            <% } %>
+        </div>
+
+        <h1 class="text-3xl md:text-[2.75rem] font-bold leading-[1.15] tracking-tight text-balance mb-6">
+            <%= page.title %>
+        </h1>
+
+        <div class="flex flex-wrap items-center gap-x-6 gap-y-2 mono-meta">
+            <time datetime="<%= page.date.toISOString() %>">
+                <%= page.date.format('YYYY-MM-DD') %>
+            </time>
+
+            <% if (page.updated && page.updated.valueOf() !== page.date.valueOf()) { %>
+                <span>更新于 <%= page.updated.format('YYYY-MM-DD') %></span>
+            <% } %>
+
+            <span data-reading-time></span>
+
+            <% if (page.tags && page.tags.length) { %>
+                <span class="flex flex-wrap items-center gap-x-2">
+                    <% page.tags.each(function(tag, i) { %>
+                        <a href="<%- url_for(tag.path) %>" class="hover:text-accent transition-colors">#<%= tag.name %></a>
+                    <% }); %>
+                </span>
+            <% } %>
+        </div>
+    </header>
+
+    <%- partial('_partial/toc-mobile') %>
+
+    <!-- 文章内容 -->
+    <div class="post-content" id="post-content">
+        <%- page.content %>
+    </div>
+</article>
+
+<!-- 文章导航 -->
+<% if (page.prev || page.next) { %>
+    <nav class="mt-20 grid grid-cols-1 sm:grid-cols-2 gap-px border-t border-hairline">
+        <div class="py-6 sm:pr-8">
+            <% if (page.prev) { %>
+                <a href="<%- url_for(page.prev.path) %>" class="group block">
+                    <span class="mono-label block mb-2 group-hover:text-accent transition-colors">← 上一篇</span>
+                    <span class="block text-[0.95rem] font-medium text-theme line-clamp-2 group-hover:text-accent transition-colors">
+                        <%= page.prev.title %>
+                    </span>
+                </a>
+            <% } %>
+        </div>
+
+        <div class="py-6 sm:pl-8 sm:text-right sm:border-l border-hairline">
+            <% if (page.next) { %>
+                <a href="<%- url_for(page.next.path) %>" class="group block">
+                    <span class="mono-label block mb-2 group-hover:text-accent transition-colors">下一篇 →</span>
+                    <span class="block text-[0.95rem] font-medium text-theme line-clamp-2 group-hover:text-accent transition-colors">
+                        <%= page.next.title %>
+                    </span>
+                </a>
+            <% } %>
+        </div>
+    </nav>
+<% } %>
+
+<script>
+    (function () {
+        function readingTime() {
+            const content = document.getElementById('post-content');
+            const slot = document.querySelector('[data-reading-time]');
+            if (!content || !slot) return;
+            const text = content.textContent || '';
+            const cjk = (text.match(/[一-龥]/g) || []).length;
+            const words = (text.replace(/[一-龥]/g, ' ').match(/[A-Za-z0-9]+/g) || []).length;
+            const minutes = Math.max(1, Math.round(cjk / 400 + words / 220));
+            slot.textContent = minutes + ' 分钟阅读';
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', readingTime);
+        } else {
+            readingTime();
+        }
+    })();
+</script>

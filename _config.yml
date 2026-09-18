@@ -3,17 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: FoundraLab
+title: Postdare
 subtitle:
 description:
 keywords:
-author: kim
+author: Kai Yang
 language: zh-CN
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://foundra.me
+url: https://blog.postdare.com
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -75,7 +75,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: hexo-deveye
+theme: hexo-theme
 
 # Mermaid 配置 - 懒加载提升首屏速度
 mermaid:
@@ -120,7 +120,7 @@ search:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:hellodeveye/blog.git
+  repo: git@github.com:postdare/blog.git
   branch: master
 
 # Markdown-it config

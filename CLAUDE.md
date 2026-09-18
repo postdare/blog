@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Hexo 7.3.0 blog (FoundraLab, https://foundra.me) with a custom theme `hexo-deveye`. Content is primarily in Chinese (zh-CN). The blog covers AI tools and tech news.
+Hexo 7.3.0 blog (Postdare, https://blog.postdare.com) with a custom theme `hexo-theme`. Content is primarily in Chinese (zh-CN). The blog covers AI tools and tech news.
 
 ## Commands
 
@@ -20,7 +20,7 @@ hexo g -f                     # force regenerate
 # Clean cache and generated files (db.json + public/)
 hexo clean
 
-# Deploy to GitHub Pages (git@github.com:hellodeveye/blog.git, master branch)
+# Deploy to GitHub Pages (git@github.com:postdare/blog.git, master branch)
 hexo d                        # hexo deploy
 hexo d -g                     # generate then deploy (same as hexo g && hexo d)
 
@@ -43,15 +43,15 @@ npm run watch:css             # watch mode
 ### Configuration
 
 - `_config.yml` — Main Hexo config (site metadata, permalink format, plugins, deployment, markdown-it settings)
-- `themes/hexo-deveye/_config.yml` — Theme config (menu, widgets, footer, avatar, social links)
+- `themes/hexo-theme/_config.yml` — Theme config (menu, widgets, footer, avatar, social links)
 
-### Theme: hexo-deveye
+### Theme: hexo-theme
 
-- **Templates**: `themes/hexo-deveye/layout/` — EJS templates. `layout.ejs` is the root wrapper; `_partial/` contains shared components (head, header, footer, sidebar, toc)
-- **Styles**: Tailwind CSS. Source at `themes/hexo-deveye/source/css/tailwind.css`, compiled to `main.css`. Tailwind config is at `tailwind.config.js` (custom color palette, fonts: Lora, Poppins, JetBrains Mono)
-- **JS**: `themes/hexo-deveye/source/js/plugins.js` handles dark mode (localStorage), lazy loading, mobile menu, back-to-top
-- **Icons**: `themes/hexo-deveye/scripts/icons.js` — Hexo helper providing inline SVG Heroicons via `<%- icon('name') %>` in EJS
-- **i18n**: `themes/hexo-deveye/languages/` — 12 language files
+- **Templates**: `themes/hexo-theme/layout/` — EJS templates. `layout.ejs` is the root wrapper; `_partial/` contains shared components (head, header, footer, sidebar, toc)
+- **Styles**: Tailwind CSS. Source at `themes/hexo-theme/source/css/tailwind.css`, compiled to `main.css`. Tailwind config is at `tailwind.config.js` (custom color palette, fonts: Lora, Poppins, JetBrains Mono)
+- **JS**: `themes/hexo-theme/source/js/plugins.js` handles dark mode (localStorage), lazy loading, mobile menu, back-to-top
+- **Icons**: `themes/hexo-theme/scripts/icons.js` — Hexo helper providing inline SVG Heroicons via `<%- icon('name') %>` in EJS
+- **i18n**: `themes/hexo-theme/languages/` — 12 language files
 
 ### Content
 
@@ -65,9 +65,9 @@ npm run watch:css             # watch mode
 ### CSS Build Pipeline
 
 Tailwind CSS source → PostCSS → compiled `main.css`. When modifying styles:
-1. Edit `themes/hexo-deveye/source/css/tailwind.css` or use Tailwind classes in EJS templates
+1. Edit `themes/hexo-theme/source/css/tailwind.css` or use Tailwind classes in EJS templates
 2. Run `npm run build:css` (one-off build) or `npm run watch:css` (watch mode)
-3. The compiled `themes/hexo-deveye/source/css/main.css` is checked into git
+3. The compiled `themes/hexo-theme/source/css/main.css` is checked into git
 
 ### Git Branching
 

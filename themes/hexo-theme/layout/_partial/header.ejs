@@ -1,0 +1,44 @@
+<header class="sticky top-0 z-50 border-b border-hairline backdrop-blur-md"
+	style="background-color: color-mix(in srgb, var(--bg) 88%, transparent);">
+	<div class="mx-auto w-full max-w-6xl px-5 sm:px-8">
+		<div class="flex h-16 items-center justify-between">
+			<a href="<%- config.root %>" class="logo-link flex items-center" aria-label="<%= config.title %>">
+				<span class="logo-wordmark" aria-hidden="true">Postdare</span>
+			</a>
+
+			<nav class="hidden md:flex items-center gap-7">
+				<% for (var name in theme.menu) { %>
+					<% var href = url_for(theme.menu[name]); %>
+					<a href="<%- href %>" class="nav-link<%= page.path && ('/' + page.path) === href ? ' is-active' : '' %>">
+						<%= name %>
+					</a>
+				<% } %>
+			</nav>
+
+			<div class="flex items-center gap-1">
+				<a href="<%- url_for('/search/') %>" class="icon-btn" title="搜索" aria-label="搜索">
+					<%- icon('search', 'h-[18px] w-[18px]') %>
+				</a>
+
+				<button id="theme-toggle" class="icon-btn" title="切换主题" aria-label="切换主题">
+					<span id="theme-toggle-dark-icon" class="hidden"><%- icon('moon', 'h-[18px] w-[18px]') %></span>
+					<span id="theme-toggle-light-icon" class="hidden"><%- icon('sun', 'h-[18px] w-[18px]') %></span>
+				</button>
+
+				<button id="mobile-menu-button" class="icon-btn md:hidden" aria-label="菜单">
+					<%- icon('menu', 'h-5 w-5') %>
+				</button>
+			</div>
+		</div>
+
+		<div id="mobile-menu" class="hidden md:hidden border-t border-hairline">
+			<nav class="flex flex-col py-2">
+				<% for (var name in theme.menu) { %>
+					<a href="<%- url_for(theme.menu[name]) %>" class="nav-link py-3">
+						<%= name %>
+					</a>
+				<% } %>
+			</nav>
+		</div>
+	</div>
+</header>

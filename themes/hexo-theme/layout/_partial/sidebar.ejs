@@ -1,0 +1,120 @@
+<div class="sticky top-24 flex flex-col gap-10">
+
+	<!-- 作者 -->
+	<section>
+		<div class="flex items-center gap-3 mb-3">
+			<% if (theme.about_widget_avatar_url_1) { %>
+				<img class="h-10 w-10 rounded-sm object-cover border border-hairline"
+					src="<%= theme.about_widget_avatar_url_1 %>"
+					alt="<%= theme.about_widget_nikename || config.author %>">
+			<% } %>
+			<span class="mono-label mono-label-accent"><%= theme.about_widget_nikename || config.author %></span>
+		</div>
+
+		<% if (theme.about_widget_text) { %>
+			<p class="text-[0.8125rem] leading-relaxed text-secondary">
+				<%- theme.about_widget_text %>
+			</p>
+		<% } %>
+
+		<% if (theme.social_platforms && theme.social_platforms.length) { %>
+			<div class="mt-3 flex gap-2">
+				<% theme.social_platforms.forEach(function(platform) { %>
+					<a href="<%- platform.url %>" target="_blank" class="icon-btn">
+						<%- icon('link', 'w-4 h-4') %>
+					</a>
+				<% }) %>
+			</div>
+		<% } %>
+	</section>
+
+	<!-- 最近文章 -->
+	<% if (site.posts.length) { %>
+		<section>
+			<div class="rule-label mb-4">
+				<span class="mono-label">最近</span>
+			</div>
+			<ul class="flex flex-col gap-3">
+				<% site.posts.sort('date', -1).limit(5).each(function(post) { %>
+					<li class="flex gap-3">
+						<span class="mono-meta shrink-0 opacity-60"><%= post.date.format('MM-DD') %></span>
+						<a href="<%- url_for(post.path) %>"
+							class="text-[0.8125rem] leading-snug text-theme hover:text-accent transition-colors line-clamp-2">
+							<%= post.title || '(无标题)' %>
+						</a>
+					</li>
+				<% }) %>
+			</ul>
+		</section>
+	<% } %>
+
+	<!-- 分类 -->
+	<% if (site.categories.length) { %>
+		<section>
+			<div class="rule-label mb-4">
+				<span class="mono-label">分类</span>
+			</div>
+			<ul class="flex flex-col">
+				<% site.categories.sort('name').each(function(cat) { %>
+					<li>
+						<a href="<%- url_for(cat.path) %>"
+							class="flex items-baseline justify-between gap-3 py-1.5 text-[0.8125rem] text-theme hover:text-accent transition-colors">
+							<span class="truncate"><%= cat.name %></span>
+							<span class="mono-meta opacity-60"><%= cat.posts.length %></span>
+						</a>
+					</li>
+				<% }) %>
+			</ul>
+		</section>
+	<% } %>
+
+	<!-- 标签 -->
+	<% if (site.tags.length) { %>
+		<section>
+			<div class="rule-label mb-4">
+				<span class="mono-label">标签</span>
+			</div>
+			<div class="flex flex-wrap gap-1.5">
+				<% site.tags.sort('name').each(function(tag) { %>
+					<a href="<%- url_for(tag.path) %>" class="chip">
+						<%= tag.name %>
+						<span class="chip-count"><%= tag.posts.length %></span>
+					</a>
+				<% }) %>
+			</div>
+		</section>
+	<% } %>
+
+	<!-- 归档 -->
+	<% if (site.posts.length) { %>
+		<section>
+			<div class="rule-label mb-4">
+				<span class="mono-label">归档</span>
+			</div>
+			<ul class="flex flex-col">
+				<%
+					var archives = {};
+					site.posts.sort('date', -1).each(function(post) {
+						var year = post.date.format('YYYY');
+						var month = post.date.format('MM');
+						var key = year + '-' + month;
+						if (!archives[key]) {
+							archives[key] = { label: year + '.' + month, count: 0, year: year, month: month };
+						}
+						archives[key].count++;
+					});
+					Object.keys(archives).forEach(function(key) {
+						var archive = archives[key];
+				%>
+					<li>
+						<a href="<%- url_for('/archives/' + archive.year + '/' + archive.month + '/') %>"
+							class="flex items-baseline justify-between gap-3 py-1.5 text-secondary hover:text-accent transition-colors">
+							<span class="mono-meta text-theme"><%= archive.label %></span>
+							<span class="mono-meta opacity-60"><%= archive.count %></span>
+						</a>
+					</li>
+				<% }); %>
+			</ul>
+		</section>
+	<% } %>
+</div>

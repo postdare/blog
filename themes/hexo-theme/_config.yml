@@ -3,10 +3,10 @@
 
 # Post
 default_post_title: Untitled
-default_post_author: Kim
+default_post_author: Kai Yang
 
 # About Widget
-about_widget_nikename: KIM
+about_widget_nikename: KAI YANG
 about_widget_avatar_url_1: /img/avatar.jpg
 about_widget_avatar_url_2: /img/avatar.jpg
 about_widget_text: "stay hungry , stay foolish "
@@ -22,7 +22,7 @@ social_platforms:
   #   crt_icon: crt-icon-google-plus
   # - url: https://dribbble.com/
   #   crt_icon: crt-icon-instagram
-  # - url: https://github.com/hellodeveye/hexo-deveye
+  # - url: https://github.com/postdare/hexo-theme
   #   crt_icon: crt-icon-pinterest
 # 顶部导航
 menu:
@@ -31,7 +31,7 @@ menu:
 rss: /atom.xml
 
 # footer
-footer: FoundraLab @ All Rights Reserved 2026
+footer: Postdare @ All Rights Reserved 2026
 beian: <a href="https://beian.miit.gov.cn" target="_blank">陕ICP备16008414号-4</a>
 # 内容
 excerpt_link: 阅读更多

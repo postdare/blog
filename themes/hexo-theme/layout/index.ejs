@@ -1,0 +1,137 @@
+<!-- 归档 / 分类 / 标签 页头 -->
+<% if (!is_home()) { %>
+    <section class="mb-12">
+        <div class="rule-label mb-7">
+            <span class="mono-label mono-label-accent">
+                <%= is_category() ? '分类' : (is_tag() ? '标签' : '归档') %>
+            </span>
+            <span class="mono-label shrink-0 order-last"><%= page.total_posts || page.posts.length %> 篇</span>
+        </div>
+        <h1 class="text-[2rem] md:text-[2.75rem] font-bold tracking-tight leading-[1.12]">
+            <%= page.title || page.category || page.tag || (page.year ? page.year + (page.month ? '.' + (page.month < 10 ? '0' + page.month : page.month) : '') : '全部文章') %>
+        </h1>
+    </section>
+<% } %>
+
+<!-- 文章列表 -->
+<div class="rule-label mb-2">
+    <span class="mono-label"><%= is_home() ? '最新文章' : '文章' %></span>
+    <% if (is_home()) { %>
+        <span class="mono-label shrink-0 order-last"><%= site.posts.length %> 篇</span>
+    <% } %>
+</div>
+
+<div>
+    <% page.posts.each(function(post, index) { %>
+        <article class="entry">
+            <div class="mb-3 flex flex-wrap items-center gap-x-4 gap-y-1 mono-meta">
+                <time datetime="<%= post.date.toISOString() %>"><%= post.date.format('YYYY-MM-DD') %></time>
+
+                <% if (post.categories && post.categories.length) { %>
+                    <span class="flex items-center gap-2">
+                        <% post.categories.each(function(cat) { %>
+                            <a href="<%- url_for(cat.path) %>" class="hover:text-accent transition-colors"><%= cat.name %></a>
+                        <% }); %>
+                    </span>
+                <% } %>
+            </div>
+
+            <h2 class="entry-title mb-4">
+                <a href="<%- url_for(post.path) %>"><%= post.title %></a>
+            </h2>
+
+            <%
+                var content = post.excerpt || post.content || '';
+                var showContent = content.length > 0;
+                var strippedContent = strip_html(content);
+                var needsExpansion = strippedContent.length > 300;
+            %>
+
+            <% if (showContent) { %>
+                <div class="post-content-container mb-5">
+                    <div class="post-content-preview" id="preview-<%= index %>">
+                        <div class="post-content-preview-wrapper">
+                            <div class="post-content text-[0.95rem]" data-content-type="preview">
+                                <%- content %>
+                            </div>
+                        </div>
+                        <% if (needsExpansion) { %>
+                            <div class="content-fade"></div>
+                        <% } %>
+                    </div>
+
+                    <% if (needsExpansion) { %>
+                        <div class="post-content-full post-hidden" id="full-<%= index %>">
+                            <div class="post-content text-[0.95rem]" data-content-type="full">
+                                <%- content %>
+                            </div>
+                        </div>
+                    <% } %>
+                </div>
+            <% } %>
+
+            <div class="flex items-center gap-4">
+                <% if (needsExpansion) { %>
+                    <button class="expand-btn mono-label flex items-center gap-1.5 hover:text-accent transition-colors"
+                        data-index="<%= index %>" id="btn-<%= index %>">
+                        <span class="expand-text">展开</span>
+                        <%- icon('chevron-down', 'w-3.5 h-3.5 expand-icon') %>
+                    </button>
+                <% } %>
+
+                <a href="<%- url_for(post.path) %>" class="mono-label ml-auto hover:text-accent transition-colors">
+                    阅读全文 →
+                </a>
+            </div>
+        </article>
+    <% }); %>
+</div>
+
+<!-- 分页 -->
+<% if (page.total > 1) { %>
+    <nav class="mt-12 flex items-center justify-between">
+        <div class="w-28">
+            <% if (page.prev) { %>
+                <a href="<%- url_for(page.prev_link) %>" class="mono-label hover:text-accent transition-colors">← 上一页</a>
+            <% } %>
+        </div>
+
+        <span class="mono-meta">
+            <%= page.current %> <span class="text-muted opacity-50">/</span> <%= page.total %>
+        </span>
+
+        <div class="w-28 text-right">
+            <% if (page.next) { %>
+                <a href="<%- url_for(page.next_link) %>" class="mono-label hover:text-accent transition-colors">下一页 →</a>
+            <% } %>
+        </div>
+    </nav>
+<% } %>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.expand-btn').forEach(function (button) {
+            button.addEventListener('click', function () {
+                const index = this.getAttribute('data-index');
+                const preview = document.getElementById('preview-' + index);
+                const full = document.getElementById('full-' + index);
+                const expandText = this.querySelector('.expand-text');
+                const expandIcon = this.querySelector('.expand-icon');
+
+                if (full.classList.contains('post-hidden')) {
+                    preview.classList.add('post-hidden');
+                    full.classList.remove('post-hidden');
+                    full.classList.add('post-visible');
+                    expandText.textContent = '收起';
+                    expandIcon.style.transform = 'rotate(180deg)';
+                } else {
+                    preview.classList.remove('post-hidden');
+                    full.classList.add('post-hidden');
+                    full.classList.remove('post-visible');
+                    expandText.textContent = '展开';
+                    expandIcon.style.transform = 'rotate(0deg)';
+                }
+            });
+        });
+    });
+</script>
