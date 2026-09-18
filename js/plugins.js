@@ -46,21 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
          });
      }
      
-     // 滚动离顶后字标折叠为 PD，回到顶部恢复 POSTDARE
-    const wordmark = document.querySelector('.logo-wordmark');
-    if (wordmark) {
-        let logoTicking = false;
-        window.addEventListener('scroll', function() {
-            if (logoTicking) return;
-            logoTicking = true;
-            requestAnimationFrame(function() {
-                wordmark.classList.toggle('is-collapsed', window.pageYOffset > 40);
-                logoTicking = false;
-            });
-        }, { passive: true });
-    }
-
-    // 回到顶部按钮
+     // 回到顶部按钮
      const backToTopButton = document.getElementById('back-to-top');
      
      if (backToTopButton) {
