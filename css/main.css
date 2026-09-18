@@ -444,6 +444,18 @@ video {
   display: none;
 }
 
+@font-face {
+  font-family: 'Postdare Wordmark';
+
+  src: url('../fonts/postdare-wordmark.woff2') format('woff2');
+
+  font-style: normal;
+
+  font-weight: 700;
+
+  font-display: swap;
+}
+
 :root {
   --bg: #faf9f6;
   --bg-alt: #f2f0ea;
@@ -796,21 +808,36 @@ hr {
 
 /* ---------- Logo ---------- */
 
-/* 大写字标 + 字距：小尺寸下靠字距撑起标识的分量，混排做不到。
-     双色沿用品牌 POST / DARE 的拆分。 */
+/* 单色字标与金色方句点，对应 favicon 的 P + 句点。 */
 
-.logo-wordmark {
-  font-family: -apple-system, BlinkMacSystemFont, Inter, Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Noto Sans SC, sans-serif;
-  font-size: 1.0625rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  line-height: 1;
-  color: var(--text);
-  transition: color 0.2s ease;
+.logo-link {
+  min-height: 44px;
+  flex-shrink: 0;
 }
 
-.logo-wordmark .logo-accent {
-  color: var(--accent);
+.logo-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+.logo-wordmark {
+  font-family: 'Postdare Wordmark', -apple-system, BlinkMacSystemFont, Inter, Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Noto Sans SC, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--text);
+}
+
+.logo-wordmark::after {
+  content: '';
+  display: inline-block;
+  width: 0.166667em;
+  height: 0.166667em;
+  margin-left: 0.125em;
+  background-color: #ddaa2f;
 }
 
 /* ---------- 导航 ---------- */
