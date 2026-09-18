@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Claude Code 创作者分享的 10 条高效使用技巧 · Postdare</title>
+
+	
+	<meta name="description" content="">
+	<meta name="author" content="Kai Yang">
+	<meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)">
+	<meta name="theme-color" content="#0a0908" media="(prefers-color-scheme: dark)">
+
+	<meta property="og:site_name" content="Postdare">
+	<meta property="og:title" content="Claude Code 创作者分享的 10 条高效使用技巧">
+	<meta property="og:description" content="">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="https://blog.postdare.com/2026/02/06/2026-02-06-Claude-Code-%E5%88%9B%E4%BD%9C%E8%80%8510%E6%9D%A1%E6%8A%80%E5%B7%A7/">
+
+	<link rel="shortcut icon" href="/img/favicon.ico">
+	<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+	<link rel="manifest" href="/img/site.webmanifest">
+	
+		<link rel="alternate" type="application/atom+xml" title="Postdare" href="/atom.xml">
+	
+
+	
+<link rel="stylesheet" href="/css/main.css">
+
+
+	<script>
+		// 深色模式初始化（在渲染前执行，避免闪白）
+		(function () {
+			try {
+				var stored = localStorage.theme;
+				var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+				if (stored === 'dark' || (!stored && prefersDark)) {
+					document.documentElement.classList.add('dark');
+				} else {
+					document.documentElement.classList.remove('dark');
+				}
+			} catch (e) {}
+		})();
+
+		function toggleDarkMode() {
+			var isDark = document.documentElement.classList.toggle('dark');
+			try { localStorage.theme = isDark ? 'dark' : 'light'; } catch (e) {}
+		}
+	</script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body class="single">
+    <div class="flex min-h-screen flex-col">
+        <header class="sticky top-0 z-50 border-b border-hairline backdrop-blur-md"
+	style="background-color: color-mix(in srgb, var(--bg) 88%, transparent);">
+	<div class="mx-auto w-full max-w-6xl px-5 sm:px-8">
+		<div class="flex h-16 items-center justify-between">
+			<a href="/" class="flex items-center gap-2">
+				
+				<span class="logo-title text-lg">
+					<span class="logo-mark">Post</span><span class="logo-accent">dare</span>
+				</span>
+			</a>
+
+			<nav class="hidden md:flex items-center gap-7">
+				
+					
+					<a href="/" class="nav-link">
+						文章
+					</a>
+				
+					
+					<a href="/about" class="nav-link">
+						关于
+					</a>
+				
+			</nav>
+
+			<div class="flex items-center gap-1">
+				<a href="/search/" class="icon-btn" title="搜索" aria-label="搜索">
+					<svg class="h-[18px] w-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"></path></svg>
+				</a>
+
+				<button id="theme-toggle" class="icon-btn" title="切换主题" aria-label="切换主题">
+					<span id="theme-toggle-dark-icon" class="hidden"><svg class="h-[18px] w-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"></path></svg></span>
+					<span id="theme-toggle-light-icon" class="hidden"><svg class="h-[18px] w-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"></path></svg></span>
+				</button>
+
+				<button id="mobile-menu-button" class="icon-btn md:hidden" aria-label="菜单">
+					<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path></svg>
+				</button>
+			</div>
+		</div>
+
+		<div id="mobile-menu" class="hidden md:hidden border-t border-hairline">
+			<nav class="flex flex-col py-2">
+				
+					<a href="/" class="nav-link py-3">
+						文章
+					</a>
+				
+					<a href="/about" class="nav-link py-3">
+						关于
+					</a>
+				
+			</nav>
+		</div>
+	</div>
+</header>
+
+
+        <main class="flex-1">
+            <div class="mx-auto w-full max-w-6xl px-5 sm:px-8 py-12 md:py-16">
+                <div class="main-layout">
+                    <div class="main-content">
+                        <article>
+    <!-- 文章头部 -->
+    <header class="mb-12">
+        <div class="rule-label mb-8">
+            
+                <span class="mono-label mono-label-accent">
+                    工具
+                </span>
+            
+        </div>
+
+        <h1 class="text-3xl md:text-[2.75rem] font-bold leading-[1.15] tracking-tight text-balance mb-6">
+            Claude Code 创作者分享的 10 条高效使用技巧
+        </h1>
+
+        <div class="flex flex-wrap items-center gap-x-6 gap-y-2 mono-meta">
+            <time datetime="2026-02-06T03:35:00.000Z">
+                2026-02-06
+            </time>
+
+            
+                <span>更新于 2026-09-18</span>
+            
+
+            <span data-reading-time></span>
+
+            
+                <span class="flex flex-wrap items-center gap-x-2">
+                    
+                        <a href="/tags/Claude-Code/" class="hover:text-accent transition-colors">#Claude Code</a>
+                    
+                        <a href="/tags/%E5%B7%A5%E5%85%B7/" class="hover:text-accent transition-colors">#工具</a>
+                    
+                        <a href="/tags/%E6%8F%90%E6%95%88/" class="hover:text-accent transition-colors">#提效</a>
+                    
+                        <a href="/tags/AI/" class="hover:text-accent transition-colors">#AI</a>
+                    
+                </span>
+            
+        </div>
+    </header>
+
+    <details class="toc-mobile lg:hidden" data-toc-wrapper hidden>
+    <summary>
+        <span class="toc-rail-heading">On this page</span>
+        <span class="toc-mobile-chevron text-muted"><svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                    </svg></span>
+    </summary>
+    <nav class="toc-nav" data-toc></nav>
+</details>
+
+
+    <!-- 文章内容 -->
+    <div class="post-content" id="post-content">
+        <p><img src="https://oss.foundra.me/images/2026/02/06/claude-code-tips/cover.png" alt="Claude Code Tips Cover"></p>
+<blockquote>
+<p>这是一位名为 Boris 的作者在推文中整理的使用心得。他表示这些技巧来自 Claude Code 团队的内部实践，同时也强调：<strong>没有唯一正确的用法</strong>，每个人都应该根据自己的工作流不断试验与调整。</p>
+</blockquote>
+<p>原文地址：<a href="https://x.com/bcherny/status/2017742741636321619">https://x.com/bcherny/status/2017742741636321619</a></p>
+<h2 id="1-并行：3–5-个-worktree-同时跑">1) 并行：3–5 个 worktree 同时跑</h2>
+<p>团队的 No.1 技巧：<strong>同时开 3–5 个 git worktree</strong>，每个 worktree 对应一个 Claude 会话。上下文更干净、并行更高效。</p>
+<p><img src="https://oss.foundra.me/images/2026/02/06/claude-code-tips/01-worktree.jpg" alt="Worktree 并行示例"></p>
+<p><strong>实践建议：</strong></p>
+<ul>
+<li>给 worktree 起名并设 alias（如 <code>za/zb/zc</code>）</li>
+<li>单独开一个“分析 worktree”用于日志/查询</li>
+</ul>
+<h2 id="2-复杂任务先进入-Plan-Mode">2) 复杂任务先进入 Plan Mode</h2>
+<p><strong>先把计划做扎实</strong>，再执行才容易一枪到位。</p>
+<p><img src="https://oss.foundra.me/images/2026/02/06/claude-code-tips/02-plan-mode.png" alt="Plan Mode 示例"></p>
+<p>一些团队成员会：</p>
+<ul>
+<li>让一个 Claude 写计划</li>
+<li>再让另一个 Claude 以“资深工程师视角”审核</li>
+</ul>
+<p><strong>一旦走偏就回到 Plan Mode 重规划</strong>，不要硬推。</p>
+<h2 id="3-把-CLAUDE-md-当成自我修正系统">3) 把 <a href="http://CLAUDE.md">CLAUDE.md</a> 当成自我修正系统</h2>
+<p>每次纠正 Claude 后，都补一句：</p>
+<blockquote>
+<p>“更新 <a href="http://CLAUDE.md">CLAUDE.md</a>，避免下次再犯。”</p>
+</blockquote>
+<p><img src="https://oss.foundra.me/images/2026/02/06/claude-code-tips/03-claude-md.png" alt="CLAUDE.md 记忆示例"></p>
+<p>持续迭代后，Claude 的错误率会明显下降。</p>
+<h2 id="4-把重复劳动写成-Skill-Slash-Command">4) 把重复劳动写成 Skill / Slash Command</h2>
+<p>做超过一天的事，就值得自动化。</p>
+<p>团队建议：</p>
+<ul>
+<li><code>/techdebt</code>：会话末尾清理重复代码</li>
+<li>自动同步 Slack / Asana / GDrive / GitHub 上下文</li>
+<li>构建“数据工程师风格”的 agent 写 dbt / review / 测试</li>
+</ul>
+<h2 id="5-让-Claude-自己修-Bug">5) 让 Claude 自己修 Bug</h2>
+<p>不要过度指导，把问题喂给它即可：</p>
+<p><img src="https://oss.foundra.me/images/2026/02/06/claude-code-tips/05-slack-mcp.png" alt="Slack MCP 修复示例"></p>
+<ul>
+<li>贴 Slack bug 线程说 “fix”</li>
+<li>或直接说 “修复 failing CI tests”</li>
+<li>把 Docker logs 直接贴进去</li>
+</ul>
+<h2 id="6-Prompt-进阶技巧">6) Prompt 进阶技巧</h2>
+<ul>
+<li><strong>让 Claude 审你</strong>：<br>
+“Grill me on these changes, don’t PR until I pass.”</li>
+<li><strong>不满意就推翻</strong>：<br>
+“Knowing everything you know now, scrap this and implement the elegant solution.”</li>
+<li><strong>先写清楚 spec</strong>：越具体越少返工</li>
+</ul>
+<h2 id="7-终端与环境配置">7) 终端与环境配置</h2>
+<p>团队喜欢 <strong>Ghostty</strong>（同步渲染、24-bit 色彩、完整 Unicode）。</p>
+<p><img src="https://oss.foundra.me/images/2026/02/06/claude-code-tips/07-terminal-setup.jpg" alt="终端与环境配置示例"></p>
+<p>提升效率的小习惯：</p>
+<ul>
+<li><code>/statusline</code> 显示上下文与分支</li>
+<li>终端 tab 颜色区分任务</li>
+<li>tmux 一任务一 tab</li>
+<li><strong>语音输入</strong>（Mac 双击 fn）提示词更完整</li>
+</ul>
+<h2 id="8-Use-Subagents">8) Use Subagents</h2>
+<p>在需求结尾加一句 <strong>“use subagents”</strong>，Claude 会开多个子任务并行。</p>
+<p><img src="https://oss.foundra.me/images/2026/02/06/claude-code-tips/08-subagents.png" alt="Subagents 并行示例"></p>
+<p>优点：主上下文更干净、并行探索更快。</p>
+<h2 id="9-用-Claude-做数据分析">9) 用 Claude 做数据分析</h2>
+<p>团队把 BigQuery CLI 直接接到 Claude Code，<strong>6 个月没写 SQL</strong>。</p>
+<p>只要有 CLI / MCP / API 的数据库都能用同样方法接入。</p>
+<h2 id="10-用-Claude-学习新知识">10) 用 Claude 学习新知识</h2>
+<ul>
+<li>在 <code>/config</code> 开启 Learning / Explanatory 模式</li>
+<li>让 Claude 生成 HTML 讲义</li>
+<li>让 Claude 画 ASCII 架构图</li>
+<li>做“间隔复习”学习 skill：你讲理解，Claude 追问补全</li>
+</ul>
+<hr>
+<p><strong>总结</strong>：Claude Code 的价值不在单次对话，而在于<strong>工作流的长期迭代</strong>。并行化、计划驱动、规则沉淀与技能化工具，是提升效率的核心。</p>
+
+    </div>
+</article>
+
+<!-- 文章导航 -->
+
+    <nav class="mt-20 grid grid-cols-1 sm:grid-cols-2 gap-px border-t border-hairline">
+        <div class="py-6 sm:pr-8">
+            
+                <a href="/2026/02/07/2026-02-07-claude-code-agent-teams-%E4%B8%8A%E6%89%8B%E6%8C%87%E5%8D%97/" class="group block">
+                    <span class="mono-label block mb-2 group-hover:text-accent transition-colors">← 上一篇</span>
+                    <span class="block text-[0.95rem] font-medium text-theme line-clamp-2 group-hover:text-accent transition-colors">
+                        Claude Code Agent Teams 上手指南：启用、协作与最佳实践
+                    </span>
+                </a>
+            
+        </div>
+
+        <div class="py-6 sm:pl-8 sm:text-right sm:border-l border-hairline">
+            
+                <a href="/2026/02/02/AI%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/" class="group block">
+                    <span class="mono-label block mb-2 group-hover:text-accent transition-colors">下一篇 →</span>
+                    <span class="block text-[0.95rem] font-medium text-theme line-clamp-2 group-hover:text-accent transition-colors">
+                        AI工具使用心得
+                    </span>
+                </a>
+            
+        </div>
+    </nav>
+
+
+<script>
+    (function () {
+        function readingTime() {
+            const content = document.getElementById('post-content');
+            const slot = document.querySelector('[data-reading-time]');
+            if (!content || !slot) return;
+            const text = content.textContent || '';
+            const cjk = (text.match(/[一-龥]/g) || []).length;
+            const words = (text.replace(/[一-龥]/g, ' ').match(/[A-Za-z0-9]+/g) || []).length;
+            const minutes = Math.max(1, Math.round(cjk / 400 + words / 220));
+            slot.textContent = minutes + ' 分钟阅读';
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', readingTime);
+        } else {
+            readingTime();
+        }
+    })();
+</script>
+
+                    </div>
+
+                    
+                        <aside class="main-toc">
+                            <div id="toc-rail" class="toc-rail" hidden>
+    <span class="toc-rail-heading">On this page</span>
+    <nav class="toc-nav" data-toc></nav>
+</div>
+
+<script>
+    (function () {
+        function initTOC() {
+            const postContent = document.getElementById('post-content');
+            const targets = document.querySelectorAll('[data-toc]');
+            if (!postContent || !targets.length) return;
+
+            const headings = Array.from(postContent.querySelectorAll('h1, h2, h3'))
+                .filter(function (h) { return (h.textContent || '').trim().length > 0; });
+
+            if (headings.length < 2) return;
+
+            // 扁平列表 —— 让左侧发丝线保持连续，靠缩进表达层级
+            const items = headings.map(function (heading, index) {
+                if (!heading.id) heading.id = 'toc-' + index;
+                const level = parseInt(heading.tagName.charAt(1), 10);
+                return {
+                    id: heading.id,
+                    level: level,
+                    text: (heading.textContent || '').trim(),
+                    el: heading
+                };
+            });
+
+            const html = '<ul class="toc-list">' + items.map(function (item) {
+                return '<li class="toc-item toc-level-' + item.level + '">' +
+                    '<a class="toc-link" href="#' + item.id + '" data-target="' + item.id + '">' +
+                    '<span class="toc-text">' + item.text.replace(/[&<>"]/g, function (c) {
+                        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+                    }) + '</span></a></li>';
+            }).join('') + '</ul>';
+
+            targets.forEach(function (nav) { nav.innerHTML = html; });
+
+            const rail = document.getElementById('toc-rail');
+            if (rail) rail.hidden = false;
+            document.querySelectorAll('[data-toc-wrapper]').forEach(function (el) { el.hidden = false; });
+
+            const links = Array.from(document.querySelectorAll('.toc-link'));
+
+            function setActive(id) {
+                links.forEach(function (link) {
+                    link.classList.toggle('active', link.getAttribute('data-target') === id);
+                });
+            }
+
+            // 点击平滑滚动（考虑固定头部）
+            document.querySelectorAll('[data-toc]').forEach(function (nav) {
+                nav.addEventListener('click', function (e) {
+                    const link = e.target.closest('.toc-link');
+                    if (!link) return;
+                    e.preventDefault();
+                    const target = document.getElementById(link.getAttribute('data-target'));
+                    if (!target) return;
+                    const top = target.getBoundingClientRect().top + window.pageYOffset - 88;
+                    window.scrollTo({ top: top, behavior: 'smooth' });
+                    setActive(link.getAttribute('data-target'));
+                    history.replaceState(null, '', '#' + link.getAttribute('data-target'));
+                });
+            });
+
+            // 滚动高亮 + 目录自动跟随滚动
+            let ticking = false;
+
+            function onScroll() {
+                if (ticking) return;
+                ticking = true;
+                requestAnimationFrame(function () {
+                    let activeId = items[0].id;
+                    for (let i = items.length - 1; i >= 0; i--) {
+                        if (items[i].el.getBoundingClientRect().top <= 100) {
+                            activeId = items[i].id;
+                            break;
+                        }
+                    }
+                    setActive(activeId);
+
+                    // 让高亮项始终留在可视区内
+                    const nav = rail && rail.querySelector('[data-toc]');
+                    if (nav && nav.scrollHeight > nav.clientHeight) {
+                        const active = nav.querySelector('.toc-link.active');
+                        if (active) {
+                            const navRect = nav.getBoundingClientRect();
+                            const linkRect = active.getBoundingClientRect();
+                            if (linkRect.top < navRect.top || linkRect.bottom > navRect.bottom) {
+                                nav.scrollTop += linkRect.top - navRect.top - nav.clientHeight / 2;
+                            }
+                        }
+                    }
+
+                    ticking = false;
+                });
+            }
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initTOC);
+        } else {
+            initTOC();
+        }
+    })();
+</script>
+
+                        </aside>
+                    
+                </div>
+            </div>
+        </main>
+
+        <footer class="border-t border-hairline mt-20">
+    <div class="mx-auto w-full max-w-6xl px-5 sm:px-8 py-10">
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <p class="mono-meta">
+                Postdare @ All Rights Reserved 2026
+            </p>
+            <div class="flex items-center gap-5">
+                
+                    <a href="/atom.xml" class="mono-label hover:text-accent transition-colors">RSS</a>
+                
+                
+                    <span class="mono-meta"><a href="https://beian.miit.gov.cn" target="_blank">陕ICP备16008414号-4</a></span>
+                
+            </div>
+        </div>
+    </div>
+</footer>
+
+<button id="back-to-top"
+    class="fixed bottom-8 right-8 z-50 flex h-10 w-10 items-center justify-center rounded-sm border border-hairline-strong bg-surface text-muted transition-all duration-300 opacity-0 invisible hover:text-accent hover:border-hairline-strong"
+    aria-label="回到顶部">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18"></path></svg>
+</button>
+
+    </div>
+
+    <script src="/js/plugins.js" defer></script>
+    
+        <script src="/js/mermaid.min.js"></script>
+        <script src="/js/mermaid-init.js"></script>
+        
+<link rel="stylesheet" href="/css/mermaid.css">
+
+    
+</body>
+</html>

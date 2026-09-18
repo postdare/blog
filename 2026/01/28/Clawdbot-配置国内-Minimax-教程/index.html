@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Clawdbot 配置国内 Minimax 教程 · Postdare</title>
+
+	
+	<meta name="description" content="">
+	<meta name="author" content="Kai Yang">
+	<meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)">
+	<meta name="theme-color" content="#0a0908" media="(prefers-color-scheme: dark)">
+
+	<meta property="og:site_name" content="Postdare">
+	<meta property="og:title" content="Clawdbot 配置国内 Minimax 教程">
+	<meta property="og:description" content="">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="https://blog.postdare.com/2026/01/28/Clawdbot-%E9%85%8D%E7%BD%AE%E5%9B%BD%E5%86%85-Minimax-%E6%95%99%E7%A8%8B/">
+
+	<link rel="shortcut icon" href="/img/favicon.ico">
+	<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+	<link rel="manifest" href="/img/site.webmanifest">
+	
+		<link rel="alternate" type="application/atom+xml" title="Postdare" href="/atom.xml">
+	
+
+	
+<link rel="stylesheet" href="/css/main.css">
+
+
+	<script>
+		// 深色模式初始化（在渲染前执行，避免闪白）
+		(function () {
+			try {
+				var stored = localStorage.theme;
+				var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+				if (stored === 'dark' || (!stored && prefersDark)) {
+					document.documentElement.classList.add('dark');
+				} else {
+					document.documentElement.classList.remove('dark');
+				}
+			} catch (e) {}
+		})();
+
+		function toggleDarkMode() {
+			var isDark = document.documentElement.classList.toggle('dark');
+			try { localStorage.theme = isDark ? 'dark' : 'light'; } catch (e) {}
+		}
+	</script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body class="single">
+    <div class="flex min-h-screen flex-col">
+        <header class="sticky top-0 z-50 border-b border-hairline backdrop-blur-md"
+	style="background-color: color-mix(in srgb, var(--bg) 88%, transparent);">
+	<div class="mx-auto w-full max-w-6xl px-5 sm:px-8">
+		<div class="flex h-16 items-center justify-between">
+			<a href="/" class="flex items-center gap-2">
+				
+				<span class="logo-title text-lg">
+					<span class="logo-mark">Post</span><span class="logo-accent">dare</span>
+				</span>
+			</a>
+
+			<nav class="hidden md:flex items-center gap-7">
+				
+					
+					<a href="/" class="nav-link">
+						文章
+					</a>
+				
+					
+					<a href="/about" class="nav-link">
+						关于
+					</a>
+				
+			</nav>
+
+			<div class="flex items-center gap-1">
+				<a href="/search/" class="icon-btn" title="搜索" aria-label="搜索">
+					<svg class="h-[18px] w-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"></path></svg>
+				</a>
+
+				<button id="theme-toggle" class="icon-btn" title="切换主题" aria-label="切换主题">
+					<span id="theme-toggle-dark-icon" class="hidden"><svg class="h-[18px] w-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"></path></svg></span>
+					<span id="theme-toggle-light-icon" class="hidden"><svg class="h-[18px] w-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"></path></svg></span>
+				</button>
+
+				<button id="mobile-menu-button" class="icon-btn md:hidden" aria-label="菜单">
+					<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path></svg>
+				</button>
+			</div>
+		</div>
+
+		<div id="mobile-menu" class="hidden md:hidden border-t border-hairline">
+			<nav class="flex flex-col py-2">
+				
+					<a href="/" class="nav-link py-3">
+						文章
+					</a>
+				
+					<a href="/about" class="nav-link py-3">
+						关于
+					</a>
+				
+			</nav>
+		</div>
+	</div>
+</header>
+
+
+        <main class="flex-1">
+            <div class="mx-auto w-full max-w-6xl px-5 sm:px-8 py-12 md:py-16">
+                <div class="main-layout">
+                    <div class="main-content">
+                        <article>
+    <!-- 文章头部 -->
+    <header class="mb-12">
+        <div class="rule-label mb-8">
+            
+                <span class="mono-label mono-label-accent">
+                    教程
+                </span>
+            
+        </div>
+
+        <h1 class="text-3xl md:text-[2.75rem] font-bold leading-[1.15] tracking-tight text-balance mb-6">
+            Clawdbot 配置国内 Minimax 教程
+        </h1>
+
+        <div class="flex flex-wrap items-center gap-x-6 gap-y-2 mono-meta">
+            <time datetime="2026-01-28T03:57:00.000Z">
+                2026-01-28
+            </time>
+
+            
+                <span>更新于 2026-01-29</span>
+            
+
+            <span data-reading-time></span>
+
+            
+                <span class="flex flex-wrap items-center gap-x-2">
+                    
+                        <a href="/tags/Clawdbot/" class="hover:text-accent transition-colors">#Clawdbot</a>
+                    
+                        <a href="/tags/AI/" class="hover:text-accent transition-colors">#AI</a>
+                    
+                        <a href="/tags/Minimax/" class="hover:text-accent transition-colors">#Minimax</a>
+                    
+                </span>
+            
+        </div>
+    </header>
+
+    <details class="toc-mobile lg:hidden" data-toc-wrapper hidden>
+    <summary>
+        <span class="toc-rail-heading">On this page</span>
+        <span class="toc-mobile-chevron text-muted"><svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                    </svg></span>
+    </summary>
+    <nav class="toc-nav" data-toc></nav>
+</details>
+
+
+    <!-- 文章内容 -->
+    <div class="post-content" id="post-content">
+        <p>Clawdbot 默认使用国际站 Minimax API，但国内用户访问国际站可能存在网络延迟或访问受限问题。本文介绍如何将 Clawdbot 配置为使用国内 Minimax 地址。</p>
+<h2 id="问题背景">问题背景</h2>
+<p>Clawdbot 默认配置的 Minimax 地址为国际站，可能存在以下问题：</p>
+<ul>
+<li>网络延迟高</li>
+<li>访问不稳定</li>
+<li>需要特殊网络环境</li>
+</ul>
+<p>国内站地址：<code>https://api.minimaxi.com/anthropic</code></p>
+<h2 id="配置步骤">配置步骤</h2>
+<h3 id="步骤一：修改-Agent-模型配置">步骤一：修改 Agent 模型配置</h3>
+<p>编辑 <code>~/.clawdbot/agents/main/agent/models.json</code>：</p>
+<pre data-language="json" class="shiki shiki-themes github-light-default dark-plus" style="background-color:#ffffff;--shiki-dark-bg:#1E1E1E;color:#1f2328;--shiki-dark:#D4D4D4" tabindex="0"><code><span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">{</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">  "providers"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: {</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">    "minimax"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: {</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">      "baseUrl"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: </span><span style="color:#0A3069;--shiki-dark:#CE9178">"https://api.minimaxi.com/anthropic"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">      "api"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: </span><span style="color:#0A3069;--shiki-dark:#CE9178">"anthropic-messages"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">      "models"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: [</span></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">        {</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">          "id"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: </span><span style="color:#0A3069;--shiki-dark:#CE9178">"MiniMax-M2.1"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">          "name"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: </span><span style="color:#0A3069;--shiki-dark:#CE9178">"MiniMax M2.1"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">          "reasoning"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: </span><span style="color:#0550AE;--shiki-dark:#569CD6">false</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">          "input"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: [</span><span style="color:#0A3069;--shiki-dark:#CE9178">"text"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">],</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">          "cost"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: {</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">            "input"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: </span><span style="color:#0550AE;--shiki-dark:#B5CEA8">15</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">            "output"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: </span><span style="color:#0550AE;--shiki-dark:#B5CEA8">60</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">            "cacheRead"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: </span><span style="color:#0550AE;--shiki-dark:#B5CEA8">2</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">            "cacheWrite"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: </span><span style="color:#0550AE;--shiki-dark:#B5CEA8">10</span></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">          },</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">          "contextWindow"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: </span><span style="color:#0550AE;--shiki-dark:#B5CEA8">200000</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">          "maxTokens"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: </span><span style="color:#0550AE;--shiki-dark:#B5CEA8">8192</span></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">        },</span></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">        {</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">          "id"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: </span><span style="color:#0A3069;--shiki-dark:#CE9178">"MiniMax-VL-01"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">          "name"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: </span><span style="color:#0A3069;--shiki-dark:#CE9178">"MiniMax VL 01"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">          "reasoning"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: </span><span style="color:#0550AE;--shiki-dark:#569CD6">false</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">          "input"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: [</span><span style="color:#0A3069;--shiki-dark:#CE9178">"text"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">, </span><span style="color:#0A3069;--shiki-dark:#CE9178">"image"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">],</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">          "cost"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: {</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">            "input"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: </span><span style="color:#0550AE;--shiki-dark:#B5CEA8">15</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">            "output"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: </span><span style="color:#0550AE;--shiki-dark:#B5CEA8">60</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">            "cacheRead"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: </span><span style="color:#0550AE;--shiki-dark:#B5CEA8">2</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">            "cacheWrite"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: </span><span style="color:#0550AE;--shiki-dark:#B5CEA8">10</span></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">          },</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">          "contextWindow"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: </span><span style="color:#0550AE;--shiki-dark:#B5CEA8">200000</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">          "maxTokens"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: </span><span style="color:#0550AE;--shiki-dark:#B5CEA8">8192</span></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">        }</span></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">      ],</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">      "apiKey"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: </span><span style="color:#0A3069;--shiki-dark:#CE9178">"sk-cp-xxx"</span></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">    }</span></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">  }</span></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">}</span></span>
+<span class="line"></span></code></pre>
+<h3 id="步骤二：修改全局配置">步骤二：修改全局配置</h3>
+<p>编辑 <code>/root/.clawdbot/clawdbot.json</code>：</p>
+<pre data-language="json" class="shiki shiki-themes github-light-default dark-plus" style="background-color:#ffffff;--shiki-dark-bg:#1E1E1E;color:#1f2328;--shiki-dark:#D4D4D4" tabindex="0"><code><span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">{</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">  "models"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: {</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">    "mode"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: </span><span style="color:#0A3069;--shiki-dark:#CE9178">"merge"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">    "providers"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: {</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">      "minimax"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: {</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">        "baseUrl"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: </span><span style="color:#0A3069;--shiki-dark:#CE9178">"https://api.minimaxi.com/anthropic"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">        "api"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: </span><span style="color:#0A3069;--shiki-dark:#CE9178">"anthropic-messages"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">        "models"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: [</span></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">          {</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">            "id"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: </span><span style="color:#0A3069;--shiki-dark:#CE9178">"MiniMax-M2.1"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">            "name"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: </span><span style="color:#0A3069;--shiki-dark:#CE9178">"MiniMax M2.1"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">            "reasoning"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: </span><span style="color:#0550AE;--shiki-dark:#569CD6">false</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">            "input"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: [</span><span style="color:#0A3069;--shiki-dark:#CE9178">"text"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">],</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">            "cost"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: {</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">              "input"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: </span><span style="color:#0550AE;--shiki-dark:#B5CEA8">15</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">              "output"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: </span><span style="color:#0550AE;--shiki-dark:#B5CEA8">60</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">              "cacheRead"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: </span><span style="color:#0550AE;--shiki-dark:#B5CEA8">2</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">              "cacheWrite"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: </span><span style="color:#0550AE;--shiki-dark:#B5CEA8">10</span></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">            },</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">            "contextWindow"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: </span><span style="color:#0550AE;--shiki-dark:#B5CEA8">200000</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#9CDCFE">            "maxTokens"</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: </span><span style="color:#0550AE;--shiki-dark:#B5CEA8">8192</span></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">          }</span></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">        ]</span></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">      }</span></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">    }</span></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">  }</span></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">}</span></span>
+<span class="line"></span></code></pre>
+<h2 id="配置说明">配置说明</h2>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>baseUrl</code></td>
+<td>API 基础地址，国内站为 <code>https://api.minimaxi.com/anthropic</code></td>
+</tr>
+<tr>
+<td><code>api</code></td>
+<td>API 类型，使用 <code>anthropic-messages</code></td>
+</tr>
+<tr>
+<td><code>models</code></td>
+<td>模型列表，可配置 MiniMax-M2.1 和 MiniMax-VL-01</td>
+</tr>
+<tr>
+<td><code>apiKey</code></td>
+<td>你的 API Key</td>
+</tr>
+</tbody>
+</table>
+<h2 id="重启验证">重启验证</h2>
+<p>配置完成后，重启 Clawdbot：</p>
+<pre data-language="bash" class="shiki shiki-themes github-light-default dark-plus" style="background-color:#ffffff;--shiki-dark-bg:#1E1E1E;color:#1f2328;--shiki-dark:#D4D4D4" tabindex="0"><code><span class="line"><span style="color:#953800;--shiki-dark:#DCDCAA">clawdbot</span><span style="color:#0A3069;--shiki-dark:#CE9178"> gateway</span><span style="color:#0A3069;--shiki-dark:#CE9178"> restart</span></span>
+<span class="line"></span></code></pre>
+<p>然后检查状态：</p>
+<pre data-language="bash" class="shiki shiki-themes github-light-default dark-plus" style="background-color:#ffffff;--shiki-dark-bg:#1E1E1E;color:#1f2328;--shiki-dark:#D4D4D4" tabindex="0"><code><span class="line"><span style="color:#953800;--shiki-dark:#DCDCAA">clawdbot</span><span style="color:#0A3069;--shiki-dark:#CE9178"> status</span></span>
+<span class="line"></span></code></pre>
+<h2 id="常见问题">常见问题</h2>
+<h3 id="Q-配置后无法连接？">Q: 配置后无法连接？</h3>
+<p>检查：</p>
+<ol>
+<li>API Key 是否正确</li>
+<li>网络是否可访问 <code>https://api.minimaxi.com</code></li>
+<li>配置文件语法是否正确（JSON 格式）</li>
+</ol>
+<h3 id="Q-如何验证配置生效？">Q: 如何验证配置生效？</h3>
+<p>在 Clawdbot 中执行：</p>
+<pre><code>/status
+</code></pre>
+<p>查看当前使用的模型配置。</p>
+<h2 id="参考链接">参考链接</h2>
+<ul>
+<li><a href="https://docs.clawd.bot">Clawdbot 官方文档</a></li>
+<li><a href="https://platform.minimaxi.com/docs/api-reference/api-overview">MiniMax API 文档</a></li>
+</ul>
+<hr>
+<p><strong>文章标签：</strong> Clawdbot, Minimax, AI配置, 国内站</p>
+
+    </div>
+</article>
+
+<!-- 文章导航 -->
+
+    <nav class="mt-20 grid grid-cols-1 sm:grid-cols-2 gap-px border-t border-hairline">
+        <div class="py-6 sm:pr-8">
+            
+                <a href="/2026/01/29/2026-01-29-Clawdbot-%E5%AE%89%E8%A3%85-R2-Upload-Skill-%E6%8C%87%E5%8D%97/" class="group block">
+                    <span class="mono-label block mb-2 group-hover:text-accent transition-colors">← 上一篇</span>
+                    <span class="block text-[0.95rem] font-medium text-theme line-clamp-2 group-hover:text-accent transition-colors">
+                        Clawdbot 安装 R2 Upload Skill 指南
+                    </span>
+                </a>
+            
+        </div>
+
+        <div class="py-6 sm:pl-8 sm:text-right sm:border-l border-hairline">
+            
+        </div>
+    </nav>
+
+
+<script>
+    (function () {
+        function readingTime() {
+            const content = document.getElementById('post-content');
+            const slot = document.querySelector('[data-reading-time]');
+            if (!content || !slot) return;
+            const text = content.textContent || '';
+            const cjk = (text.match(/[一-龥]/g) || []).length;
+            const words = (text.replace(/[一-龥]/g, ' ').match(/[A-Za-z0-9]+/g) || []).length;
+            const minutes = Math.max(1, Math.round(cjk / 400 + words / 220));
+            slot.textContent = minutes + ' 分钟阅读';
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', readingTime);
+        } else {
+            readingTime();
+        }
+    })();
+</script>
+
+                    </div>
+
+                    
+                        <aside class="main-toc">
+                            <div id="toc-rail" class="toc-rail" hidden>
+    <span class="toc-rail-heading">On this page</span>
+    <nav class="toc-nav" data-toc></nav>
+</div>
+
+<script>
+    (function () {
+        function initTOC() {
+            const postContent = document.getElementById('post-content');
+            const targets = document.querySelectorAll('[data-toc]');
+            if (!postContent || !targets.length) return;
+
+            const headings = Array.from(postContent.querySelectorAll('h1, h2, h3'))
+                .filter(function (h) { return (h.textContent || '').trim().length > 0; });
+
+            if (headings.length < 2) return;
+
+            // 扁平列表 —— 让左侧发丝线保持连续，靠缩进表达层级
+            const items = headings.map(function (heading, index) {
+                if (!heading.id) heading.id = 'toc-' + index;
+                const level = parseInt(heading.tagName.charAt(1), 10);
+                return {
+                    id: heading.id,
+                    level: level,
+                    text: (heading.textContent || '').trim(),
+                    el: heading
+                };
+            });
+
+            const html = '<ul class="toc-list">' + items.map(function (item) {
+                return '<li class="toc-item toc-level-' + item.level + '">' +
+                    '<a class="toc-link" href="#' + item.id + '" data-target="' + item.id + '">' +
+                    '<span class="toc-text">' + item.text.replace(/[&<>"]/g, function (c) {
+                        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+                    }) + '</span></a></li>';
+            }).join('') + '</ul>';
+
+            targets.forEach(function (nav) { nav.innerHTML = html; });
+
+            const rail = document.getElementById('toc-rail');
+            if (rail) rail.hidden = false;
+            document.querySelectorAll('[data-toc-wrapper]').forEach(function (el) { el.hidden = false; });
+
+            const links = Array.from(document.querySelectorAll('.toc-link'));
+
+            function setActive(id) {
+                links.forEach(function (link) {
+                    link.classList.toggle('active', link.getAttribute('data-target') === id);
+                });
+            }
+
+            // 点击平滑滚动（考虑固定头部）
+            document.querySelectorAll('[data-toc]').forEach(function (nav) {
+                nav.addEventListener('click', function (e) {
+                    const link = e.target.closest('.toc-link');
+                    if (!link) return;
+                    e.preventDefault();
+                    const target = document.getElementById(link.getAttribute('data-target'));
+                    if (!target) return;
+                    const top = target.getBoundingClientRect().top + window.pageYOffset - 88;
+                    window.scrollTo({ top: top, behavior: 'smooth' });
+                    setActive(link.getAttribute('data-target'));
+                    history.replaceState(null, '', '#' + link.getAttribute('data-target'));
+                });
+            });
+
+            // 滚动高亮 + 目录自动跟随滚动
+            let ticking = false;
+
+            function onScroll() {
+                if (ticking) return;
+                ticking = true;
+                requestAnimationFrame(function () {
+                    let activeId = items[0].id;
+                    for (let i = items.length - 1; i >= 0; i--) {
+                        if (items[i].el.getBoundingClientRect().top <= 100) {
+                            activeId = items[i].id;
+                            break;
+                        }
+                    }
+                    setActive(activeId);
+
+                    // 让高亮项始终留在可视区内
+                    const nav = rail && rail.querySelector('[data-toc]');
+                    if (nav && nav.scrollHeight > nav.clientHeight) {
+                        const active = nav.querySelector('.toc-link.active');
+                        if (active) {
+                            const navRect = nav.getBoundingClientRect();
+                            const linkRect = active.getBoundingClientRect();
+                            if (linkRect.top < navRect.top || linkRect.bottom > navRect.bottom) {
+                                nav.scrollTop += linkRect.top - navRect.top - nav.clientHeight / 2;
+                            }
+                        }
+                    }
+
+                    ticking = false;
+                });
+            }
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initTOC);
+        } else {
+            initTOC();
+        }
+    })();
+</script>
+
+                        </aside>
+                    
+                </div>
+            </div>
+        </main>
+
+        <footer class="border-t border-hairline mt-20">
+    <div class="mx-auto w-full max-w-6xl px-5 sm:px-8 py-10">
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <p class="mono-meta">
+                Postdare @ All Rights Reserved 2026
+            </p>
+            <div class="flex items-center gap-5">
+                
+                    <a href="/atom.xml" class="mono-label hover:text-accent transition-colors">RSS</a>
+                
+                
+                    <span class="mono-meta"><a href="https://beian.miit.gov.cn" target="_blank">陕ICP备16008414号-4</a></span>
+                
+            </div>
+        </div>
+    </div>
+</footer>
+
+<button id="back-to-top"
+    class="fixed bottom-8 right-8 z-50 flex h-10 w-10 items-center justify-center rounded-sm border border-hairline-strong bg-surface text-muted transition-all duration-300 opacity-0 invisible hover:text-accent hover:border-hairline-strong"
+    aria-label="回到顶部">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18"></path></svg>
+</button>
+
+    </div>
+
+    <script src="/js/plugins.js" defer></script>
+    
+        <script src="/js/mermaid.min.js"></script>
+        <script src="/js/mermaid-init.js"></script>
+        
+<link rel="stylesheet" href="/css/mermaid.css">
+
+    
+</body>
+</html>

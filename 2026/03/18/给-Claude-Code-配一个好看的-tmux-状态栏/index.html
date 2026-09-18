@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>给 Claude Code 配一个好看的 tmux 状态栏 · Postdare</title>
+
+	
+	<meta name="description" content="用 Claude Code 写代码的时候，总觉得底部空空的，缺点什么。看到别人的终端底部有 Git 分支、文件变更、模型名，一整条信息栏，既实用又好看。研究了一下，其实就是 tmux 状态栏，配置不复杂，记录一下完整过程。">
+	<meta name="author" content="Kai Yang">
+	<meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)">
+	<meta name="theme-color" content="#0a0908" media="(prefers-color-scheme: dark)">
+
+	<meta property="og:site_name" content="Postdare">
+	<meta property="og:title" content="给 Claude Code 配一个好看的 tmux 状态栏">
+	<meta property="og:description" content="用 Claude Code 写代码的时候，总觉得底部空空的，缺点什么。看到别人的终端底部有 Git 分支、文件变更、模型名，一整条信息栏，既实用又好看。研究了一下，其实就是 tmux 状态栏，配置不复杂，记录一下完整过程。">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="https://blog.postdare.com/2026/03/18/%E7%BB%99-Claude-Code-%E9%85%8D%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%9C%8B%E7%9A%84-tmux-%E7%8A%B6%E6%80%81%E6%A0%8F/">
+
+	<link rel="shortcut icon" href="/img/favicon.ico">
+	<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+	<link rel="manifest" href="/img/site.webmanifest">
+	
+		<link rel="alternate" type="application/atom+xml" title="Postdare" href="/atom.xml">
+	
+
+	
+<link rel="stylesheet" href="/css/main.css">
+
+
+	<script>
+		// 深色模式初始化（在渲染前执行，避免闪白）
+		(function () {
+			try {
+				var stored = localStorage.theme;
+				var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+				if (stored === 'dark' || (!stored && prefersDark)) {
+					document.documentElement.classList.add('dark');
+				} else {
+					document.documentElement.classList.remove('dark');
+				}
+			} catch (e) {}
+		})();
+
+		function toggleDarkMode() {
+			var isDark = document.documentElement.classList.toggle('dark');
+			try { localStorage.theme = isDark ? 'dark' : 'light'; } catch (e) {}
+		}
+	</script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body class="single">
+    <div class="flex min-h-screen flex-col">
+        <header class="sticky top-0 z-50 border-b border-hairline backdrop-blur-md"
+	style="background-color: color-mix(in srgb, var(--bg) 88%, transparent);">
+	<div class="mx-auto w-full max-w-6xl px-5 sm:px-8">
+		<div class="flex h-16 items-center justify-between">
+			<a href="/" class="flex items-center gap-2">
+				
+				<span class="logo-title text-lg">
+					<span class="logo-mark">Post</span><span class="logo-accent">dare</span>
+				</span>
+			</a>
+
+			<nav class="hidden md:flex items-center gap-7">
+				
+					
+					<a href="/" class="nav-link">
+						文章
+					</a>
+				
+					
+					<a href="/about" class="nav-link">
+						关于
+					</a>
+				
+			</nav>
+
+			<div class="flex items-center gap-1">
+				<a href="/search/" class="icon-btn" title="搜索" aria-label="搜索">
+					<svg class="h-[18px] w-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"></path></svg>
+				</a>
+
+				<button id="theme-toggle" class="icon-btn" title="切换主题" aria-label="切换主题">
+					<span id="theme-toggle-dark-icon" class="hidden"><svg class="h-[18px] w-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"></path></svg></span>
+					<span id="theme-toggle-light-icon" class="hidden"><svg class="h-[18px] w-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"></path></svg></span>
+				</button>
+
+				<button id="mobile-menu-button" class="icon-btn md:hidden" aria-label="菜单">
+					<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path></svg>
+				</button>
+			</div>
+		</div>
+
+		<div id="mobile-menu" class="hidden md:hidden border-t border-hairline">
+			<nav class="flex flex-col py-2">
+				
+					<a href="/" class="nav-link py-3">
+						文章
+					</a>
+				
+					<a href="/about" class="nav-link py-3">
+						关于
+					</a>
+				
+			</nav>
+		</div>
+	</div>
+</header>
+
+
+        <main class="flex-1">
+            <div class="mx-auto w-full max-w-6xl px-5 sm:px-8 py-12 md:py-16">
+                <div class="main-layout">
+                    <div class="main-content">
+                        <article>
+    <!-- 文章头部 -->
+    <header class="mb-12">
+        <div class="rule-label mb-8">
+            
+                <span class="mono-label mono-label-accent">
+                    开发工具
+                </span>
+            
+        </div>
+
+        <h1 class="text-3xl md:text-[2.75rem] font-bold leading-[1.15] tracking-tight text-balance mb-6">
+            给 Claude Code 配一个好看的 tmux 状态栏
+        </h1>
+
+        <div class="flex flex-wrap items-center gap-x-6 gap-y-2 mono-meta">
+            <time datetime="2026-03-17T16:00:00.000Z">
+                2026-03-18
+            </time>
+
+            
+                <span>更新于 2026-09-18</span>
+            
+
+            <span data-reading-time></span>
+
+            
+                <span class="flex flex-wrap items-center gap-x-2">
+                    
+                        <a href="/tags/Claude-Code/" class="hover:text-accent transition-colors">#Claude Code</a>
+                    
+                        <a href="/tags/tmux/" class="hover:text-accent transition-colors">#tmux</a>
+                    
+                        <a href="/tags/Ghostty/" class="hover:text-accent transition-colors">#Ghostty</a>
+                    
+                        <a href="/tags/%E7%BB%88%E7%AB%AF%E7%BE%8E%E5%8C%96/" class="hover:text-accent transition-colors">#终端美化</a>
+                    
+                </span>
+            
+        </div>
+    </header>
+
+    <details class="toc-mobile lg:hidden" data-toc-wrapper hidden>
+    <summary>
+        <span class="toc-rail-heading">On this page</span>
+        <span class="toc-mobile-chevron text-muted"><svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                    </svg></span>
+    </summary>
+    <nav class="toc-nav" data-toc></nav>
+</details>
+
+
+    <!-- 文章内容 -->
+    <div class="post-content" id="post-content">
+        <p>用 Claude Code 写代码的时候，总觉得底部空空的，缺点什么。看到别人的终端底部有 Git 分支、文件变更、模型名，一整条信息栏，既实用又好看。研究了一下，其实就是 tmux 状态栏，配置不复杂，记录一下完整过程。</p>
+<p><img src="https://oss.foundra.me/2026/03/18/tmux-statusbar.png" alt="tmux 状态栏效果"></p>
+<span id="more"></span>
+<h2 id="最终效果">最终效果</h2>
+<p>底部一栏显示：用户名、session、窗口、Git 仓库名、分支、文件变更数（绿/黄/红三色）、当前模型名、时间。</p>
+<p>其中 Git 变更部分：</p>
+<ul>
+<li>🟢 绿色 <code>+2</code> — 新增/未跟踪文件</li>
+<li>🟡 黄色 <code>~1</code> — 修改的文件</li>
+<li>🔴 红色 <code>-1</code> — 删除的文件</li>
+</ul>
+<h2 id="第一步：安装-tmux">第一步：安装 tmux</h2>
+<pre data-language="bash" class="shiki shiki-themes github-light-default dark-plus" style="background-color:#ffffff;--shiki-dark-bg:#1E1E1E;color:#1f2328;--shiki-dark:#D4D4D4" tabindex="0"><code><span class="line"><span style="color:#953800;--shiki-dark:#DCDCAA">brew</span><span style="color:#0A3069;--shiki-dark:#CE9178"> install</span><span style="color:#0A3069;--shiki-dark:#CE9178"> tmux</span></span>
+<span class="line"></span></code></pre>
+<h2 id="第二步：创建脚本">第二步：创建脚本</h2>
+<p>一共 5 个小脚本，分别负责不同信息的读取。拆开是为了让 tmux 能给每部分上不同的颜色。</p>
+<pre data-language="bash" class="shiki shiki-themes github-light-default dark-plus" style="background-color:#ffffff;--shiki-dark-bg:#1E1E1E;color:#1f2328;--shiki-dark:#D4D4D4" tabindex="0"><code><span class="line"><span style="color:#953800;--shiki-dark:#DCDCAA">mkdir</span><span style="color:#0550AE;--shiki-dark:#569CD6"> -p</span><span style="color:#0A3069;--shiki-dark:#CE9178"> ~/.config/tmux</span></span>
+<span class="line"></span></code></pre>
+<h3 id="Git-分支名">Git 分支名</h3>
+<pre data-language="bash" class="shiki shiki-themes github-light-default dark-plus" style="background-color:#ffffff;--shiki-dark-bg:#1E1E1E;color:#1f2328;--shiki-dark:#D4D4D4" tabindex="0"><code><span class="line"><span style="color:#953800;--shiki-dark:#DCDCAA">cat</span><span style="color:#CF222E;--shiki-dark:#D4D4D4"> ></span><span style="color:#0A3069;--shiki-dark:#CE9178"> ~/.config/tmux/git-branch.sh</span><span style="color:#CF222E;--shiki-dark:#D4D4D4"> &#x3C;&#x3C;</span><span style="color:#1F2328;--shiki-dark:#D4D4D4"> 'EOF'</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">#!/bin/bash</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">cd "$1" 2>/dev/null || exit 0</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">git rev-parse --is-inside-work-tree &#x26;>/dev/null || exit 0</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">branch=$(git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --short HEAD 2>/dev/null)</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">[ -z "$branch" ] &#x26;&#x26; exit 0</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">repo=$(basename "$(git rev-parse --show-toplevel 2>/dev/null)")</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">echo "${repo}  ${branch}"</span></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">EOF</span></span>
+<span class="line"></span></code></pre>
+<h3 id="新增文件数（绿色）">新增文件数（绿色）</h3>
+<pre data-language="bash" class="shiki shiki-themes github-light-default dark-plus" style="background-color:#ffffff;--shiki-dark-bg:#1E1E1E;color:#1f2328;--shiki-dark:#D4D4D4" tabindex="0"><code><span class="line"><span style="color:#953800;--shiki-dark:#DCDCAA">cat</span><span style="color:#CF222E;--shiki-dark:#D4D4D4"> ></span><span style="color:#0A3069;--shiki-dark:#CE9178"> ~/.config/tmux/git-added.sh</span><span style="color:#CF222E;--shiki-dark:#D4D4D4"> &#x3C;&#x3C;</span><span style="color:#1F2328;--shiki-dark:#D4D4D4"> 'EOF'</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">#!/bin/bash</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">cd "$1" 2>/dev/null || exit 0</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">git rev-parse --is-inside-work-tree &#x26;>/dev/null || exit 0</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">staged=$(git diff --cached --numstat 2>/dev/null | wc -l | tr -d ' ')</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">untracked=$(git ls-files --others --exclude-standard 2>/dev/null | wc -l | tr -d ' ')</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">n=$((staged + untracked))</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">[ "$n" -gt 0 ] &#x26;&#x26; echo "+${n}" || echo ""</span></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">EOF</span></span>
+<span class="line"></span></code></pre>
+<h3 id="修改文件数（黄色）">修改文件数（黄色）</h3>
+<pre data-language="bash" class="shiki shiki-themes github-light-default dark-plus" style="background-color:#ffffff;--shiki-dark-bg:#1E1E1E;color:#1f2328;--shiki-dark:#D4D4D4" tabindex="0"><code><span class="line"><span style="color:#953800;--shiki-dark:#DCDCAA">cat</span><span style="color:#CF222E;--shiki-dark:#D4D4D4"> ></span><span style="color:#0A3069;--shiki-dark:#CE9178"> ~/.config/tmux/git-modified.sh</span><span style="color:#CF222E;--shiki-dark:#D4D4D4"> &#x3C;&#x3C;</span><span style="color:#1F2328;--shiki-dark:#D4D4D4"> 'EOF'</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">#!/bin/bash</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">cd "$1" 2>/dev/null || exit 0</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">git rev-parse --is-inside-work-tree &#x26;>/dev/null || exit 0</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">n=$(git diff --numstat 2>/dev/null | wc -l | tr -d ' ')</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">[ "$n" -gt 0 ] &#x26;&#x26; echo "~${n}" || echo ""</span></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">EOF</span></span>
+<span class="line"></span></code></pre>
+<h3 id="删除文件数（红色）">删除文件数（红色）</h3>
+<pre data-language="bash" class="shiki shiki-themes github-light-default dark-plus" style="background-color:#ffffff;--shiki-dark-bg:#1E1E1E;color:#1f2328;--shiki-dark:#D4D4D4" tabindex="0"><code><span class="line"><span style="color:#953800;--shiki-dark:#DCDCAA">cat</span><span style="color:#CF222E;--shiki-dark:#D4D4D4"> ></span><span style="color:#0A3069;--shiki-dark:#CE9178"> ~/.config/tmux/git-deleted.sh</span><span style="color:#CF222E;--shiki-dark:#D4D4D4"> &#x3C;&#x3C;</span><span style="color:#1F2328;--shiki-dark:#D4D4D4"> 'EOF'</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">#!/bin/bash</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">cd "$1" 2>/dev/null || exit 0</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">git rev-parse --is-inside-work-tree &#x26;>/dev/null || exit 0</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">n=$(git diff --diff-filter=D --name-only 2>/dev/null | wc -l | tr -d ' ')</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">[ "$n" -gt 0 ] &#x26;&#x26; echo "-${n}" || echo ""</span></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">EOF</span></span>
+<span class="line"></span></code></pre>
+<h3 id="模型名读取">模型名读取</h3>
+<p>从 Claude Code 的 <code>settings.json</code> 中动态读取当前模型：</p>
+<pre data-language="bash" class="shiki shiki-themes github-light-default dark-plus" style="background-color:#ffffff;--shiki-dark-bg:#1E1E1E;color:#1f2328;--shiki-dark:#D4D4D4" tabindex="0"><code><span class="line"><span style="color:#953800;--shiki-dark:#DCDCAA">cat</span><span style="color:#CF222E;--shiki-dark:#D4D4D4"> ></span><span style="color:#0A3069;--shiki-dark:#CE9178"> ~/.config/tmux/tmux-model.sh</span><span style="color:#CF222E;--shiki-dark:#D4D4D4"> &#x3C;&#x3C;</span><span style="color:#1F2328;--shiki-dark:#D4D4D4"> 'EOF'</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">#!/bin/bash</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">model=""</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">if [ -f ~/.claude/settings.json ]; then</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">  model=$(grep -o '"ANTHROPIC_MODEL"[[:space:]]*:[[:space:]]*"[^"]*"' ~/.claude/settings.json | head -1 | sed 's/.*: *"//;s/"//')</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">fi</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">[ -z "$model" ] &#x26;&#x26; model="$ANTHROPIC_MODEL"</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">[ -z "$model" ] &#x26;&#x26; exit 0</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">echo "$model"</span></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">EOF</span></span>
+<span class="line"></span></code></pre>
+<h3 id="统一加执行权限">统一加执行权限</h3>
+<pre data-language="bash" class="shiki shiki-themes github-light-default dark-plus" style="background-color:#ffffff;--shiki-dark-bg:#1E1E1E;color:#1f2328;--shiki-dark:#D4D4D4" tabindex="0"><code><span class="line"><span style="color:#953800;--shiki-dark:#DCDCAA">chmod</span><span style="color:#0A3069;--shiki-dark:#CE9178"> +x</span><span style="color:#0A3069;--shiki-dark:#CE9178"> ~/.config/tmux/</span><span style="color:#0550AE;--shiki-dark:#569CD6">*</span><span style="color:#0A3069;--shiki-dark:#CE9178">.sh</span></span>
+<span class="line"></span></code></pre>
+<h2 id="第三步：创建-tmux-配置">第三步：创建 tmux 配置</h2>
+<pre data-language="bash" class="shiki shiki-themes github-light-default dark-plus" style="background-color:#ffffff;--shiki-dark-bg:#1E1E1E;color:#1f2328;--shiki-dark:#D4D4D4" tabindex="0"><code><span class="line"><span style="color:#953800;--shiki-dark:#DCDCAA">cat</span><span style="color:#CF222E;--shiki-dark:#D4D4D4"> ></span><span style="color:#0A3069;--shiki-dark:#CE9178"> ~/.tmux.conf</span><span style="color:#CF222E;--shiki-dark:#D4D4D4"> &#x3C;&#x3C;</span><span style="color:#1F2328;--shiki-dark:#D4D4D4"> 'CONF'</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178"># 基础</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">set -g default-terminal "tmux-256color"</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">set -ag terminal-overrides ",xterm-256color:RGB"</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">set -ag terminal-overrides ",ghostty:RGB"</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">set -g mouse on</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">set -g base-index 1</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">setw -g pane-base-index 1</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">set -g renumber-windows on</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">set -g history-limit 50000</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">set -sg escape-time 0</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">set -g focus-events on</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178"># 快捷键：前缀改为 Ctrl+a</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">unbind C-b</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">set -g prefix C-a</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">bind C-a send-prefix</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">bind r source-file ~/.tmux.conf \; display-message "✅ 配置已重新加载"</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">bind | split-window -h -c "#{pane_current_path}"</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">bind - split-window -v -c "#{pane_current_path}"</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">bind c new-window -c "#{pane_current_path}"</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">bind h select-pane -L</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">bind j select-pane -D</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">bind k select-pane -U</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">bind l select-pane -R</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">setw -g mode-keys vi</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178"># 状态栏（One Dark 配色，匹配 Ghostty 默认背景）</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">set -g status on</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">set -g status-interval 3</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">set -g status-position bottom</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">set -g status-justify left</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">set -g status-style "bg=#282c34,fg=#5c6370"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178"># 左侧：用户名 · session</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">set -g status-left-length 40</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">set -g status-left "#[fg=#98c379,bold] #(whoami)#[fg=#4b5263] · #[fg=#c678dd]#S  "</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178"># 右侧：Git（多色）+ 模型名 + 时间</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">set -g status-right-length 150</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">set -g status-right "#[fg=#61afef]#(~/.config/tmux/git-branch.sh '#{pane_current_path}') #[fg=#98c379]#(~/.config/tmux/git-added.sh '#{pane_current_path}') #[fg=#e5c07b]#(~/.config/tmux/git-modified.sh '#{pane_current_path}') #[fg=#e06c75]#(~/.config/tmux/git-deleted.sh '#{pane_current_path}') #[fg=#4b5263]· #[fg=#98c379]#(~/.config/tmux/tmux-model.sh)#[fg=#4b5263] · #[fg=#e06c75]%H:%M "</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178"># 窗口标签</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">setw -g window-status-format "#[fg=#4b5263] #I:#W "</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">setw -g window-status-current-format "#[fg=#abb2bf,bold] #I:#W "</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">setw -g window-status-separator ""</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178"># 边框</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">set -g pane-border-style "fg=#3e4452"</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">set -g pane-active-border-style "fg=#61afef"</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">set -g message-style "bg=#282c34,fg=#abb2bf"</span></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">CONF</span></span>
+<span class="line"></span></code></pre>
+<blockquote>
+<p>如果你的 Ghostty 用了其他主题，把 <code>bg=#282c34</code> 改成你的终端背景色，状态栏就能无缝融合。</p>
+</blockquote>
+<h2 id="第四步：启动">第四步：启动</h2>
+<pre data-language="bash" class="shiki shiki-themes github-light-default dark-plus" style="background-color:#ffffff;--shiki-dark-bg:#1E1E1E;color:#1f2328;--shiki-dark:#D4D4D4" tabindex="0"><code><span class="line"><span style="color:#953800;--shiki-dark:#DCDCAA">tmux</span></span>
+<span class="line"></span></code></pre>
+<p>进入一个 Git 项目目录，底部就能看到完整的状态信息了。</p>
+<h2 id="第五步（可选）：开终端自动进-tmux">第五步（可选）：开终端自动进 tmux</h2>
+<pre data-language="bash" class="shiki shiki-themes github-light-default dark-plus" style="background-color:#ffffff;--shiki-dark-bg:#1E1E1E;color:#1f2328;--shiki-dark:#D4D4D4" tabindex="0"><code><span class="line"><span style="color:#0550AE;--shiki-dark:#DCDCAA">echo</span><span style="color:#0A3069;--shiki-dark:#CE9178"> '</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">if command -v tmux &#x26;> /dev/null &#x26;&#x26; [ -z "$TMUX" ]; then</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">  tmux attach -t default || tmux new -s default</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">fi'</span><span style="color:#CF222E;--shiki-dark:#D4D4D4"> >></span><span style="color:#0A3069;--shiki-dark:#CE9178"> ~/.zshrc</span></span>
+<span class="line"></span></code></pre>
+<h2 id="快捷键速查">快捷键速查</h2>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>按键</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>左右分屏</td>
+<td><code>Ctrl+a</code> <code>|</code></td>
+</tr>
+<tr>
+<td>上下分屏</td>
+<td><code>Ctrl+a</code> <code>-</code></td>
+</tr>
+<tr>
+<td>切换面板</td>
+<td><code>Ctrl+a</code> <code>h/j/k/l</code></td>
+</tr>
+<tr>
+<td>新建窗口</td>
+<td><code>Ctrl+a</code> <code>c</code></td>
+</tr>
+<tr>
+<td>切换窗口</td>
+<td><code>Ctrl+a</code> <code>1/2/3</code></td>
+</tr>
+<tr>
+<td>断开（后台运行）</td>
+<td><code>Ctrl+a</code> <code>d</code></td>
+</tr>
+<tr>
+<td>重新连回</td>
+<td><code>tmux a</code></td>
+</tr>
+<tr>
+<td>重载配置</td>
+<td><code>Ctrl+a</code> <code>r</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="配色说明">配色说明</h2>
+<p>状态栏用 One Dark 色系，和 Ghostty 默认主题一致：</p>
+<table>
+<thead>
+<tr>
+<th>元素</th>
+<th>颜色</th>
+<th>色值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户名 / 模型名</td>
+<td>🟢 绿色</td>
+<td><code>#98c379</code></td>
+</tr>
+<tr>
+<td>session 名</td>
+<td>🟣 紫色</td>
+<td><code>#c678dd</code></td>
+</tr>
+<tr>
+<td>Git 分支</td>
+<td>🔵 蓝色</td>
+<td><code>#61afef</code></td>
+</tr>
+<tr>
+<td>新增文件</td>
+<td>🟢 绿色</td>
+<td><code>#98c379</code></td>
+</tr>
+<tr>
+<td>修改文件</td>
+<td>🟡 黄色</td>
+<td><code>#e5c07b</code></td>
+</tr>
+<tr>
+<td>删除文件</td>
+<td>🔴 红色</td>
+<td><code>#e06c75</code></td>
+</tr>
+<tr>
+<td>时间</td>
+<td>🔴 红色</td>
+<td><code>#e06c75</code></td>
+</tr>
+</tbody>
+</table>
+<p>如果用 Catppuccin 或 Dracula 主题，换掉这几个色值就行。</p>
+
+    </div>
+</article>
+
+<!-- 文章导航 -->
+
+    <nav class="mt-20 grid grid-cols-1 sm:grid-cols-2 gap-px border-t border-hairline">
+        <div class="py-6 sm:pr-8">
+            
+                <a href="/2026/09/18/2026-09-18-%E5%BA%84%E5%AD%90%E5%86%85%E4%B8%83%E7%AF%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" class="group block">
+                    <span class="mono-label block mb-2 group-hover:text-accent transition-colors">← 上一篇</span>
+                    <span class="block text-[0.95rem] font-medium text-theme line-clamp-2 group-hover:text-accent transition-colors">
+                        《庄子》内七篇阅读笔记
+                    </span>
+                </a>
+            
+        </div>
+
+        <div class="py-6 sm:pl-8 sm:text-right sm:border-l border-hairline">
+            
+                <a href="/2026/03/16/2026-03-16-GSD-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97-%E4%BB%8E%E5%AE%89%E8%A3%85%E5%88%B0%E5%AE%8C%E6%95%B4%E5%BC%80%E5%8F%91%E5%B7%A5%E4%BD%9C%E6%B5%81/" class="group block">
+                    <span class="mono-label block mb-2 group-hover:text-accent transition-colors">下一篇 →</span>
+                    <span class="block text-[0.95rem] font-medium text-theme line-clamp-2 group-hover:text-accent transition-colors">
+                        GSD 使用指南：面向 Claude Code / Codex 的硬核工作流
+                    </span>
+                </a>
+            
+        </div>
+    </nav>
+
+
+<script>
+    (function () {
+        function readingTime() {
+            const content = document.getElementById('post-content');
+            const slot = document.querySelector('[data-reading-time]');
+            if (!content || !slot) return;
+            const text = content.textContent || '';
+            const cjk = (text.match(/[一-龥]/g) || []).length;
+            const words = (text.replace(/[一-龥]/g, ' ').match(/[A-Za-z0-9]+/g) || []).length;
+            const minutes = Math.max(1, Math.round(cjk / 400 + words / 220));
+            slot.textContent = minutes + ' 分钟阅读';
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', readingTime);
+        } else {
+            readingTime();
+        }
+    })();
+</script>
+
+                    </div>
+
+                    
+                        <aside class="main-toc">
+                            <div id="toc-rail" class="toc-rail" hidden>
+    <span class="toc-rail-heading">On this page</span>
+    <nav class="toc-nav" data-toc></nav>
+</div>
+
+<script>
+    (function () {
+        function initTOC() {
+            const postContent = document.getElementById('post-content');
+            const targets = document.querySelectorAll('[data-toc]');
+            if (!postContent || !targets.length) return;
+
+            const headings = Array.from(postContent.querySelectorAll('h1, h2, h3'))
+                .filter(function (h) { return (h.textContent || '').trim().length > 0; });
+
+            if (headings.length < 2) return;
+
+            // 扁平列表 —— 让左侧发丝线保持连续，靠缩进表达层级
+            const items = headings.map(function (heading, index) {
+                if (!heading.id) heading.id = 'toc-' + index;
+                const level = parseInt(heading.tagName.charAt(1), 10);
+                return {
+                    id: heading.id,
+                    level: level,
+                    text: (heading.textContent || '').trim(),
+                    el: heading
+                };
+            });
+
+            const html = '<ul class="toc-list">' + items.map(function (item) {
+                return '<li class="toc-item toc-level-' + item.level + '">' +
+                    '<a class="toc-link" href="#' + item.id + '" data-target="' + item.id + '">' +
+                    '<span class="toc-text">' + item.text.replace(/[&<>"]/g, function (c) {
+                        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+                    }) + '</span></a></li>';
+            }).join('') + '</ul>';
+
+            targets.forEach(function (nav) { nav.innerHTML = html; });
+
+            const rail = document.getElementById('toc-rail');
+            if (rail) rail.hidden = false;
+            document.querySelectorAll('[data-toc-wrapper]').forEach(function (el) { el.hidden = false; });
+
+            const links = Array.from(document.querySelectorAll('.toc-link'));
+
+            function setActive(id) {
+                links.forEach(function (link) {
+                    link.classList.toggle('active', link.getAttribute('data-target') === id);
+                });
+            }
+
+            // 点击平滑滚动（考虑固定头部）
+            document.querySelectorAll('[data-toc]').forEach(function (nav) {
+                nav.addEventListener('click', function (e) {
+                    const link = e.target.closest('.toc-link');
+                    if (!link) return;
+                    e.preventDefault();
+                    const target = document.getElementById(link.getAttribute('data-target'));
+                    if (!target) return;
+                    const top = target.getBoundingClientRect().top + window.pageYOffset - 88;
+                    window.scrollTo({ top: top, behavior: 'smooth' });
+                    setActive(link.getAttribute('data-target'));
+                    history.replaceState(null, '', '#' + link.getAttribute('data-target'));
+                });
+            });
+
+            // 滚动高亮 + 目录自动跟随滚动
+            let ticking = false;
+
+            function onScroll() {
+                if (ticking) return;
+                ticking = true;
+                requestAnimationFrame(function () {
+                    let activeId = items[0].id;
+                    for (let i = items.length - 1; i >= 0; i--) {
+                        if (items[i].el.getBoundingClientRect().top <= 100) {
+                            activeId = items[i].id;
+                            break;
+                        }
+                    }
+                    setActive(activeId);
+
+                    // 让高亮项始终留在可视区内
+                    const nav = rail && rail.querySelector('[data-toc]');
+                    if (nav && nav.scrollHeight > nav.clientHeight) {
+                        const active = nav.querySelector('.toc-link.active');
+                        if (active) {
+                            const navRect = nav.getBoundingClientRect();
+                            const linkRect = active.getBoundingClientRect();
+                            if (linkRect.top < navRect.top || linkRect.bottom > navRect.bottom) {
+                                nav.scrollTop += linkRect.top - navRect.top - nav.clientHeight / 2;
+                            }
+                        }
+                    }
+
+                    ticking = false;
+                });
+            }
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initTOC);
+        } else {
+            initTOC();
+        }
+    })();
+</script>
+
+                        </aside>
+                    
+                </div>
+            </div>
+        </main>
+
+        <footer class="border-t border-hairline mt-20">
+    <div class="mx-auto w-full max-w-6xl px-5 sm:px-8 py-10">
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <p class="mono-meta">
+                Postdare @ All Rights Reserved 2026
+            </p>
+            <div class="flex items-center gap-5">
+                
+                    <a href="/atom.xml" class="mono-label hover:text-accent transition-colors">RSS</a>
+                
+                
+                    <span class="mono-meta"><a href="https://beian.miit.gov.cn" target="_blank">陕ICP备16008414号-4</a></span>
+                
+            </div>
+        </div>
+    </div>
+</footer>
+
+<button id="back-to-top"
+    class="fixed bottom-8 right-8 z-50 flex h-10 w-10 items-center justify-center rounded-sm border border-hairline-strong bg-surface text-muted transition-all duration-300 opacity-0 invisible hover:text-accent hover:border-hairline-strong"
+    aria-label="回到顶部">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18"></path></svg>
+</button>
+
+    </div>
+
+    <script src="/js/plugins.js" defer></script>
+    
+        <script src="/js/mermaid.min.js"></script>
+        <script src="/js/mermaid-init.js"></script>
+        
+<link rel="stylesheet" href="/css/mermaid.css">
+
+    
+</body>
+</html>

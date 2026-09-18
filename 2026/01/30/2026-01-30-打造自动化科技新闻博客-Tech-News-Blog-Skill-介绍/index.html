@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>打造自动化科技新闻博客：Tech News Skill 介绍 · Postdare</title>
+
+	
+	<meta name="description" content="">
+	<meta name="author" content="Kai Yang">
+	<meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)">
+	<meta name="theme-color" content="#0a0908" media="(prefers-color-scheme: dark)">
+
+	<meta property="og:site_name" content="Postdare">
+	<meta property="og:title" content="打造自动化科技新闻博客：Tech News Skill 介绍">
+	<meta property="og:description" content="">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="https://blog.postdare.com/2026/01/30/2026-01-30-%E6%89%93%E9%80%A0%E8%87%AA%E5%8A%A8%E5%8C%96%E7%A7%91%E6%8A%80%E6%96%B0%E9%97%BB%E5%8D%9A%E5%AE%A2-Tech-News-Blog-Skill-%E4%BB%8B%E7%BB%8D/">
+
+	<link rel="shortcut icon" href="/img/favicon.ico">
+	<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+	<link rel="manifest" href="/img/site.webmanifest">
+	
+		<link rel="alternate" type="application/atom+xml" title="Postdare" href="/atom.xml">
+	
+
+	
+<link rel="stylesheet" href="/css/main.css">
+
+
+	<script>
+		// 深色模式初始化（在渲染前执行，避免闪白）
+		(function () {
+			try {
+				var stored = localStorage.theme;
+				var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+				if (stored === 'dark' || (!stored && prefersDark)) {
+					document.documentElement.classList.add('dark');
+				} else {
+					document.documentElement.classList.remove('dark');
+				}
+			} catch (e) {}
+		})();
+
+		function toggleDarkMode() {
+			var isDark = document.documentElement.classList.toggle('dark');
+			try { localStorage.theme = isDark ? 'dark' : 'light'; } catch (e) {}
+		}
+	</script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body class="single">
+    <div class="flex min-h-screen flex-col">
+        <header class="sticky top-0 z-50 border-b border-hairline backdrop-blur-md"
+	style="background-color: color-mix(in srgb, var(--bg) 88%, transparent);">
+	<div class="mx-auto w-full max-w-6xl px-5 sm:px-8">
+		<div class="flex h-16 items-center justify-between">
+			<a href="/" class="flex items-center gap-2">
+				
+				<span class="logo-title text-lg">
+					<span class="logo-mark">Post</span><span class="logo-accent">dare</span>
+				</span>
+			</a>
+
+			<nav class="hidden md:flex items-center gap-7">
+				
+					
+					<a href="/" class="nav-link">
+						文章
+					</a>
+				
+					
+					<a href="/about" class="nav-link">
+						关于
+					</a>
+				
+			</nav>
+
+			<div class="flex items-center gap-1">
+				<a href="/search/" class="icon-btn" title="搜索" aria-label="搜索">
+					<svg class="h-[18px] w-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"></path></svg>
+				</a>
+
+				<button id="theme-toggle" class="icon-btn" title="切换主题" aria-label="切换主题">
+					<span id="theme-toggle-dark-icon" class="hidden"><svg class="h-[18px] w-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"></path></svg></span>
+					<span id="theme-toggle-light-icon" class="hidden"><svg class="h-[18px] w-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"></path></svg></span>
+				</button>
+
+				<button id="mobile-menu-button" class="icon-btn md:hidden" aria-label="菜单">
+					<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path></svg>
+				</button>
+			</div>
+		</div>
+
+		<div id="mobile-menu" class="hidden md:hidden border-t border-hairline">
+			<nav class="flex flex-col py-2">
+				
+					<a href="/" class="nav-link py-3">
+						文章
+					</a>
+				
+					<a href="/about" class="nav-link py-3">
+						关于
+					</a>
+				
+			</nav>
+		</div>
+	</div>
+</header>
+
+
+        <main class="flex-1">
+            <div class="mx-auto w-full max-w-6xl px-5 sm:px-8 py-12 md:py-16">
+                <div class="main-layout">
+                    <div class="main-content">
+                        <article>
+    <!-- 文章头部 -->
+    <header class="mb-12">
+        <div class="rule-label mb-8">
+            
+                <span class="mono-label mono-label-accent">
+                    教程
+                </span>
+            
+        </div>
+
+        <h1 class="text-3xl md:text-[2.75rem] font-bold leading-[1.15] tracking-tight text-balance mb-6">
+            打造自动化科技新闻博客：Tech News Skill 介绍
+        </h1>
+
+        <div class="flex flex-wrap items-center gap-x-6 gap-y-2 mono-meta">
+            <time datetime="2026-01-30T05:56:00.000Z">
+                2026-01-30
+            </time>
+
+            
+                <span>更新于 2026-09-18</span>
+            
+
+            <span data-reading-time></span>
+
+            
+                <span class="flex flex-wrap items-center gap-x-2">
+                    
+                        <a href="/tags/Clawdbot/" class="hover:text-accent transition-colors">#Clawdbot</a>
+                    
+                        <a href="/tags/Tech-News/" class="hover:text-accent transition-colors">#Tech News</a>
+                    
+                        <a href="/tags/Skill/" class="hover:text-accent transition-colors">#Skill</a>
+                    
+                        <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/" class="hover:text-accent transition-colors">#自动化</a>
+                    
+                        <a href="/tags/%E5%8D%9A%E5%AE%A2/" class="hover:text-accent transition-colors">#博客</a>
+                    
+                </span>
+            
+        </div>
+    </header>
+
+    <details class="toc-mobile lg:hidden" data-toc-wrapper hidden>
+    <summary>
+        <span class="toc-rail-heading">On this page</span>
+        <span class="toc-mobile-chevron text-muted"><svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                    </svg></span>
+    </summary>
+    <nav class="toc-nav" data-toc></nav>
+</details>
+
+
+    <!-- 文章内容 -->
+    <div class="post-content" id="post-content">
+        <h2 id="背景">背景</h2>
+<p>每天浏览 Hacker News、GitHub Trending、技术博客获取科技资讯既耗时又容易遗漏。<strong>Tech News Skill</strong> 把「抓取 → 翻译 → 分类 → 生成」这条流水线自动化，让你每天几分钟内就能产出当天的科技新闻汇总。</p>
+<blockquote>
+<p>⭐ <strong>GitHub 地址</strong><br>
+<a href="https://github.com/foundralab/my-skills/tree/main/tech-news">https://github.com/foundralab/my-skills/tree/main/tech-news</a></p>
+</blockquote>
+<h2 id="功能特性（最新）">功能特性（最新）</h2>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>多源聚合</td>
+<td>Hacker News、Reddit Programming、GitHub Trending、<a href="http://Dev.to">Dev.to</a>、Lobsters、Papers With Code、Hugging Face、arXiv AI</td>
+</tr>
+<tr>
+<td>自动翻译</td>
+<td>使用 Minimax 或 OpenAI API 生成中文标题与摘要</td>
+</tr>
+<tr>
+<td>智能分类</td>
+<td>AI、开发工具、基础设施、产品设计、趣闻观点</td>
+</tr>
+<tr>
+<td>去重机制</td>
+<td>默认排除近 3 天重复文章</td>
+</tr>
+<tr>
+<td>图片支持</td>
+<td>可自动抓取 og:image 并上传到 R2（可选）</td>
+</tr>
+<tr>
+<td>输出稳定</td>
+<td>统一 Markdown 结构，适合二次加工或直接发布</td>
+</tr>
+</tbody>
+</table>
+<h2 id="工作流程">工作流程</h2>
+<pre><code>抓取多源 → 去重 → 平衡筛选 → 翻译摘要 → (可选)处理配图 → 生成Markdown
+</code></pre>
+<h2 id="前置条件">前置条件</h2>
+<ul>
+<li>Python 3.8+ (<code>python3</code>)</li>
+<li>翻译 API：<code>MINIMAX_API_KEY</code> 或 <code>OPENAI_API_KEY</code></li>
+<li>可选图片上传：<code>~/.r2-upload.yml</code> 或 <code>R2_UPLOAD_CONFIG</code></li>
+</ul>
+<p>示例：</p>
+<pre data-language="bash" class="shiki shiki-themes github-light-default dark-plus" style="background-color:#ffffff;--shiki-dark-bg:#1E1E1E;color:#1f2328;--shiki-dark:#D4D4D4" tabindex="0"><code><span class="line"><span style="color:#CF222E;--shiki-dark:#569CD6">export</span><span style="color:#1F2328;--shiki-dark:#9CDCFE"> MINIMAX_API_KEY</span><span style="color:#CF222E;--shiki-dark:#D4D4D4">=</span><span style="color:#1F2328;--shiki-dark:#9CDCFE">your_key</span></span>
+<span class="line"><span style="color:#6E7781;--shiki-dark:#6A9955"># 或</span></span>
+<span class="line"><span style="color:#CF222E;--shiki-dark:#569CD6">export</span><span style="color:#1F2328;--shiki-dark:#9CDCFE"> OPENAI_API_KEY</span><span style="color:#CF222E;--shiki-dark:#D4D4D4">=</span><span style="color:#1F2328;--shiki-dark:#9CDCFE">your_key</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6E7781;--shiki-dark:#6A9955"># 如需图片上传</span></span>
+<span class="line"><span style="color:#CF222E;--shiki-dark:#569CD6">export</span><span style="color:#1F2328;--shiki-dark:#9CDCFE"> R2_UPLOAD_CONFIG</span><span style="color:#CF222E;--shiki-dark:#D4D4D4">=~</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">/.</span><span style="color:#1F2328;--shiki-dark:#9CDCFE">r2-upload</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">.</span><span style="color:#1F2328;--shiki-dark:#9CDCFE">yml</span></span>
+<span class="line"></span></code></pre>
+<h2 id="快速开始">快速开始</h2>
+<p>假设 skill 安装目录为 <code>~/.agents/skills/tech-news</code>（以实际路径为准）：</p>
+<pre data-language="bash" class="shiki shiki-themes github-light-default dark-plus" style="background-color:#ffffff;--shiki-dark-bg:#1E1E1E;color:#1f2328;--shiki-dark:#D4D4D4" tabindex="0"><code><span class="line"><span style="color:#1F2328;--shiki-dark:#9CDCFE">TECH_NEWS_DIR</span><span style="color:#CF222E;--shiki-dark:#D4D4D4">=</span><span style="color:#0A3069;--shiki-dark:#CE9178">~/.agents/skills/tech-news</span></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#9CDCFE">DATE</span><span style="color:#CF222E;--shiki-dark:#D4D4D4">=</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">$(</span><span style="color:#953800;--shiki-dark:#DCDCAA">date</span><span style="color:#0A3069;--shiki-dark:#CE9178"> +%F</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#953800;--shiki-dark:#DCDCAA">python3</span><span style="color:#1F2328;--shiki-dark:#9CDCFE"> $TECH_NEWS_DIR</span><span style="color:#0A3069;--shiki-dark:#CE9178">/scripts/generate.py</span><span style="color:#CF222E;--shiki-dark:#D7BA7D"> \</span></span>
+<span class="line"><span style="color:#0550AE;--shiki-dark:#569CD6">  --date</span><span style="color:#1F2328;--shiki-dark:#9CDCFE"> $DATE</span><span style="color:#CF222E;--shiki-dark:#D7BA7D"> \</span></span>
+<span class="line"><span style="color:#0550AE;--shiki-dark:#569CD6">  --save</span><span style="color:#0A3069;--shiki-dark:#CE9178"> /tmp/tech-news-</span><span style="color:#1F2328;--shiki-dark:#9CDCFE">$DATE</span><span style="color:#0A3069;--shiki-dark:#CE9178">.md</span></span>
+<span class="line"></span></code></pre>
+<p>如果你不需要图片：</p>
+<pre data-language="bash" class="shiki shiki-themes github-light-default dark-plus" style="background-color:#ffffff;--shiki-dark-bg:#1E1E1E;color:#1f2328;--shiki-dark:#D4D4D4" tabindex="0"><code><span class="line"><span style="color:#953800;--shiki-dark:#DCDCAA">python3</span><span style="color:#1F2328;--shiki-dark:#9CDCFE"> $TECH_NEWS_DIR</span><span style="color:#0A3069;--shiki-dark:#CE9178">/scripts/generate.py</span><span style="color:#0550AE;--shiki-dark:#569CD6"> --date</span><span style="color:#1F2328;--shiki-dark:#9CDCFE"> $DATE</span><span style="color:#0550AE;--shiki-dark:#569CD6"> --no-images</span><span style="color:#0550AE;--shiki-dark:#569CD6"> --save</span><span style="color:#0A3069;--shiki-dark:#CE9178"> /tmp/tech-news-</span><span style="color:#1F2328;--shiki-dark:#9CDCFE">$DATE</span><span style="color:#0A3069;--shiki-dark:#CE9178">.md</span></span>
+<span class="line"></span></code></pre>
+<h2 id="常用参数">常用参数</h2>
+<ul>
+<li><code>--sources &lt;list&gt;</code>：指定新闻源（默认 8 个）</li>
+<li><code>--count &lt;n&gt;</code>：每源抓取数量（默认 15）</li>
+<li><code>--limit &lt;n&gt;</code>：最终精选数量（默认 10）</li>
+<li><code>--max-images &lt;n&gt;</code>：处理图片上限</li>
+<li><code>--no-images</code>：禁用图片</li>
+<li><code>--output-only</code>：仅输出 Markdown 到 stdout</li>
+</ul>
+<h2 id="文章格式">文章格式</h2>
+<p>默认输出结构（节选）：</p>
+<pre data-language="markdown" class="shiki shiki-themes github-light-default dark-plus" style="background-color:#ffffff;--shiki-dark-bg:#1E1E1E;color:#1f2328;--shiki-dark:#D4D4D4" tabindex="0"><code><span class="line"><span style="color:#0550AE;--shiki-light-font-weight:bold;--shiki-dark:#569CD6;--shiki-dark-font-weight:bold"># 📰 YYYY-MM-DD 科技早报</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#6A9955">></span><span style="color:#116329;--shiki-dark:#D4D4D4"> 📊 </span><span style="color:#1F2328;--shiki-light-font-weight:bold;--shiki-dark:#569CD6;--shiki-dark-font-weight:bold">**今日导读**</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#6A9955">></span><span style="color:#116329;--shiki-dark:#D4D4D4"> 精选 10 条科技新闻</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#6A9955">></span><span style="color:#116329;--shiki-dark:#D4D4D4"> 来源：Hacker News(4) | GitHub Trending(3) | Lobsters(3)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0550AE;--shiki-light-font-weight:bold;--shiki-dark:#D4D4D4;--shiki-dark-font-weight:inherit">---</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0550AE;--shiki-light-font-weight:bold;--shiki-dark:#569CD6;--shiki-dark-font-weight:bold">## 📋 文章速览</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#1F2328;--shiki-light-font-weight:bold;--shiki-dark:#569CD6;--shiki-dark-font-weight:bold">**AI 与机器学习**</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">：3 篇</span></span>
+<span class="line"><span style="color:#953800;--shiki-dark:#6796E6">1.</span><span style="color:#1F2328;--shiki-dark:#D4D4D4"> ...</span></span>
+<span class="line"></span></code></pre>
+<h2 id="自动化方案">自动化方案</h2>
+<h3 id="1-Cron（本地定时）">1. Cron（本地定时）</h3>
+<pre data-language="bash" class="shiki shiki-themes github-light-default dark-plus" style="background-color:#ffffff;--shiki-dark-bg:#1E1E1E;color:#1f2328;--shiki-dark:#D4D4D4" tabindex="0"><code><span class="line"><span style="color:#953800;--shiki-dark:#DCDCAA">0</span><span style="color:#0550AE;--shiki-dark:#B5CEA8"> 9</span><span style="color:#0550AE;--shiki-dark:#569CD6"> *</span><span style="color:#0550AE;--shiki-dark:#569CD6"> *</span><span style="color:#0550AE;--shiki-dark:#569CD6"> *</span><span style="color:#CF222E;--shiki-dark:#D7BA7D"> \</span></span>
+<span class="line"><span style="color:#0A3069;--shiki-dark:#CE9178">  python3</span><span style="color:#0A3069;--shiki-dark:#CE9178"> ~/.agents/skills/tech-news/scripts/generate.py</span><span style="color:#0550AE;--shiki-dark:#569CD6"> --date</span><span style="color:#1F2328;--shiki-dark:#D4D4D4"> $(</span><span style="color:#953800;--shiki-dark:#DCDCAA">date</span><span style="color:#0A3069;--shiki-dark:#CE9178"> +%F</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">) </span><span style="color:#0550AE;--shiki-dark:#569CD6">--save</span><span style="color:#0A3069;--shiki-dark:#CE9178"> /tmp/tech-news-</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">$(</span><span style="color:#953800;--shiki-dark:#DCDCAA">date</span><span style="color:#0A3069;--shiki-dark:#CE9178"> +%F</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">)</span><span style="color:#0A3069;--shiki-dark:#CE9178">.md</span></span>
+<span class="line"></span></code></pre>
+<p>生成后即可用于发布或二次编辑（可用脚本自动处理）。</p>
+<h3 id="2-GitHub-Actions">2. GitHub Actions</h3>
+<p>把 <code>generate.py</code> 放到 workflow 中，定时生成并提交到仓库。</p>
+<h2 id="常见问题">常见问题</h2>
+<ul>
+<li><strong>翻译质量一般</strong>：确认 <code>MINIMAX_API_KEY</code> 或 <code>OPENAI_API_KEY</code> 已配置</li>
+<li><strong>图片不显示</strong>：检查 <code>R2_UPLOAD_CONFIG</code> 或改用 <code>--no-images</code></li>
+<li><strong>重复内容</strong>：默认会排除近 3 天重复文章，可按需改代码</li>
+</ul>
+<h2 id="Skill-源码与目录结构">Skill 源码与目录结构</h2>
+<p>Tech News Skill 本地结构如下：</p>
+<p><a href="https://github.com/foundralab/my-skills/tree/main/tech-news">GitHub 仓库</a></p>
+<pre><code>tech-news/
+├── SKILL.md
+├── scripts/
+│   ├── generate.py
+│   ├── fetch_news.py
+│   └── llm_translate.py
+└── references/
+</code></pre>
+<p>如果你想改来源、分类或输出格式，直接修改 <code>generate.py</code> 即可。</p>
+<hr>
+<p><em>让科技新闻聚合变得简单高效！</em></p>
+
+    </div>
+</article>
+
+<!-- 文章导航 -->
+
+    <nav class="mt-20 grid grid-cols-1 sm:grid-cols-2 gap-px border-t border-hairline">
+        <div class="py-6 sm:pr-8">
+            
+                <a href="/2026/02/02/AI%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/" class="group block">
+                    <span class="mono-label block mb-2 group-hover:text-accent transition-colors">← 上一篇</span>
+                    <span class="block text-[0.95rem] font-medium text-theme line-clamp-2 group-hover:text-accent transition-colors">
+                        AI工具使用心得
+                    </span>
+                </a>
+            
+        </div>
+
+        <div class="py-6 sm:pl-8 sm:text-right sm:border-l border-hairline">
+            
+                <a href="/2026/01/29/2026-01-29-Clawdbot-%E5%AE%89%E8%A3%85-R2-Upload-Skill-%E6%8C%87%E5%8D%97/" class="group block">
+                    <span class="mono-label block mb-2 group-hover:text-accent transition-colors">下一篇 →</span>
+                    <span class="block text-[0.95rem] font-medium text-theme line-clamp-2 group-hover:text-accent transition-colors">
+                        Clawdbot 安装 R2 Upload Skill 指南
+                    </span>
+                </a>
+            
+        </div>
+    </nav>
+
+
+<script>
+    (function () {
+        function readingTime() {
+            const content = document.getElementById('post-content');
+            const slot = document.querySelector('[data-reading-time]');
+            if (!content || !slot) return;
+            const text = content.textContent || '';
+            const cjk = (text.match(/[一-龥]/g) || []).length;
+            const words = (text.replace(/[一-龥]/g, ' ').match(/[A-Za-z0-9]+/g) || []).length;
+            const minutes = Math.max(1, Math.round(cjk / 400 + words / 220));
+            slot.textContent = minutes + ' 分钟阅读';
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', readingTime);
+        } else {
+            readingTime();
+        }
+    })();
+</script>
+
+                    </div>
+
+                    
+                        <aside class="main-toc">
+                            <div id="toc-rail" class="toc-rail" hidden>
+    <span class="toc-rail-heading">On this page</span>
+    <nav class="toc-nav" data-toc></nav>
+</div>
+
+<script>
+    (function () {
+        function initTOC() {
+            const postContent = document.getElementById('post-content');
+            const targets = document.querySelectorAll('[data-toc]');
+            if (!postContent || !targets.length) return;
+
+            const headings = Array.from(postContent.querySelectorAll('h1, h2, h3'))
+                .filter(function (h) { return (h.textContent || '').trim().length > 0; });
+
+            if (headings.length < 2) return;
+
+            // 扁平列表 —— 让左侧发丝线保持连续，靠缩进表达层级
+            const items = headings.map(function (heading, index) {
+                if (!heading.id) heading.id = 'toc-' + index;
+                const level = parseInt(heading.tagName.charAt(1), 10);
+                return {
+                    id: heading.id,
+                    level: level,
+                    text: (heading.textContent || '').trim(),
+                    el: heading
+                };
+            });
+
+            const html = '<ul class="toc-list">' + items.map(function (item) {
+                return '<li class="toc-item toc-level-' + item.level + '">' +
+                    '<a class="toc-link" href="#' + item.id + '" data-target="' + item.id + '">' +
+                    '<span class="toc-text">' + item.text.replace(/[&<>"]/g, function (c) {
+                        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+                    }) + '</span></a></li>';
+            }).join('') + '</ul>';
+
+            targets.forEach(function (nav) { nav.innerHTML = html; });
+
+            const rail = document.getElementById('toc-rail');
+            if (rail) rail.hidden = false;
+            document.querySelectorAll('[data-toc-wrapper]').forEach(function (el) { el.hidden = false; });
+
+            const links = Array.from(document.querySelectorAll('.toc-link'));
+
+            function setActive(id) {
+                links.forEach(function (link) {
+                    link.classList.toggle('active', link.getAttribute('data-target') === id);
+                });
+            }
+
+            // 点击平滑滚动（考虑固定头部）
+            document.querySelectorAll('[data-toc]').forEach(function (nav) {
+                nav.addEventListener('click', function (e) {
+                    const link = e.target.closest('.toc-link');
+                    if (!link) return;
+                    e.preventDefault();
+                    const target = document.getElementById(link.getAttribute('data-target'));
+                    if (!target) return;
+                    const top = target.getBoundingClientRect().top + window.pageYOffset - 88;
+                    window.scrollTo({ top: top, behavior: 'smooth' });
+                    setActive(link.getAttribute('data-target'));
+                    history.replaceState(null, '', '#' + link.getAttribute('data-target'));
+                });
+            });
+
+            // 滚动高亮 + 目录自动跟随滚动
+            let ticking = false;
+
+            function onScroll() {
+                if (ticking) return;
+                ticking = true;
+                requestAnimationFrame(function () {
+                    let activeId = items[0].id;
+                    for (let i = items.length - 1; i >= 0; i--) {
+                        if (items[i].el.getBoundingClientRect().top <= 100) {
+                            activeId = items[i].id;
+                            break;
+                        }
+                    }
+                    setActive(activeId);
+
+                    // 让高亮项始终留在可视区内
+                    const nav = rail && rail.querySelector('[data-toc]');
+                    if (nav && nav.scrollHeight > nav.clientHeight) {
+                        const active = nav.querySelector('.toc-link.active');
+                        if (active) {
+                            const navRect = nav.getBoundingClientRect();
+                            const linkRect = active.getBoundingClientRect();
+                            if (linkRect.top < navRect.top || linkRect.bottom > navRect.bottom) {
+                                nav.scrollTop += linkRect.top - navRect.top - nav.clientHeight / 2;
+                            }
+                        }
+                    }
+
+                    ticking = false;
+                });
+            }
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initTOC);
+        } else {
+            initTOC();
+        }
+    })();
+</script>
+
+                        </aside>
+                    
+                </div>
+            </div>
+        </main>
+
+        <footer class="border-t border-hairline mt-20">
+    <div class="mx-auto w-full max-w-6xl px-5 sm:px-8 py-10">
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <p class="mono-meta">
+                Postdare @ All Rights Reserved 2026
+            </p>
+            <div class="flex items-center gap-5">
+                
+                    <a href="/atom.xml" class="mono-label hover:text-accent transition-colors">RSS</a>
+                
+                
+                    <span class="mono-meta"><a href="https://beian.miit.gov.cn" target="_blank">陕ICP备16008414号-4</a></span>
+                
+            </div>
+        </div>
+    </div>
+</footer>
+
+<button id="back-to-top"
+    class="fixed bottom-8 right-8 z-50 flex h-10 w-10 items-center justify-center rounded-sm border border-hairline-strong bg-surface text-muted transition-all duration-300 opacity-0 invisible hover:text-accent hover:border-hairline-strong"
+    aria-label="回到顶部">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18"></path></svg>
+</button>
+
+    </div>
+
+    <script src="/js/plugins.js" defer></script>
+    
+        <script src="/js/mermaid.min.js"></script>
+        <script src="/js/mermaid-init.js"></script>
+        
+<link rel="stylesheet" href="/css/mermaid.css">
+
+    
+</body>
+</html>

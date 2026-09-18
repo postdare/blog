@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>AI工具使用心得 · Postdare</title>
+
+	
+	<meta name="description" content="">
+	<meta name="author" content="Kai Yang">
+	<meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)">
+	<meta name="theme-color" content="#0a0908" media="(prefers-color-scheme: dark)">
+
+	<meta property="og:site_name" content="Postdare">
+	<meta property="og:title" content="AI工具使用心得">
+	<meta property="og:description" content="">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="https://blog.postdare.com/2026/02/02/AI%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/">
+
+	<link rel="shortcut icon" href="/img/favicon.ico">
+	<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+	<link rel="manifest" href="/img/site.webmanifest">
+	
+		<link rel="alternate" type="application/atom+xml" title="Postdare" href="/atom.xml">
+	
+
+	
+<link rel="stylesheet" href="/css/main.css">
+
+
+	<script>
+		// 深色模式初始化（在渲染前执行，避免闪白）
+		(function () {
+			try {
+				var stored = localStorage.theme;
+				var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+				if (stored === 'dark' || (!stored && prefersDark)) {
+					document.documentElement.classList.add('dark');
+				} else {
+					document.documentElement.classList.remove('dark');
+				}
+			} catch (e) {}
+		})();
+
+		function toggleDarkMode() {
+			var isDark = document.documentElement.classList.toggle('dark');
+			try { localStorage.theme = isDark ? 'dark' : 'light'; } catch (e) {}
+		}
+	</script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body class="single">
+    <div class="flex min-h-screen flex-col">
+        <header class="sticky top-0 z-50 border-b border-hairline backdrop-blur-md"
+	style="background-color: color-mix(in srgb, var(--bg) 88%, transparent);">
+	<div class="mx-auto w-full max-w-6xl px-5 sm:px-8">
+		<div class="flex h-16 items-center justify-between">
+			<a href="/" class="flex items-center gap-2">
+				
+				<span class="logo-title text-lg">
+					<span class="logo-mark">Post</span><span class="logo-accent">dare</span>
+				</span>
+			</a>
+
+			<nav class="hidden md:flex items-center gap-7">
+				
+					
+					<a href="/" class="nav-link">
+						文章
+					</a>
+				
+					
+					<a href="/about" class="nav-link">
+						关于
+					</a>
+				
+			</nav>
+
+			<div class="flex items-center gap-1">
+				<a href="/search/" class="icon-btn" title="搜索" aria-label="搜索">
+					<svg class="h-[18px] w-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"></path></svg>
+				</a>
+
+				<button id="theme-toggle" class="icon-btn" title="切换主题" aria-label="切换主题">
+					<span id="theme-toggle-dark-icon" class="hidden"><svg class="h-[18px] w-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"></path></svg></span>
+					<span id="theme-toggle-light-icon" class="hidden"><svg class="h-[18px] w-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"></path></svg></span>
+				</button>
+
+				<button id="mobile-menu-button" class="icon-btn md:hidden" aria-label="菜单">
+					<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path></svg>
+				</button>
+			</div>
+		</div>
+
+		<div id="mobile-menu" class="hidden md:hidden border-t border-hairline">
+			<nav class="flex flex-col py-2">
+				
+					<a href="/" class="nav-link py-3">
+						文章
+					</a>
+				
+					<a href="/about" class="nav-link py-3">
+						关于
+					</a>
+				
+			</nav>
+		</div>
+	</div>
+</header>
+
+
+        <main class="flex-1">
+            <div class="mx-auto w-full max-w-6xl px-5 sm:px-8 py-12 md:py-16">
+                <div class="main-layout">
+                    <div class="main-content">
+                        <article>
+    <!-- 文章头部 -->
+    <header class="mb-12">
+        <div class="rule-label mb-8">
+            
+                <span class="mono-label mono-label-accent">
+                    工具
+                </span>
+            
+        </div>
+
+        <h1 class="text-3xl md:text-[2.75rem] font-bold leading-[1.15] tracking-tight text-balance mb-6">
+            AI工具使用心得
+        </h1>
+
+        <div class="flex flex-wrap items-center gap-x-6 gap-y-2 mono-meta">
+            <time datetime="2026-02-02T03:06:16.000Z">
+                2026-02-02
+            </time>
+
+            
+                <span>更新于 2026-09-18</span>
+            
+
+            <span data-reading-time></span>
+
+            
+                <span class="flex flex-wrap items-center gap-x-2">
+                    
+                        <a href="/tags/%E5%B7%A5%E5%85%B7/" class="hover:text-accent transition-colors">#工具</a>
+                    
+                </span>
+            
+        </div>
+    </header>
+
+    <details class="toc-mobile lg:hidden" data-toc-wrapper hidden>
+    <summary>
+        <span class="toc-rail-heading">On this page</span>
+        <span class="toc-mobile-chevron text-muted"><svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                    </svg></span>
+    </summary>
+    <nav class="toc-nav" data-toc></nav>
+</details>
+
+
+    <!-- 文章内容 -->
+    <div class="post-content" id="post-content">
+        <h2 id="一、Cursor">一、Cursor</h2>
+<p><a href="https://cursor.com/cn/docs/agent/overview">Cursor 官方文档</a></p>
+<p><img src="https://oss.foundra.me/images/2026/01/30/cursor-agent-review.jpg" alt="Cursor Agent 模式"></p>
+<p>Cursor 是在 IDE 中深度集成的 AI 编程助手，适合日常开发场景。</p>
+<h3 id="1-1-Modes：四种工作模式">1.1 Modes：四种工作模式</h3>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>适用场景</th>
+<th>能力</th>
+<th>工具</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Agent</strong></td>
+<td>复杂功能、重构</td>
+<td>自主探索、多文件编辑</td>
+<td>启用全部工具</td>
+</tr>
+<tr>
+<td><strong>Ask</strong></td>
+<td>学习、规划、提问</td>
+<td>只读探索，无自动修改</td>
+<td>仅启用搜索工具</td>
+</tr>
+<tr>
+<td><strong>Plan</strong></td>
+<td>需要规划的复杂功能</td>
+<td>执行前创建详细计划</td>
+<td>启用全部工具</td>
+</tr>
+<tr>
+<td><strong>Debug</strong></td>
+<td>棘手 Bug、回归问题</td>
+<td>生成假设、日志埋点、运行时分析</td>
+<td>全部工具 + 调试服务器</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1-2-Rules：让-AI-真正理解你的项目">1.2 Rules：让 AI 真正理解你的项目</h3>
+<p>由于 LLM 在不同补全之间不会保留记忆，Rules 在<strong>提示级别提供持久、可重用的上下文</strong>。</p>
+<p><strong>四种规则类型：</strong></p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>位置</th>
+<th>作用范围</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>项目规则</td>
+<td><code>.cursor/rules/</code></td>
+<td>当前代码库</td>
+<td>受版本控制，可用 globs 限定范围</td>
+</tr>
+<tr>
+<td>用户规则</td>
+<td>Settings → Rules</td>
+<td>全局所有项目</td>
+<td>个人偏好，跨项目生效</td>
+</tr>
+<tr>
+<td>团队规则</td>
+<td>Cursor Dashboard</td>
+<td>整个团队</td>
+<td>Team/Enterprise 可强制执行</td>
+</tr>
+<tr>
+<td><a href="http://AGENTS.md">AGENTS.md</a></td>
+<td>项目根目录</td>
+<td>当前项目</td>
+<td>简洁 Markdown，无复杂配置</td>
+</tr>
+</tbody>
+</table>
+<p><strong>项目规则示例（Linus Torvalds 风格）：</strong></p>
+<p>文件：<code>.cursor/rules/codereview.mdc</code></p>
+<pre data-language="markdown" class="shiki shiki-themes github-light-default dark-plus" style="background-color:#ffffff;--shiki-dark-bg:#1E1E1E;color:#1f2328;--shiki-dark:#D4D4D4" tabindex="0"><code><span class="line"><span style="color:#0550AE;--shiki-light-font-weight:bold;--shiki-dark:#D4D4D4;--shiki-dark-font-weight:inherit">---</span></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">alwaysApply: true</span></span>
+<span class="line"><span style="color:#0550AE;--shiki-light-font-weight:bold;--shiki-dark:#569CD6;--shiki-dark-font-weight:bold">---</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0550AE;--shiki-light-font-weight:bold;--shiki-dark:#569CD6;--shiki-dark-font-weight:bold">## 角色定义</span></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">你是 Linus Torvalds，Linux 内核创造者和首席架构师。</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0550AE;--shiki-light-font-weight:bold;--shiki-dark:#569CD6;--shiki-dark-font-weight:bold">## 核心哲学</span></span>
+<span class="line"><span style="color:#953800;--shiki-dark:#6796E6">1.</span><span style="color:#1F2328;--shiki-light-font-weight:bold;--shiki-dark:#569CD6;--shiki-dark-font-weight:bold"> **好品味**</span><span style="color:#1F2328;--shiki-dark:#D4D4D4"> - 消除边界情况优于增加条件判断</span></span>
+<span class="line"><span style="color:#953800;--shiki-dark:#6796E6">2.</span><span style="color:#1F2328;--shiki-light-font-weight:bold;--shiki-dark:#569CD6;--shiki-dark-font-weight:bold"> **Never break userspace**</span><span style="color:#1F2328;--shiki-dark:#D4D4D4"> - 向后兼容性神圣不可侵犯</span></span>
+<span class="line"><span style="color:#953800;--shiki-dark:#6796E6">3.</span><span style="color:#1F2328;--shiki-light-font-weight:bold;--shiki-dark:#569CD6;--shiki-dark-font-weight:bold"> **实用主义**</span><span style="color:#1F2328;--shiki-dark:#D4D4D4"> - 解决实际问题，不是假想威胁</span></span>
+<span class="line"><span style="color:#953800;--shiki-dark:#6796E6">4.</span><span style="color:#1F2328;--shiki-light-font-weight:bold;--shiki-dark:#569CD6;--shiki-dark-font-weight:bold"> **简洁执念**</span><span style="color:#1F2328;--shiki-dark:#D4D4D4"> - 超过3层缩进就该重构</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0550AE;--shiki-light-font-weight:bold;--shiki-dark:#569CD6;--shiki-dark-font-weight:bold">## Linus式问题分解（五层分析）</span></span>
+<span class="line"><span style="color:#953800;--shiki-dark:#6796E6">-</span><span style="color:#1F2328;--shiki-light-font-weight:bold;--shiki-dark:#569CD6;--shiki-dark-font-weight:bold"> **数据结构**</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">：核心数据是什么？关系如何？</span></span>
+<span class="line"><span style="color:#953800;--shiki-dark:#6796E6">-</span><span style="color:#1F2328;--shiki-light-font-weight:bold;--shiki-dark:#569CD6;--shiki-dark-font-weight:bold"> **特殊情况**</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">：找出 if/else，能否用数据结构消除？</span></span>
+<span class="line"><span style="color:#953800;--shiki-dark:#6796E6">-</span><span style="color:#1F2328;--shiki-light-font-weight:bold;--shiki-dark:#569CD6;--shiki-dark-font-weight:bold"> **复杂度审查**</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">：功能本质是什么？概念能否减半？</span></span>
+<span class="line"><span style="color:#953800;--shiki-dark:#6796E6">-</span><span style="color:#1F2328;--shiki-light-font-weight:bold;--shiki-dark:#569CD6;--shiki-dark-font-weight:bold"> **破坏性分析**</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">：会 break 什么？如何零破坏改进？</span></span>
+<span class="line"><span style="color:#953800;--shiki-dark:#6796E6">-</span><span style="color:#1F2328;--shiki-light-font-weight:bold;--shiki-dark:#569CD6;--shiki-dark-font-weight:bold"> **实用性验证**</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">：生产环境真有问题吗？</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0550AE;--shiki-light-font-weight:bold;--shiki-dark:#569CD6;--shiki-dark-font-weight:bold">## 代码审查输出</span></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">【品味评分】🟢 好品味 / 🟡 凑合 / 🔴 垃圾</span></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">【致命问题】[</span><span style="color:#0A3069;--shiki-dark:#CE9178">直接指出最糟糕的部分</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">]</span></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">【改进方向】"把这个特殊情况消除掉"</span></span>
+<span class="line"></span></code></pre>
+<p><strong>最佳实践：</strong></p>
+<ul>
+<li>✅ 规则控制在 500 行以内，大规则拆分</li>
+<li>✅ 用 <code>@file.ts</code> 引用文件而非复制内容</li>
+<li>❌ 避免照搬风格指南（用 linter）</li>
+<li>❌ 不记录常见命令（Agent 已了解 npm/git）</li>
+</ul>
+<p><strong><a href="http://AGENTS.md">AGENTS.md</a> 示例（简化版）：</strong></p>
+<p>文件：<code>AGENTS.md</code>（项目根目录）</p>
+<pre data-language="markdown" class="shiki shiki-themes github-light-default dark-plus" style="background-color:#ffffff;--shiki-dark-bg:#1E1E1E;color:#1f2328;--shiki-dark:#D4D4D4" tabindex="0"><code><span class="line"><span style="color:#0550AE;--shiki-light-font-weight:bold;--shiki-dark:#569CD6;--shiki-dark-font-weight:bold"># 灵播资金管理系统 - AI 编码指南</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0550AE;--shiki-light-font-weight:bold;--shiki-dark:#569CD6;--shiki-dark-font-weight:bold">## 项目概述</span></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">Spring Boot 多模块 Maven 项目，管理会员资金、优惠券、积分、红包等业务。</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">技术栈：Java 11, Spring Boot 2.6, MyBatis Plus, 支付宝/微信支付 SDK</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0550AE;--shiki-light-font-weight:bold;--shiki-dark:#569CD6;--shiki-dark-font-weight:bold">## 项目结构</span></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">lingbo-funds/</span></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">├── api/          # Feign 接口</span></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">├── bussiness/    # 业务逻辑（Service）</span></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">├── repository/   # 数据访问（DAO/Mapper）</span></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">└── web/          # Controller</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0550AE;--shiki-light-font-weight:bold;--shiki-dark:#569CD6;--shiki-dark-font-weight:bold">## 关键规范</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0550AE;--shiki-light-font-weight:bold;--shiki-dark:#569CD6;--shiki-dark-font-weight:bold">### 命名</span></span>
+<span class="line"><span style="color:#953800;--shiki-dark:#6796E6">-</span><span style="color:#1F2328;--shiki-dark:#D4D4D4"> Controller: *Controller</span></span>
+<span class="line"><span style="color:#953800;--shiki-dark:#6796E6">-</span><span style="color:#1F2328;--shiki-dark:#D4D4D4"> Service: *Service / *ServiceImpl</span></span>
+<span class="line"><span style="color:#953800;--shiki-dark:#6796E6">-</span><span style="color:#1F2328;--shiki-dark:#D4D4D4"> DAO: *Dao / *DaoImpl</span></span>
+<span class="line"><span style="color:#953800;--shiki-dark:#6796E6">-</span><span style="color:#1F2328;--shiki-dark:#D4D4D4"> Mapper: *MapperExt</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0550AE;--shiki-light-font-weight:bold;--shiki-dark:#569CD6;--shiki-dark-font-weight:bold">### 注解（必须）</span></span>
+<span class="line"><span style="color:#953800;--shiki-dark:#6796E6">-</span><span style="color:#1F2328;--shiki-dark:#D4D4D4"> @Slf4j - 日志</span></span>
+<span class="line"><span style="color:#953800;--shiki-dark:#6796E6">-</span><span style="color:#1F2328;--shiki-dark:#D4D4D4"> @RequiredArgsConstructor - 构造器注入</span></span>
+<span class="line"><span style="color:#953800;--shiki-dark:#6796E6">-</span><span style="color:#1F2328;--shiki-dark:#D4D4D4"> @Service / @RestController</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0550AE;--shiki-light-font-weight:bold;--shiki-dark:#569CD6;--shiki-dark-font-weight:bold">### 日志</span></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">log.info("操作: {}, 参数: {}", operation, params);</span></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">// 不要字符串拼接</span></span>
+<span class="line"></span></code></pre>
+<hr>
+<h2 id="二、Claude-Code-Codex">二、Claude Code / Codex</h2>
+<p><a href="https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview">Claude Code 文档</a> | <a href="https://github.com/openai/codex">Codex 文档</a></p>
+<p><img src="https://oss.foundra.me/images/2026/01/30/claude-code-terminal.jpg" alt="Claude Code 终端界面"></p>
+<p>命令行环境下的 AI 助手，适合 SSH 服务器、批量处理、自动化脚本等无 GUI 场景。</p>
+<h3 id="2-1-常用技巧">2.1 常用技巧</h3>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>!bash &lt;cmd&gt;</code></td>
+<td>直接执行 shell 命令</td>
+</tr>
+<tr>
+<td><code>@file</code> / <code>#file</code></td>
+<td>引用文件，减少搜索</td>
+</tr>
+<tr>
+<td><code>/model &lt;name&gt;</code></td>
+<td>切换模型（sonnet/opus）</td>
+</tr>
+<tr>
+<td><code>/skills</code></td>
+<td>查看可用技能</td>
+</tr>
+<tr>
+<td><code>--plan</code></td>
+<td>只规划不执行</td>
+</tr>
+<tr>
+<td><code>-a</code> / <code>--apply</code></td>
+<td>自动确认改动</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-2-安全红线">2.2 安全红线</h3>
+<ul>
+<li>⚠️ 危险操作（rm、DROP TABLE）必须二次确认</li>
+<li>⚠️ 敏感文件（.env、密钥）加入忽略列表</li>
+<li>⚠️ 不在生产环境直接 auto-edit</li>
+</ul>
+<h3 id="2-3-Commands：快捷指令">2.3 Commands：快捷指令</h3>
+<p>把常用操作流程封装成 <code>/command-name</code> 一键执行。</p>
+<p><strong>示例：创建合并请求</strong></p>
+<p><code>~/.claude/commands/yunxiao/merge-to-develop.md</code>：</p>
+<pre data-language="markdown" class="shiki shiki-themes github-light-default dark-plus" style="background-color:#ffffff;--shiki-dark-bg:#1E1E1E;color:#1f2328;--shiki-dark:#D4D4D4" tabindex="0"><code><span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">---</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#569CD6">allowed-tools</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: </span><span style="color:#0A3069;--shiki-dark:#CE9178">Bash(git status:*), MCP(get_current_user)</span></span>
+<span class="line"><span style="color:#116329;--shiki-dark:#569CD6">description</span><span style="color:#1F2328;--shiki-dark:#D4D4D4">: </span><span style="color:#0A3069;--shiki-dark:#CE9178">创建代码合并请求到 develop 分支</span></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">---</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">帮我在 yunxiao 中基于当前分支创建 MR 到 develop</span></span>
+<span class="line"></span></code></pre>
+<p>使用：<code>/merge-to-develop</code></p>
+<h3 id="2-4-Skills：能力扩展包">2.4 Skills：能力扩展包</h3>
+<p>把特定领域的工具、知识打包成可复用模块。</p>
+<p><strong>目录结构：</strong></p>
+<pre><code>my-skill/
+├── SKILL.md          # 核心定义：描述、约束、用法
+├── scripts/          # 可执行脚本
+└── references/       # 参考资料（schema、文档）
+</code></pre>
+<p><strong>示例：SQL Expert Skill</strong></p>
+<ul>
+<li><strong><a href="http://SKILL.md">SKILL.md</a></strong>：定义允许查询的表、参数化规范、脱敏规则</li>
+<li><strong>scripts/query.py</strong>：封装数据库连接，内置只读限制</li>
+<li><strong>references/schema.md</strong>：表结构文档</li>
+</ul>
+<p>使用：直接说「查浦江区的租户」，AI 自动查 schema → 生成 SQL → 执行 → 脱敏返回。</p>
+<p><strong>Command vs Skill：</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Command</th>
+<th>Skill</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>定位</td>
+<td>快捷指令</td>
+<td>能力模块</td>
+</tr>
+<tr>
+<td>触发</td>
+<td><code>/name</code> 主动调用</td>
+<td>AI 根据上下文判断</td>
+</tr>
+<tr>
+<td>场景</td>
+<td>固定流程</td>
+<td>需要专业知识的任务</td>
+</tr>
+<tr>
+<td>本质</td>
+<td><strong>快捷方式</strong></td>
+<td><strong>工具箱</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-5-Agent：自主执行任务的智能体">2.5 Agent：自主执行任务的智能体</h3>
+<p><strong>什么是 Agent</strong><br>
+Agent 是能够自主规划和执行任务的 AI 实体。与单次对话不同，Agent 可以：</p>
+<ul>
+<li>拆解复杂任务为多个步骤</li>
+<li>自主调用 Tools/Skills 完成子任务</li>
+<li>根据执行反馈调整策略</li>
+<li>持续运行直到目标达成</li>
+</ul>
+<p><strong>典型 Agent 工作流：</strong></p>
+<pre><code>用户目标 → Agent 规划 → 步骤1 → 步骤2 → 步骤3 → 结果验证 → 完成
+                ↑         ↓       ↓       ↓
+                └──── 遇到异常时调整策略 ──┘
+</code></pre>
+<p><strong>示例：自动化数据分析 Agent</strong></p>
+<pre data-language="markdown" class="shiki shiki-themes github-light-default dark-plus" style="background-color:#ffffff;--shiki-dark-bg:#1E1E1E;color:#1f2328;--shiki-dark:#D4D4D4" tabindex="0"><code><span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">目标：分析本月销售数据并生成报告</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#1F2328;--shiki-dark:#D4D4D4">执行过程：</span></span>
+<span class="line"><span style="color:#953800;--shiki-dark:#6796E6">1.</span><span style="color:#1F2328;--shiki-dark:#D4D4D4"> 连接数据库（调用 SQL Skill）</span></span>
+<span class="line"><span style="color:#953800;--shiki-dark:#6796E6">2.</span><span style="color:#1F2328;--shiki-dark:#D4D4D4"> 提取销售数据（执行查询脚本）</span></span>
+<span class="line"><span style="color:#953800;--shiki-dark:#6796E6">3.</span><span style="color:#1F2328;--shiki-dark:#D4D4D4"> 数据清洗和处理（调用 Python Tool）</span></span>
+<span class="line"><span style="color:#953800;--shiki-dark:#6796E6">4.</span><span style="color:#1F2328;--shiki-dark:#D4D4D4"> 生成图表（调用可视化 Tool）</span></span>
+<span class="line"><span style="color:#953800;--shiki-dark:#6796E6">5.</span><span style="color:#1F2328;--shiki-dark:#D4D4D4"> 撰写分析报告（LLM 生成）</span></span>
+<span class="line"><span style="color:#953800;--shiki-dark:#6796E6">6.</span><span style="color:#1F2328;--shiki-dark:#D4D4D4"> 发送邮件（调用邮件 Tool）</span></span>
+<span class="line"></span></code></pre>
+<h3 id="2-6-SubAgent：分而治之的协作模式">2.6 SubAgent：分而治之的协作模式</h3>
+<p><strong>什么是 SubAgent</strong><br>
+当任务过于复杂时，主 Agent 可以创建多个 SubAgent 并行处理子任务，最后整合结果。</p>
+<p><strong>使用场景：</strong></p>
+<ul>
+<li>大型代码库重构（按模块分配）</li>
+<li>多源数据分析（各 SubAgent 处理不同数据源）</li>
+<li>批量任务处理（并行加速）</li>
+</ul>
+<p><strong>工作模式：</strong></p>
+<pre><code>主 Agent（协调者）
+    ├─ SubAgent A → 处理模块 A → 返回结果
+    ├─ SubAgent B → 处理模块 B → 返回结果
+    └─ SubAgent C → 处理模块 C → 返回结果
+         ↓
+    整合所有结果 → 最终输出
+</code></pre>
+<p><strong>能力对比：</strong></p>
+<table>
+<thead>
+<tr>
+<th>能力</th>
+<th>Command</th>
+<th>Skill</th>
+<th>Agent</th>
+<th>SubAgent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>触发方式</td>
+<td>手动 <code>/cmd</code></td>
+<td>AI 判断</td>
+<td>目标驱动</td>
+<td>主 Agent 分配</td>
+</tr>
+<tr>
+<td>复杂度</td>
+<td>单步操作</td>
+<td>领域任务</td>
+<td>多步骤任务</td>
+<td>并行子任务</td>
+</tr>
+<tr>
+<td>自主性</td>
+<td>无</td>
+<td>低</td>
+<td>高</td>
+<td>分布式</td>
+</tr>
+<tr>
+<td>典型场景</td>
+<td>快捷操作</td>
+<td>工具调用</td>
+<td>端到端任务</td>
+<td>大规模处理</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="三、N8N">三、N8N</h2>
+<p><a href="https://docs.n8n.io/">官方文档</a></p>
+<p><img src="https://oss.foundra.me/images/2026/01/30/n8n-workflow.jpg" alt="N8N Workflow 编辑器"></p>
+<ul>
+<li><strong>Workflow</strong>：把重复劳动固化（总结、通知、发布）</li>
+<li><strong>结构化</strong>：输入输出字段化，避免自由文本猜意图</li>
+<li><strong>Chat</strong>：把 workflow 包装成一句话入口</li>
+</ul>
+<hr>
+<h2 id="四、Kiro">四、Kiro</h2>
+<p><a href="https://kiro.dev/docs/">Kiro 官方文档</a></p>
+<p><img src="https://oss.foundra.me/images/2026/01/30/kiro-demo.jpg" alt="Kiro IDE 界面"></p>
+<p>Kiro 是专为 AI 编程设计的 IDE，核心是两个互补的工作模式。</p>
+<h3 id="4-1-VibeCoding-模式">4.1 VibeCoding 模式</h3>
+<p><strong>定位</strong>：快速原型、灵感验证、小工具开发</p>
+<p>特点是「边想边做」，适合：</p>
+<ul>
+<li>验证一个想法是否可行</li>
+<li>写一次性脚本或内部工具</li>
+<li>探索性编程，不确定最终形态</li>
+</ul>
+<p>流程：描述需求 → AI 生成代码 → 试运行 → 调整描述 → 迭代</p>
+<h3 id="4-2-Spec-模式（SDD）">4.2 Spec 模式（SDD）</h3>
+<p><strong>定位</strong>：复杂功能、团队协作、需要长期维护的代码</p>
+<p>Spec-Driven Development（规格驱动开发）：先写清楚「做什么」，再让 AI 生成「怎么做」。</p>
+<p><strong>SDD 流程：</strong></p>
+<pre class="mermaid">graph LR
+    A[需求描述] --> B[编写 Spec]
+    B --> C{Spec 评审}
+    C -->|不通过| B
+    C -->|通过| D[AI 生成实现]
+    D --> E[测试验证]
+    E -->|失败| F[调整 Spec]
+    F --> B
+    E -->|通过| G[代码入库]</pre>
+<p><strong>Spec 包含什么：</strong></p>
+<pre data-language="markdown" class="shiki shiki-themes github-light-default dark-plus" style="background-color:#ffffff;--shiki-dark-bg:#1E1E1E;color:#1f2328;--shiki-dark:#D4D4D4" tabindex="0"><code><span class="line"><span style="color:#0550AE;--shiki-light-font-weight:bold;--shiki-dark:#569CD6;--shiki-dark-font-weight:bold">## 功能名称</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0550AE;--shiki-light-font-weight:bold;--shiki-dark:#569CD6;--shiki-dark-font-weight:bold">### 输入</span></span>
+<span class="line"><span style="color:#953800;--shiki-dark:#6796E6">-</span><span style="color:#1F2328;--shiki-dark:#D4D4D4"> 参数1：类型，约束条件</span></span>
+<span class="line"><span style="color:#953800;--shiki-dark:#6796E6">-</span><span style="color:#1F2328;--shiki-dark:#D4D4D4"> 参数2：类型，约束条件</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0550AE;--shiki-light-font-weight:bold;--shiki-dark:#569CD6;--shiki-dark-font-weight:bold">### 输出</span></span>
+<span class="line"><span style="color:#953800;--shiki-dark:#6796E6">-</span><span style="color:#1F2328;--shiki-dark:#D4D4D4"> 返回值：类型</span></span>
+<span class="line"><span style="color:#953800;--shiki-dark:#6796E6">-</span><span style="color:#1F2328;--shiki-dark:#D4D4D4"> 错误情况：错误码 + 说明</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0550AE;--shiki-light-font-weight:bold;--shiki-dark:#569CD6;--shiki-dark-font-weight:bold">### 边界情况</span></span>
+<span class="line"><span style="color:#953800;--shiki-dark:#6796E6">1.</span><span style="color:#1F2328;--shiki-dark:#D4D4D4"> 空输入如何处理</span></span>
+<span class="line"><span style="color:#953800;--shiki-dark:#6796E6">2.</span><span style="color:#1F2328;--shiki-dark:#D4D4D4"> 超大输入如何处理</span></span>
+<span class="line"><span style="color:#953800;--shiki-dark:#6796E6">3.</span><span style="color:#1F2328;--shiki-dark:#D4D4D4"> 并发场景如何处理</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0550AE;--shiki-light-font-weight:bold;--shiki-dark:#569CD6;--shiki-dark-font-weight:bold">### 验收标准</span></span>
+<span class="line"><span style="color:#953800;--shiki-dark:#6796E6">-</span><span style="color:#1F2328;--shiki-dark:#D4D4D4"> [ ] 单元测试覆盖率 > 80%</span></span>
+<span class="line"><span style="color:#953800;--shiki-dark:#6796E6">-</span><span style="color:#1F2328;--shiki-dark:#D4D4D4"> [ ] 边界情况都有测试用例</span></span>
+<span class="line"><span style="color:#953800;--shiki-dark:#6796E6">-</span><span style="color:#1F2328;--shiki-dark:#D4D4D4"> [ ] 性能指标满足 XXX</span></span>
+<span class="line"></span></code></pre>
+<h3 id="4-3-两种模式对比">4.3 两种模式对比</h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>VibeCoding</th>
+<th>Spec 模式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>适用场景</td>
+<td>原型、探索、小工具</td>
+<td>复杂功能、团队协作</td>
+</tr>
+<tr>
+<td>前置工作</td>
+<td>一句话描述</td>
+<td>详细的 Spec 文档</td>
+</tr>
+<tr>
+<td>代码质量</td>
+<td>能用就行</td>
+<td>可维护、可测试</td>
+</tr>
+<tr>
+<td>迭代方式</td>
+<td>边做边改</td>
+<td>Spec 评审后再实现</td>
+</tr>
+<tr>
+<td>适合谁</td>
+<td>个人快速验证</td>
+<td>正式项目开发</td>
+</tr>
+</tbody>
+</table>
+<p><strong>建议</strong>：用 VibeCoding 探索思路，确定可行后切换到 Spec 模式落地。</p>
+<hr>
+<h2 id="五、Clawdbot-OpenClaw">五、Clawdbot / OpenClaw</h2>
+<p><a href="https://docs.clawd.bot/">官方文档</a></p>
+<p><img src="https://oss.foundra.me/images/2026/01/30/openclaw-logo.png" alt="OpenClaw Logo"></p>
+<h3 id="5-1-解决了什么问题">5.1 解决了什么问题</h3>
+<p>现有 AI 工具大多是「黑盒」或「单机版」：</p>
+<ul>
+<li>ChatGPT/Claude：网页对话，无法连接你的系统</li>
+<li>Cursor/Codex：个人开发工具，不能服务团队</li>
+<li>N8N： Workflow 工具，但 AI 能力弱</li>
+</ul>
+<p><strong>Clawdbot 定位：可配置的智能体框架</strong>，让你自建 AI 助手：</p>
+<ul>
+<li><strong>多渠道接入</strong>：同时连接 Telegram、Slack、钉钉、飞书等，一处配置多端可用</li>
+<li><strong>Tools 生态</strong>：Skills 模块化，按需加载（数据库查询、文件操作、API 调用等）</li>
+<li><strong>Cron 定时</strong>：自动执行定时任务（日报、监控、提醒）</li>
+<li><strong>权限边界</strong>：细粒度控制谁可以用什么功能</li>
+</ul>
+<h3 id="5-2-核心架构">5.2 核心架构</h3>
+<pre><code>WhatsApp / Telegram / Discord / iMessage (+ plugins)
+ │
+ ▼
+┌───────────────────────────┐
+│         Gateway           │  ws://127.0.0.1:18789
+│      (single source)      │
+│                           │  http://host:18793/__claw__/canvas/
+└───────────┬───────────────┘
+            │
+            ├─ Agent (RPC)
+            ├─ CLI (claw …)
+            ├─ WebChat UI
+            ├─ macOS app
+            ├─ iOS/Android node (WebSocket + pairing)
+            └─ Cron 定时任务
+</code></pre>
+<p>架构特点：</p>
+<ul>
+<li><strong>Gateway 为核心</strong>：单一长连接进程管理所有渠道和 WebSocket 控制面</li>
+<li><strong>多渠道接入</strong>：WhatsApp、Telegram、Discord、iMessage 等统一处理</li>
+<li><strong>多终端支持</strong>：Web、桌面、移动端均可接入</li>
+<li><strong>本地优先</strong>：默认监听 ws://127.0.0.1:18789，支持 Tailscale 远程访问</li>
+</ul>
+<h3 id="5-3-适用场景">5.3 适用场景</h3>
+<ul>
+<li><strong>团队内部助手</strong>：部署在公司服务器，连接内部系统（Git、DB、监控）</li>
+<li><strong>客户服务机器人</strong>：接入钉钉/飞书/Slack，自动回答常见问题</li>
+<li><strong>自动化运维</strong>：定时检查服务状态，异常时告警</li>
+<li><strong>个人知识库</strong>：私有化部署，连接本地文件和笔记</li>
+</ul>
+<hr>
+<h2 id="总结：没有最好，只有最顺手">总结：没有最好，只有最顺手</h2>
+<p>上面列的这些工具，没有绝对的优劣之分。每个人的工作流不同，适合的也不一样：</p>
+<ul>
+<li>有人离不开 Cursor 的沉浸式编码体验</li>
+<li>有人更喜欢 Claude Code 的终端快感</li>
+<li>有人用 N8N 搭了个自动化全家桶</li>
+<li>也有人自己折腾 Clawdbot 搞私有化部署</li>
+</ul>
+<p><strong>建议</strong>：</p>
+<ol>
+<li>先挑一个最顺眼的试试，用顺手了再考虑其他的</li>
+<li>不要贪多，工具越多切换成本越高</li>
+<li>遇到瓶颈时，再回头来看看有没有更合适的替代方案</li>
+</ol>
+<p>最终，工具是为人服务的。选那个让你 coding 时最爽的就行。</p>
+
+    </div>
+</article>
+
+<!-- 文章导航 -->
+
+    <nav class="mt-20 grid grid-cols-1 sm:grid-cols-2 gap-px border-t border-hairline">
+        <div class="py-6 sm:pr-8">
+            
+                <a href="/2026/02/06/2026-02-06-Claude-Code-%E5%88%9B%E4%BD%9C%E8%80%8510%E6%9D%A1%E6%8A%80%E5%B7%A7/" class="group block">
+                    <span class="mono-label block mb-2 group-hover:text-accent transition-colors">← 上一篇</span>
+                    <span class="block text-[0.95rem] font-medium text-theme line-clamp-2 group-hover:text-accent transition-colors">
+                        Claude Code 创作者分享的 10 条高效使用技巧
+                    </span>
+                </a>
+            
+        </div>
+
+        <div class="py-6 sm:pl-8 sm:text-right sm:border-l border-hairline">
+            
+                <a href="/2026/01/30/2026-01-30-%E6%89%93%E9%80%A0%E8%87%AA%E5%8A%A8%E5%8C%96%E7%A7%91%E6%8A%80%E6%96%B0%E9%97%BB%E5%8D%9A%E5%AE%A2-Tech-News-Blog-Skill-%E4%BB%8B%E7%BB%8D/" class="group block">
+                    <span class="mono-label block mb-2 group-hover:text-accent transition-colors">下一篇 →</span>
+                    <span class="block text-[0.95rem] font-medium text-theme line-clamp-2 group-hover:text-accent transition-colors">
+                        打造自动化科技新闻博客：Tech News Skill 介绍
+                    </span>
+                </a>
+            
+        </div>
+    </nav>
+
+
+<script>
+    (function () {
+        function readingTime() {
+            const content = document.getElementById('post-content');
+            const slot = document.querySelector('[data-reading-time]');
+            if (!content || !slot) return;
+            const text = content.textContent || '';
+            const cjk = (text.match(/[一-龥]/g) || []).length;
+            const words = (text.replace(/[一-龥]/g, ' ').match(/[A-Za-z0-9]+/g) || []).length;
+            const minutes = Math.max(1, Math.round(cjk / 400 + words / 220));
+            slot.textContent = minutes + ' 分钟阅读';
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', readingTime);
+        } else {
+            readingTime();
+        }
+    })();
+</script>
+
+                    </div>
+
+                    
+                        <aside class="main-toc">
+                            <div id="toc-rail" class="toc-rail" hidden>
+    <span class="toc-rail-heading">On this page</span>
+    <nav class="toc-nav" data-toc></nav>
+</div>
+
+<script>
+    (function () {
+        function initTOC() {
+            const postContent = document.getElementById('post-content');
+            const targets = document.querySelectorAll('[data-toc]');
+            if (!postContent || !targets.length) return;
+
+            const headings = Array.from(postContent.querySelectorAll('h1, h2, h3'))
+                .filter(function (h) { return (h.textContent || '').trim().length > 0; });
+
+            if (headings.length < 2) return;
+
+            // 扁平列表 —— 让左侧发丝线保持连续，靠缩进表达层级
+            const items = headings.map(function (heading, index) {
+                if (!heading.id) heading.id = 'toc-' + index;
+                const level = parseInt(heading.tagName.charAt(1), 10);
+                return {
+                    id: heading.id,
+                    level: level,
+                    text: (heading.textContent || '').trim(),
+                    el: heading
+                };
+            });
+
+            const html = '<ul class="toc-list">' + items.map(function (item) {
+                return '<li class="toc-item toc-level-' + item.level + '">' +
+                    '<a class="toc-link" href="#' + item.id + '" data-target="' + item.id + '">' +
+                    '<span class="toc-text">' + item.text.replace(/[&<>"]/g, function (c) {
+                        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+                    }) + '</span></a></li>';
+            }).join('') + '</ul>';
+
+            targets.forEach(function (nav) { nav.innerHTML = html; });
+
+            const rail = document.getElementById('toc-rail');
+            if (rail) rail.hidden = false;
+            document.querySelectorAll('[data-toc-wrapper]').forEach(function (el) { el.hidden = false; });
+
+            const links = Array.from(document.querySelectorAll('.toc-link'));
+
+            function setActive(id) {
+                links.forEach(function (link) {
+                    link.classList.toggle('active', link.getAttribute('data-target') === id);
+                });
+            }
+
+            // 点击平滑滚动（考虑固定头部）
+            document.querySelectorAll('[data-toc]').forEach(function (nav) {
+                nav.addEventListener('click', function (e) {
+                    const link = e.target.closest('.toc-link');
+                    if (!link) return;
+                    e.preventDefault();
+                    const target = document.getElementById(link.getAttribute('data-target'));
+                    if (!target) return;
+                    const top = target.getBoundingClientRect().top + window.pageYOffset - 88;
+                    window.scrollTo({ top: top, behavior: 'smooth' });
+                    setActive(link.getAttribute('data-target'));
+                    history.replaceState(null, '', '#' + link.getAttribute('data-target'));
+                });
+            });
+
+            // 滚动高亮 + 目录自动跟随滚动
+            let ticking = false;
+
+            function onScroll() {
+                if (ticking) return;
+                ticking = true;
+                requestAnimationFrame(function () {
+                    let activeId = items[0].id;
+                    for (let i = items.length - 1; i >= 0; i--) {
+                        if (items[i].el.getBoundingClientRect().top <= 100) {
+                            activeId = items[i].id;
+                            break;
+                        }
+                    }
+                    setActive(activeId);
+
+                    // 让高亮项始终留在可视区内
+                    const nav = rail && rail.querySelector('[data-toc]');
+                    if (nav && nav.scrollHeight > nav.clientHeight) {
+                        const active = nav.querySelector('.toc-link.active');
+                        if (active) {
+                            const navRect = nav.getBoundingClientRect();
+                            const linkRect = active.getBoundingClientRect();
+                            if (linkRect.top < navRect.top || linkRect.bottom > navRect.bottom) {
+                                nav.scrollTop += linkRect.top - navRect.top - nav.clientHeight / 2;
+                            }
+                        }
+                    }
+
+                    ticking = false;
+                });
+            }
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initTOC);
+        } else {
+            initTOC();
+        }
+    })();
+</script>
+
+                        </aside>
+                    
+                </div>
+            </div>
+        </main>
+
+        <footer class="border-t border-hairline mt-20">
+    <div class="mx-auto w-full max-w-6xl px-5 sm:px-8 py-10">
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <p class="mono-meta">
+                Postdare @ All Rights Reserved 2026
+            </p>
+            <div class="flex items-center gap-5">
+                
+                    <a href="/atom.xml" class="mono-label hover:text-accent transition-colors">RSS</a>
+                
+                
+                    <span class="mono-meta"><a href="https://beian.miit.gov.cn" target="_blank">陕ICP备16008414号-4</a></span>
+                
+            </div>
+        </div>
+    </div>
+</footer>
+
+<button id="back-to-top"
+    class="fixed bottom-8 right-8 z-50 flex h-10 w-10 items-center justify-center rounded-sm border border-hairline-strong bg-surface text-muted transition-all duration-300 opacity-0 invisible hover:text-accent hover:border-hairline-strong"
+    aria-label="回到顶部">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18"></path></svg>
+</button>
+
+    </div>
+
+    <script src="/js/plugins.js" defer></script>
+    
+        <script src="/js/mermaid.min.js"></script>
+        <script src="/js/mermaid-init.js"></script>
+        
+<link rel="stylesheet" href="/css/mermaid.css">
+
+    
+</body>
+</html>

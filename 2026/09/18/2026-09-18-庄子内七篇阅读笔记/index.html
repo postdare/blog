@@ -1,0 +1,1760 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>《庄子》内七篇阅读笔记 · Postdare</title>
+
+	
+	<meta name="description" content="供反复翻阅。每篇按「主旨 → 结构 → 关键寓言 → 核心句 → 可琢磨的问题」编排，生僻字就地注音，文末附两张查检表。引文据通行本（郭象注、成玄英疏系统），异文不一一出校。">
+	<meta name="author" content="Kai Yang">
+	<meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)">
+	<meta name="theme-color" content="#0a0908" media="(prefers-color-scheme: dark)">
+
+	<meta property="og:site_name" content="Postdare">
+	<meta property="og:title" content="《庄子》内七篇阅读笔记">
+	<meta property="og:description" content="供反复翻阅。每篇按「主旨 → 结构 → 关键寓言 → 核心句 → 可琢磨的问题」编排，生僻字就地注音，文末附两张查检表。引文据通行本（郭象注、成玄英疏系统），异文不一一出校。">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="https://blog.postdare.com/2026/09/18/2026-09-18-%E5%BA%84%E5%AD%90%E5%86%85%E4%B8%83%E7%AF%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">
+
+	<link rel="shortcut icon" href="/img/favicon.ico">
+	<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+	<link rel="manifest" href="/img/site.webmanifest">
+	
+		<link rel="alternate" type="application/atom+xml" title="Postdare" href="/atom.xml">
+	
+
+	
+<link rel="stylesheet" href="/css/main.css">
+
+
+	<script>
+		// 深色模式初始化（在渲染前执行，避免闪白）
+		(function () {
+			try {
+				var stored = localStorage.theme;
+				var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+				if (stored === 'dark' || (!stored && prefersDark)) {
+					document.documentElement.classList.add('dark');
+				} else {
+					document.documentElement.classList.remove('dark');
+				}
+			} catch (e) {}
+		})();
+
+		function toggleDarkMode() {
+			var isDark = document.documentElement.classList.toggle('dark');
+			try { localStorage.theme = isDark ? 'dark' : 'light'; } catch (e) {}
+		}
+	</script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body class="single">
+    <div class="flex min-h-screen flex-col">
+        <header class="sticky top-0 z-50 border-b border-hairline backdrop-blur-md"
+	style="background-color: color-mix(in srgb, var(--bg) 88%, transparent);">
+	<div class="mx-auto w-full max-w-6xl px-5 sm:px-8">
+		<div class="flex h-16 items-center justify-between">
+			<a href="/" class="flex items-center gap-2">
+				
+				<span class="logo-title text-lg">
+					<span class="logo-mark">Post</span><span class="logo-accent">dare</span>
+				</span>
+			</a>
+
+			<nav class="hidden md:flex items-center gap-7">
+				
+					
+					<a href="/" class="nav-link">
+						文章
+					</a>
+				
+					
+					<a href="/about" class="nav-link">
+						关于
+					</a>
+				
+			</nav>
+
+			<div class="flex items-center gap-1">
+				<a href="/search/" class="icon-btn" title="搜索" aria-label="搜索">
+					<svg class="h-[18px] w-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"></path></svg>
+				</a>
+
+				<button id="theme-toggle" class="icon-btn" title="切换主题" aria-label="切换主题">
+					<span id="theme-toggle-dark-icon" class="hidden"><svg class="h-[18px] w-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"></path></svg></span>
+					<span id="theme-toggle-light-icon" class="hidden"><svg class="h-[18px] w-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"></path></svg></span>
+				</button>
+
+				<button id="mobile-menu-button" class="icon-btn md:hidden" aria-label="菜单">
+					<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path></svg>
+				</button>
+			</div>
+		</div>
+
+		<div id="mobile-menu" class="hidden md:hidden border-t border-hairline">
+			<nav class="flex flex-col py-2">
+				
+					<a href="/" class="nav-link py-3">
+						文章
+					</a>
+				
+					<a href="/about" class="nav-link py-3">
+						关于
+					</a>
+				
+			</nav>
+		</div>
+	</div>
+</header>
+
+
+        <main class="flex-1">
+            <div class="mx-auto w-full max-w-6xl px-5 sm:px-8 py-12 md:py-16">
+                <div class="main-layout">
+                    <div class="main-content">
+                        <article>
+    <!-- 文章头部 -->
+    <header class="mb-12">
+        <div class="rule-label mb-8">
+            
+                <span class="mono-label mono-label-accent">
+                    读书
+                </span>
+            
+        </div>
+
+        <h1 class="text-3xl md:text-[2.75rem] font-bold leading-[1.15] tracking-tight text-balance mb-6">
+            《庄子》内七篇阅读笔记
+        </h1>
+
+        <div class="flex flex-wrap items-center gap-x-6 gap-y-2 mono-meta">
+            <time datetime="2026-09-18T02:00:00.000Z">
+                2026-09-18
+            </time>
+
+            
+                <span>更新于 2026-09-18</span>
+            
+
+            <span data-reading-time></span>
+
+            
+                <span class="flex flex-wrap items-center gap-x-2">
+                    
+                        <a href="/tags/%E5%BA%84%E5%AD%90/" class="hover:text-accent transition-colors">#庄子</a>
+                    
+                        <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="hover:text-accent transition-colors">#读书笔记</a>
+                    
+                        <a href="/tags/%E5%93%B2%E5%AD%A6/" class="hover:text-accent transition-colors">#哲学</a>
+                    
+                        <a href="/tags/%E5%9B%BD%E5%AD%A6/" class="hover:text-accent transition-colors">#国学</a>
+                    
+                </span>
+            
+        </div>
+    </header>
+
+    <details class="toc-mobile lg:hidden" data-toc-wrapper hidden>
+    <summary>
+        <span class="toc-rail-heading">On this page</span>
+        <span class="toc-mobile-chevron text-muted"><svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                    </svg></span>
+    </summary>
+    <nav class="toc-nav" data-toc></nav>
+</details>
+
+
+    <!-- 文章内容 -->
+    <div class="post-content" id="post-content">
+        <p>供反复翻阅。每篇按「主旨 → 结构 → 关键寓言 → 核心句 → 可琢磨的问题」编排，生僻字就地注音，文末附两张查检表。引文据通行本（郭象注、成玄英疏系统），异文不一一出校。</p>
+<span id="more"></span>
+<h2 id="〇、总纲：七篇的内在脉络">〇、总纲：七篇的内在脉络</h2>
+<p>内七篇是全书唯一公认出自庄子本人（或最接近其思想）的部分，外篇、杂篇多为后学所作。七篇篇名皆为三字，且有明显的义理次第：</p>
+<table>
+<thead>
+<tr>
+<th>篇</th>
+<th>一句话</th>
+<th>层面</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>逍遥游</td>
+<td>悬起一个境界：无待之游</td>
+<td>立境</td>
+</tr>
+<tr>
+<td>齐物论</td>
+<td>拆掉是非、彼此、物我的绝对分界</td>
+<td>立据</td>
+</tr>
+<tr>
+<td>养生主</td>
+<td>在有限之身中保全生机</td>
+<td>身</td>
+</tr>
+<tr>
+<td>人间世</td>
+<td>在不得已的世界里活下去</td>
+<td>世</td>
+</tr>
+<tr>
+<td>德充符</td>
+<td>形残而德全，德不必以形显</td>
+<td>德</td>
+</tr>
+<tr>
+<td>大宗师</td>
+<td>以道为师，安于生死之化</td>
+<td>道</td>
+</tr>
+<tr>
+<td>应帝王</td>
+<td>无为之治，以浑沌收束</td>
+<td>治</td>
+</tr>
+</tbody>
+</table>
+<p><strong>读法要点</strong>：先立最高境界（逍遥），再回头给出理论根据（齐物）——这是倒装。中间三篇由身而世而德，层层下落到具体处境。大宗师是全书理论顶点，应帝王则把整套哲学推到政治层面，并以&quot;浑沌之死&quot;这一寓言戛然而止。</p>
+<p>一个贯穿性的对照：<strong>逍遥游讲&quot;无用之大用&quot;，人间世讲&quot;无用之全生&quot;</strong>——同一个观念，一个用于超越，一个用于自保。庄子始终在这两极之间。</p>
+<h2 id="一、逍遥游">一、逍遥游</h2>
+<h3 id="主旨">主旨</h3>
+<p>何谓真正的自由？凡有所依待者皆不自由。破除&quot;大小之辨&quot;的执着，指向&quot;无待&quot;之境：至人无己，神人无功，圣人无名。</p>
+<h3 id="结构">结构</h3>
+<ol>
+<li><strong>鲲鹏寓言（三说其事）</strong>——北冥之鱼化鹏徙于南冥；引《齐谐》；引汤问棘。同一事三次重述，层层加强。</li>
+<li><strong>小大之辩</strong>——蜩（tiáo，蝉）与学鸠笑鹏；朝菌蟪蛄（huì gū，夏生秋死之蝉）与冥灵大椿；斥鴳（chì yàn，小雀）笑鹏。</li>
+<li><strong>四等人格</strong>——效一官者 → 宋荣子（定乎内外之分）→ 列子御风（犹有所待）→ 乘天地之正而御六气之辩者（无待）。</li>
+<li><strong>三则破名利寓言</strong>——尧让天下于许由（无名）；藐姑射（miǎo gū yè，射读 yè）神人（无功）；宋人资章甫适越（无用之地）。</li>
+<li><strong>惠施二问</strong>——大瓠（hù，葫芦）无用 / 大樗（chū，臭椿）无用，庄子两次翻转。</li>
+</ol>
+<h3 id="关键寓言">关键寓言</h3>
+<ul>
+<li><strong>鲲鹏</strong>：北冥有鱼，其名为鲲，化而为鸟，其名为鹏。怒而飞，其翼若垂天之云。注意&quot;化&quot;字——鲲鹏不是两物，是一物之转化，与后文&quot;物化&quot;呼应。</li>
+<li><strong>蜩与学鸠笑之</strong>：&quot;我决起而飞，抢榆枋而止，时则不至而控于地而已矣，奚以之九万里而南为？&quot;——小者不能理解大者的目的。</li>
+<li><strong>不龟手之药</strong>（龟读 jūn，通「皲」，皮肤冻裂）：同一药方，一族世世洴澼絖（píng pì kuàng，漂洗丝絮），一人用以裂地封侯。<strong>&quot;能不龟手一也，或以封，或不免于洴澼絖，则所用之异也。&quot;</strong> 物无定用，用在人。</li>
+<li><strong>大樗</strong>：惠施说樗树大而无用，庄子答&quot;何不树之于无何有之乡，广莫之野，彷徨乎无为其侧，逍遥乎寝卧其下&quot;——&quot;逍遥&quot;二字正在此处落地。</li>
+</ul>
+<h3 id="核心句">核心句</h3>
+<ul>
+<li>若夫乘天地之正，而御六气之辩，以游无穷者，彼且恶乎待哉！故曰：<strong>至人无己，神人无功，圣人无名。</strong></li>
+<li>且夫水之积也不厚，则其负大舟也无力。</li>
+<li>小知不及大知，小年不及大年。朝菌不知晦朔，蟪蛄不知春秋。</li>
+<li>（宋荣子）举世誉之而不加劝，举世非之而不加沮，定乎内外之分，辩乎荣辱之境。</li>
+<li>（许由）鹪鹩（jiāo liáo）巢于深林，不过一枝；偃鼠饮河，不过满腹。</li>
+</ul>
+<h3 id="可琢磨的问题">可琢磨的问题</h3>
+<ul>
+<li>鹏与蜩，庄子究竟贬谁？主流（郭象）认为&quot;小大虽殊，逍遥一也&quot;，各适其性即是逍遥；另一路（支遁、多数今注）认为庄子明确尚大、以鹏喻超越。这两种读法会导向完全不同的庄学。你更认哪一种？</li>
+<li>鹏&quot;徙于南冥&quot;需借六月之息、九万里之风，可见鹏亦<strong>有待</strong>。那么鹏是终点还是中途？</li>
+<li>&quot;无己&quot;是取消自我，还是取消&quot;以自我为中心的视角&quot;？这关系到庄子是不是虚无主义。</li>
+</ul>
+<h2 id="二、齐物论">二、齐物论</h2>
+<h3 id="主旨-v2">主旨</h3>
+<p>全书理论核心。是非、彼此、物我的分界并非实在，而是&quot;成心&quot;所立；语言与认知本身在制造分裂。取消分界不是主张&quot;什么都一样&quot;，而是<strong>不以任何一方为绝对标准</strong>。</p>
+<h3 id="结构-v2">结构</h3>
+<ol>
+<li><strong>吾丧我</strong>——南郭子綦（qí）隐机而坐，荅焉似丧其耦（ǒu，匹对）。三籁（lài，箫声，引申为一切声响）：人籁（比竹）、地籁（众窍）、天籁（吹万不同而使其自己）。</li>
+<li><strong>心知之病</strong>——大知闲闲，小知间间；喜怒哀乐，日夜相代乎前；&quot;若有真宰，而特不得其眹&quot;。</li>
+<li><strong>是非之起</strong>——道隐于小成，言隐于荣华，故有儒墨之是非。</li>
+<li><strong>彼是方生 / 道枢</strong>——彼出于是，是亦因彼；枢始得其环中，以应无穷。</li>
+<li><strong>齐物之理</strong>——天地一指，万物一马；道行之而成，物谓之而然；无成与毁，复通为一。</li>
+<li><strong>朝三暮四 / 两行</strong>——名实未亏而喜怒为用。</li>
+<li><strong>知之三层次</strong>——未始有物 → 有物而未始有封 → 有封而未始有是非。</li>
+<li><strong>齐是非、齐物我</strong>——天下莫大于秋毫之末而大山为小；天地与我并生，万物与我为一。</li>
+<li><strong>四问四不知</strong>（啮缺问王倪）——正处、正味、正色皆无定准。</li>
+<li><strong>三重收束</strong>——长梧子论生死之惑（丽姬之泣）；罔两问景；庄周梦蝶。</li>
+</ol>
+<h3 id="关键寓言-v2">关键寓言</h3>
+<ul>
+<li><strong>天籁</strong>：子游问天籁，子綦答&quot;夫吹万不同，而使其自己也，咸其自取，<strong>怒者其谁邪？</strong>&quot;——万物各自发声，背后并无一个主宰者在吹。这是庄子的&quot;无神论式自然&quot;。</li>
+<li><strong>朝三暮四</strong>：狙（jū，猕猴）公赋芧（xù，橡子），&quot;朝三而暮四&quot;众狙皆怒，&quot;朝四而暮三&quot;众狙皆悦。名实未亏，而喜怒为用。故圣人<strong>和之以是非而休乎天钧，是之谓两行</strong>。</li>
+<li><strong>毛嫱丽姬</strong>：人之所美，鱼见之深入，鸟见之高飞，麋鹿见之决骤。四者孰知天下之正色哉？——审美与价值无跨物种的客观性。</li>
+<li><strong>丽姬之泣</strong>：丽之姬初嫁时涕泣沾襟，及至王所、与王同筐床食刍豢（chú huàn，草食谷食之牲，指美食），而后悔其泣也。<strong>&quot;予恶乎知夫死者不悔其始之蕲生乎？&quot;</strong></li>
+<li><strong>辩无胜</strong>：我与你辩，胜者未必是，负者未必非；使同乎我者正之，既同乎我矣，恶能正之？——裁判问题无解，所以&quot;和之以天倪&quot;。</li>
+<li><strong>罔两问景</strong>（罔两 wǎng liǎng，影外微阴；景 yǐng，通「影」）：影子的影子问影子为何无独立之操守。景曰&quot;吾有待而然者邪？吾所待又有待而然者邪？&quot;——依待链无穷回溯。</li>
+<li><strong>庄周梦蝶</strong>：不知周之梦为胡蝶与，胡蝶之梦为周与？<strong>&quot;周与胡蝶，则必有分矣。此之谓物化。&quot;</strong> 注意末句：庄子并未说&quot;分&quot;不存在，而是说分界之间可以转化。</li>
+</ul>
+<h3 id="核心句-v2">核心句</h3>
+<ul>
+<li>今者<strong>吾丧我</strong>。</li>
+<li>道隐于小成，言隐于荣华。</li>
+<li>欲是其所非而非其所是，则<strong>莫若以明</strong>。</li>
+<li>彼是莫得其偶，谓之<strong>道枢</strong>。枢始得其环中，以应无穷。</li>
+<li>道行之而成，物谓之而然。</li>
+<li>天地与我并生，而万物与我为一。</li>
+<li>六合之外，圣人存而不论；六合之内，圣人论而不议。</li>
+<li>和之以天倪，因之以曼衍，所以穷年也。</li>
+</ul>
+<h3 id="可琢磨的问题-v2">可琢磨的问题</h3>
+<ul>
+<li>&quot;齐物论&quot;三字如何断？<strong>齐物·论</strong>（齐同万物之论说）还是<strong>齐·物论</strong>（使各家&quot;物论&quot;平齐）？两说皆通，且互补。</li>
+<li>若一切是非皆相对，&quot;齐物论&quot;本身是不是也只是一种&quot;物论&quot;？——这是庄子哲学最尖锐的自指难题。庄子的回应在&quot;莫若以明&quot;和&quot;寓诸无竟&quot;：他不主张一个更高的真理，而是主张一种<strong>不停驻</strong>的姿态。</li>
+<li>&quot;两行&quot;与后世讲的&quot;和稀泥&quot;差别在哪？关键在&quot;休乎天钧&quot;——不是折衷取中，而是站到转轴上不入任何一边。</li>
+</ul>
+<h2 id="三、养生主">三、养生主</h2>
+<h3 id="主旨-v3">主旨</h3>
+<p>篇幅最短，却是内七篇的枢纽：如何以有限之身应对无限之世。答案是&quot;缘督以为经&quot;——顺中虚之道而行，不强不争，不损生机。</p>
+<h3 id="结构-v3">结构</h3>
+<ol>
+<li>总纲：吾生也有涯，而知也无涯 → 缘督以为经。</li>
+<li>庖丁解牛（技进于道）。</li>
+<li>公文轩见右师（介者之形，天与人与）。</li>
+<li>泽雉不蕲畜乎樊中（自由重于饱足）。</li>
+<li>秦失吊老聃（安时处顺，帝之县解）。</li>
+<li>结语：薪尽火传。</li>
+</ol>
+<h3 id="关键寓言-v3">关键寓言</h3>
+<p><strong>庖丁解牛</strong>——内七篇中最完整的一则技艺寓言，建议逐句细读：</p>
+<ul>
+<li>进境三阶段：<strong>所见无非牛者 → 未尝见全牛 → 以神遇而不以目视，官知止而神欲行</strong>。</li>
+<li>方法：<strong>依乎天理，批大郤，导大窾，因其固然。</strong>（郤 xì，通「隙」，缝隙；窾 kuǎn，空处）</li>
+<li>刀的对比：良庖岁更刀（割），族庖月更刀（折），庖丁十九年而刃若新发于硎（xíng，磨刀石）。</li>
+<li>原理：<strong>彼节者有间，而刀刃者无厚；以无厚入有间，恢恢乎其于游刃必有余地矣。</strong></li>
+<li>关键的反转：&quot;每至于族，吾见其难为，<strong>怵然为戒</strong>（怵 chù，戒惧），视为止，行为迟，动刀甚微。&quot;——庖丁并非全程轻松，遇筋骨交错处仍高度警戒。这一句常被忽略，却是&quot;养生&quot;的真义：不是无往不利，而是知难而慎。</li>
+<li>结局：提刀而立，为之四顾，为之踌躇满志，<strong>善刀而藏之</strong>。</li>
+</ul>
+<p>其余三则：</p>
+<ul>
+<li><strong>泽雉</strong>（zhì，野鸡）：十步一啄，百步一饮，不蕲畜乎樊中。神虽王，不善也。</li>
+<li><strong>秦失吊老聃</strong>：三号而出。&quot;适来，夫子时也；适去，夫子顺也。<strong>安时而处顺，哀乐不能入也</strong>，古者谓是帝之县解（县读 xuán，通「悬」）。&quot;</li>
+<li><strong>薪火</strong>：指穷于为薪，火传也，不知其尽也。</li>
+</ul>
+<h3 id="核心句-v3">核心句</h3>
+<ul>
+<li>吾生也有涯，而知也无涯。以有涯随无涯，殆已。</li>
+<li>为善无近名，为恶无近刑。缘督以为经，可以保身，可以全生，可以养亲，可以尽年。</li>
+<li>臣之所好者道也，进乎技矣。</li>
+<li>安时而处顺，哀乐不能入也。</li>
+</ul>
+<h3 id="可琢磨的问题-v3">可琢磨的问题</h3>
+<ul>
+<li>&quot;为善无近名，为恶无近刑&quot;是否道德上可疑？历代注家争议极大。一种读法：此处&quot;善恶&quot;非道德善恶，而是世俗评价，庄子意在<strong>不被评价系统捕获</strong>。另一种读法：庄子确实把道德置于全生之下。你怎么看？</li>
+<li>庖丁的&quot;游刃有余&quot;是不是一种世故？——区别在于庖丁顺的是&quot;牛之固然&quot;（客观结构），不是权势者的脸色。这与人间世的&quot;心斋&quot;是同一原理的两面。</li>
+<li>&quot;薪尽火传&quot;传的是什么？形尽而神传？还是纯粹的自然之化，并无不朽之物？</li>
+</ul>
+<h2 id="四、人间世">四、人间世</h2>
+<h3 id="主旨-v4">主旨</h3>
+<p>内七篇中最&quot;现实&quot;的一篇。前几篇讲超越，此篇讲<strong>在无法逃离的权力与关系结构中如何活下来且不失己</strong>。庄子在这里不谈逍遥，只谈&quot;不得已&quot;。</p>
+<h3 id="结构-v4">结构</h3>
+<p><strong>三则出仕之难</strong></p>
+<ol>
+<li>颜回将之卫 → <strong>心斋</strong></li>
+<li>叶（shè）公子高使齐 → <strong>乘物以游心，托不得已以养中</strong></li>
+<li>颜阖（hé）傅卫灵公太子 → 螳臂当车 / 养虎 / 爱马</li>
+</ol>
+<p><strong>三则无用之全</strong></p>
+<ol start="4">
+<li>匠石见栎社树</li>
+<li>南伯子綦见大木</li>
+<li>支离疏</li>
+</ol>
+<p><strong>收束</strong>：楚狂接舆之歌——无用之用。</p>
+<h3 id="关键寓言-v4">关键寓言</h3>
+<p><strong>心斋</strong>（本篇最重要的一段）：</p>
+<blockquote>
+<p>若一志，无听之以耳而听之以心，无听之以心而听之以气。耳止于听，心止于符。<strong>气也者，虚而待物者也。唯道集虚。虚者，心斋也。</strong></p>
+</blockquote>
+<p>又：&quot;瞻彼阕（què，空处）者，虚室生白，吉祥止止。&quot;——把心腾空，光自会进来。与大宗师之&quot;坐忘&quot;为一对：心斋偏向<strong>入世前的准备</strong>，坐忘偏向<strong>与道合一的终点</strong>。</p>
+<p><strong>叶公子高</strong>：&quot;吾朝受命而夕饮冰，我其内热与！&quot;——受命之日即已焦灼，这是全书对官僚心理最精准的一句。孔子答以&quot;天下有大戒二：其一命也（子之爱亲），其一义也（臣之事君）&quot;，结论是：</p>
+<blockquote>
+<p><strong>自事其心者，哀乐不易施乎前，知其不可奈何而安之若命，德之至也。</strong> <strong>乘物以游心，托不得已以养中，至矣。</strong></p>
+</blockquote>
+<ul>
+<li><strong>螳臂当车</strong>：怒其臂以当车辙，不知其不胜任也。</li>
+<li><strong>养虎者</strong>：时其饥饱，达其怒心。虎之与人异类而媚养己者，顺也；故其杀者，逆也。</li>
+<li><strong>爱马者</strong>：以筐盛矢，以蜃（shèn，蛤壳所制之器）盛溺（niào，通「尿」），可谓至爱；然而蚊虻（méng）仆缘、拊之不时，则缺衔毁首碎胸。<strong>&quot;意有所至而爱有所亡。&quot;</strong>——好意也会招祸，因为时机不对。</li>
+<li><strong>栎</strong>（lì）<strong>社树</strong>：匠石不顾，弟子问故，曰&quot;散木也……是不材之木也，无所可用，故能若是之寿&quot;。夜半栎社见梦反驳：&quot;且予求无所可用久矣，几死，乃今得之，为予大用。&quot;</li>
+<li><strong>支离疏</strong>：形体残缺，反而免于征兵、征役，且受官府赈济。&quot;<strong>夫支离其形者，犹足以养其身，终其天年，又况支离其德者乎！</strong>&quot;</li>
+</ul>
+<h3 id="核心句-v4">核心句</h3>
+<ul>
+<li>德荡乎名，知出乎争。名也者，相轧也；知也者，争之器也。</li>
+<li>唯道集虚。虚者，心斋也。</li>
+<li>知其不可奈何而安之若命，德之至也。</li>
+<li>乘物以游心，托不得已以养中。</li>
+<li>山木自寇也，膏火自煎也。桂可食，故伐之；漆可用，故割之。<strong>人皆知有用之用，而莫知无用之用也。</strong></li>
+</ul>
+<h3 id="可琢磨的问题-v4">可琢磨的问题</h3>
+<ul>
+<li>&quot;无用之用&quot;是保身智慧还是消极逃避？——注意栎社树是<strong>主动</strong>&quot;求无所可用久矣&quot;，这是一种策略，不是天生残废。庄子并非赞美无能，而是赞美<strong>不进入被使用的价值体系</strong>。</li>
+<li>与《逍遥游》对读：大樗之无用是为了&quot;彷徨乎无为其侧&quot;（游），栎社之无用是为了&quot;终其天年&quot;（生）。同一概念的两个方向，不可混为一谈。</li>
+<li>&quot;知其不可奈何而安之若命&quot;与孔子&quot;知其不可而为之&quot;——两句话结构几乎相同，结论完全相反。这大概是儒道之别最凝练的一处对照。</li>
+</ul>
+<h2 id="五、德充符">五、德充符</h2>
+<h3 id="主旨-v5">主旨</h3>
+<p>&quot;德充于内，符应于外&quot;。全篇主角几乎全是<strong>兀者（wù，断足）、支离（畸形）、恶人（貌丑）</strong>，以极端形式说明：德与形体无关，甚至与常识意义上的&quot;完整&quot;相反。</p>
+<h3 id="结构-v5">结构</h3>
+<p>五则人物 + 一则庄惠之辩：</p>
+<ol>
+<li>王骀（tái，兀者，从游者与孔子相若）</li>
+<li>申徒嘉（兀者，与子产同师）</li>
+<li>叔山无趾（踵见仲尼）</li>
+<li>哀骀它（āi tái tuō，它读 tuō；恶骇天下而人不能去）</li>
+<li>闉跂支离无脤（yīn qí zhī lí wú shèn）/ 瓮㼜大瘿（wèng àng dà yǐng，颈瘤）（说卫灵公、齐桓公）</li>
+<li>庄子与惠子辩&quot;无情&quot;</li>
+</ol>
+<h3 id="关键寓言-v5">关键寓言</h3>
+<p><strong>王骀</strong>：&quot;立不教，坐不议，虚而往，实而归。&quot;孔子评：</p>
+<blockquote>
+<p>自其异者视之，肝胆楚越也；自其同者视之，万物皆一也。<strong>人莫鉴于流水而鉴于止水。唯止能止众止。</strong></p>
+</blockquote>
+<p><strong>申徒嘉与子产</strong>：子产耻与兀者同行，申徒嘉答：&quot;自状其过以不当亡者众，不状其过以不当存者寡。<strong>知不可奈何而安之若命，唯有德者能之。</strong>&quot; 又：&quot;今子与我游于形骸之内，而子索我于形骸之外，不亦过乎！&quot;</p>
+<p><strong>叔山无趾</strong>：以断足之身求见孔子，&quot;吾唯不知务而轻用吾身，吾是以亡足。今吾来也，犹有尊足者存，吾是以务全之&quot;。孔子受教。此则暗含对孔子的批评（后半段无趾对老聃说孔子&quot;未至人&quot;）。</p>
+<p><strong>哀骀它</strong>（本篇最奇的一则）：丑到&quot;恶骇天下&quot;，却男子不愿离去、女子宁为其妾者十数；鲁哀公授之国政而后失之若有所亡。孔子解释其故为——</p>
+<blockquote>
+<p><strong>才全而德不形。</strong> 死生存亡，穷达贫富，贤与不肖毁誉，饥渴寒暑，是事之变、命之行也……不足以滑（gǔ，扰乱）和，不可入于灵府。是之谓才全。 平者，水停之盛也……德者，成和之修也。<strong>德不形者，物不能离也。</strong></p>
+</blockquote>
+<p><strong>庄惠之辩</strong>：惠子诘&quot;人而无情，何以谓之人&quot;，庄子答：</p>
+<blockquote>
+<p>有人之形，故群于人；无人之情，故是非不得于身。 吾所谓无情者，言人之<strong>不以好恶内伤其身</strong>，常因自然而不益生也。</p>
+</blockquote>
+<h3 id="核心句-v5">核心句</h3>
+<ul>
+<li>唯止能止众止。</li>
+<li>才全而德不形。</li>
+<li>不以好恶内伤其身，常因自然而不益生。</li>
+<li>游于形骸之内 / 索我于形骸之外。</li>
+</ul>
+<h3 id="可琢磨的问题-v5">可琢磨的问题</h3>
+<ul>
+<li>为何全用残疾人作主角？一说是战国刑罚（刖刑）普遍，兀者即受刑者，庄子借此讽刺以外在标准评判人的世道；一说是刻意制造最大反差，逼人看见&quot;德&quot;本身。</li>
+<li>&quot;无情&quot;是否等于冷漠？庄子的界定很精确：不是没有感受，而是<strong>感受不转化为对自身的内在损伤</strong>。可与养生主&quot;哀乐不能入&quot;、大宗师&quot;安时处顺&quot;合看，这是庄子的情感理论三处主要文本。</li>
+</ul>
+<h2 id="六、大宗师">六、大宗师</h2>
+<h3 id="主旨-v6">主旨</h3>
+<p>内七篇理论最高峰。&quot;以道为大宗师&quot;。讲真人、讲道体、讲修道次第、讲生死一如。</p>
+<h3 id="结构-v6">结构</h3>
+<ol>
+<li><strong>知天知人</strong>——真人而后有真知。</li>
+<li><strong>古之真人</strong>（四段铺陈其形象）。</li>
+<li><strong>死生命也</strong>——大块载我以形，劳我以生，佚我以老，息我以死。</li>
+<li><strong>藏舟于壑</strong>——藏天下于天下而不得所遁。</li>
+<li><strong>道体论</strong>——有情有信，无为无形，自本自根。</li>
+<li><strong>女偊论道</strong>（女偊 rǔ yǔ，女读 rǔ）——修道七阶。</li>
+<li><strong>子祀四人</strong>（安于形化）</li>
+<li><strong>子桑户三人</strong>（方外之游）</li>
+<li><strong>孟孙才善处丧</strong></li>
+<li><strong>意而子见许由</strong></li>
+<li><strong>颜回坐忘</strong></li>
+<li><strong>子舆与子桑论命</strong></li>
+</ol>
+<h3 id="关键寓言-v6">关键寓言</h3>
+<ul>
+<li><strong>真人之息</strong>：其寝不梦，其觉无忧，其食不甘，<strong>其息深深。真人之息以踵，众人之息以喉。</strong></li>
+</ul>
+<p><strong>相濡以沫</strong>：</p>
+<blockquote>
+<p>泉涸，鱼相与处于陆，相呴（xǔ，吐气相润）以湿，相濡以沫，<strong>不如相忘于江湖</strong>。与其誉尧而非桀也，不如两忘而化其道。</p>
+</blockquote>
+<p>常被引作温情典故，其实庄子的意思<strong>恰恰相反</strong>：患难相扶固然动人，但不如根本不需要相扶。同理，赞尧非桀的道德评判，不如无须评判的世道。</p>
+<ul>
+<li><strong>藏舟于壑</strong>：夜半有力者负之而走，昧者不知也。藏小大有宜，犹有所遁；<strong>若夫藏天下于天下而不得所遁，是恒物之大情也。</strong></li>
+</ul>
+<p><strong>女偊论道</strong>（修道次第，最可反复默诵的一段）：</p>
+<blockquote>
+<p>三日而后能<strong>外天下</strong> → 七日而后能<strong>外物</strong> → 九日而后能<strong>外生</strong> → 而后能<strong>朝彻</strong>（朝读 zhāo，如朝阳初启之豁然）→ 朝彻而后能<strong>见独</strong> → 见独而后能<strong>无古今</strong> → 无古今而后能入于<strong>不死不生</strong>。其名为<strong>撄宁。撄宁也者，撄</strong>而后成者也。</p>
+</blockquote>
+<p>注意&quot;撄宁&quot;：不是避开扰动求安宁，而是<strong>在扰动中成就的宁</strong>。</p>
+<ul>
+<li><strong>子舆</strong>（yú）<strong>病偻</strong>（lǚ，驼背）：&quot;伟哉夫造物者，将以予为此拘拘也！&quot;曲偻发背，上有五管，颐（yí，下巴）隐于齐（qí，通「脐」），肩高于顶——却&quot;心闲而无事&quot;，且曰：&quot;浸假（jìn jiǎ，假令）而化予之左臂以为鸡，予因以求时夜；浸假而化予之右臂以为弹，予因以求鸮炙（xiāo zhì，烤鸮）。&quot;</li>
+<li><strong>子来将死</strong>：子犁曰&quot;伟哉造化！又将奚以汝为？&quot;子来以铸剑为喻——今之大冶铸金，金踊跃曰&quot;我且必为镆铘（mò yé，古宝剑名）&quot;，大冶必以为不祥之金。<strong>&quot;今一犯人之形而曰’人耳人耳’，夫造化者必以为不祥之人。&quot;</strong></li>
+</ul>
+<p><strong>坐忘</strong>：颜回三进——忘仁义 → 忘礼乐 → 坐忘。</p>
+<blockquote>
+<p><strong>堕肢体，黜聪明，离形去知，同于大通，此谓坐忘。</strong>（堕读 huī，通「隳」，毁弃；黜 chù，屏除）</p>
+</blockquote>
+<p>孔子曰：&quot;同则无好也，化则无常也。而果其贤乎！丘也请从而后也。&quot;</p>
+<h3 id="核心句-v6">核心句</h3>
+<ul>
+<li>且有真人而后有真知。</li>
+<li>善吾生者，乃所以善吾死也。</li>
+<li>夫道，有情有信，无为无形；可传而不可受，可得而不可见；自本自根，未有天地，自古以固存。</li>
+<li>相忘于江湖。</li>
+<li>撄而后成者也。</li>
+<li>堕肢体，黜聪明，离形去知，同于大通。</li>
+</ul>
+<h3 id="可琢磨的问题-v6">可琢磨的问题</h3>
+<ul>
+<li>&quot;心斋&quot;（人间世）与&quot;坐忘&quot;（大宗师）如何分工？一个偏应世之前的虚己，一个偏契道之时的忘我；一个&quot;听之以气&quot;，一个&quot;同于大通&quot;。（详解见第九节）</li>
+<li>庄子的&quot;道&quot;是实体、是本源，还是只是万物自化的总名？&quot;自本自根、未有天地而固存&quot;像本体论；而&quot;咸其自取，怒者其谁邪&quot;（齐物论）又像取消主宰。两处如何调和？——多数今注取后者为主，把前段读作描述性而非实体性。</li>
+<li>为何全篇多次让孔子、颜回充当道家发言人？这是庄子特有的&quot;重言&quot;手法：借重之人以立言，同时也是一种反讽。</li>
+</ul>
+<h2 id="七、应帝王">七、应帝王</h2>
+<h3 id="主旨-v7">主旨</h3>
+<p>把前六篇推至政治层面：最好的治理是不治。全篇七段，由浅入深，以浑沌之死作结——这个结尾没有任何解说，是全书最见笔力处。</p>
+<h3 id="结构-v7">结构</h3>
+<ol>
+<li>啮缺（niè quē）问王倪（ní），四问四不知（蒲衣子论有虞氏不及泰氏）。</li>
+<li>肩吾见狂接舆（yú）：以己出经式义度治天下，是<strong>欺德</strong>。</li>
+<li>天根问无名人：<strong>游心于淡，合气于漠，顺物自然而无容私焉。</strong></li>
+<li>阳子居见老聃：明王之治。</li>
+<li>壶子四示季咸。</li>
+<li>至人用心若镜。</li>
+<li>浑沌之死。</li>
+</ol>
+<h3 id="关键寓言-v7">关键寓言</h3>
+<p><strong>明王之治</strong>：</p>
+<blockquote>
+<p>功盖天下而似不自己，化贷万物而民弗恃；有莫举名，使物自喜；立乎不测，而游于无有者也。</p>
+</blockquote>
+<p><strong>壶子四示</strong>（篇中最长一则）：郑之神巫季咸能知人死生祸福，列子见而心醉。壶子四次示相：</p>
+<ol>
+<li><strong>地文</strong>（杜德机）——示以寂静不动之机，季咸断其将死。</li>
+<li><strong>天壤</strong>（善者机）——示以生机萌动，季咸断其有瘳（chōu，病愈）。</li>
+<li><strong>太冲莫胜</strong>（衡气机）——示以阴阳两平，季咸迷乱。</li>
+<li><strong>未始出吾宗</strong>——&quot;吾与之虚而委蛇（wēi yí，随顺周旋），不知其谁何，因以为弟靡（tuí mí，弟通「颓」，颓然随顺），因以为波流&quot;，季咸自失而走。</li>
+</ol>
+<p>结局极精彩：列子自知未始学而归，<strong>三年不出，为其妻爨（cuàn，烧火做饭），食豕如食人（食读 sì，喂养；豕 shǐ，猪），于事无与亲，雕琢复朴，块然独以其形立</strong>。——修道的终点是回到日常，喂猪如待人。</p>
+<p><strong>至人用心若镜</strong>：</p>
+<blockquote>
+<p>无为名尸，无为谋府，无为事任，无为知主。体尽无穷，而游无朕（zhèn，迹象）。<strong>至人之用心若镜，不将不迎，应而不藏，故能胜物而不伤。</strong></p>
+</blockquote>
+<p><strong>浑沌之死</strong>（全书收尾）：</p>
+<blockquote>
+<p>南海之帝为儵（shū，同「倏」），北海之帝为忽，中央之帝为浑沌。儵与忽时相与遇于浑沌之地，浑沌待之甚善。儵与忽谋报浑沌之德，曰：&quot;人皆有七窍以视听食息，此独无有，尝试凿之。&quot;日凿一窍，七日而浑沌死。</p>
+</blockquote>
+<p>儵、忽即&quot;倏忽&quot;，喻有为、速成；浑沌喻未分之全。<strong>好意 + 有为 = 毁灭</strong>。呼应人间世&quot;爱马者&quot;，也呼应齐物论&quot;有封 → 有是非 → 道之所以亏&quot;：七窍即分别之始。</p>
+<h3 id="核心句-v7">核心句</h3>
+<ul>
+<li>顺物自然而无容私焉，而天下治矣。</li>
+<li>至人之用心若镜，不将不迎，应而不藏，故能胜物而不伤。</li>
+<li>七日而浑沌死。</li>
+</ul>
+<h3 id="可琢磨的问题-v7">可琢磨的问题</h3>
+<ul>
+<li>&quot;应帝王&quot;如何解？&quot;应为帝王者&quot;（资格）？&quot;应对帝王之道&quot;？还是&quot;帝王应当如此&quot;？——三说皆有据，关系到庄子是否真有政治主张。</li>
+<li>镜喻的分寸：&quot;不将不迎，应而不藏&quot;是绝对被动吗？注意&quot;应&quot;字——镜是有回应的，只是不留存。这与心斋之&quot;虚而待物&quot;是同一结构。</li>
+<li>浑沌之死若是全书结论，庄子是否终究悲观？可与&quot;薪尽火传&quot;并读：一者言分别之害，一者言化之不尽。</li>
+</ul>
+<h2 id="八、贯穿概念索引">八、贯穿概念索引</h2>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>出处</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>无待</strong></td>
+<td>逍遥游</td>
+<td>不依赖任何外部条件；列子御风仍&quot;有待&quot;</td>
+</tr>
+<tr>
+<td><strong>无己 / 丧我</strong></td>
+<td>逍遥游、齐物论</td>
+<td>取消以自我为中心的视角，非取消自我存在</td>
+</tr>
+<tr>
+<td><strong>天籁</strong></td>
+<td>齐物论</td>
+<td>万物自取自鸣，背后无主宰</td>
+</tr>
+<tr>
+<td><strong>成心</strong></td>
+<td>齐物论</td>
+<td>先入的立场，是非之源</td>
+</tr>
+<tr>
+<td><strong>道枢 / 环中</strong></td>
+<td>齐物论</td>
+<td>站到对立之转轴上，不入任一边</td>
+</tr>
+<tr>
+<td><strong>两行</strong></td>
+<td>齐物论</td>
+<td>让对立双方各自成立而不裁判</td>
+</tr>
+<tr>
+<td><strong>天钧 / 天倪</strong></td>
+<td>齐物论</td>
+<td>自然的平衡点</td>
+</tr>
+<tr>
+<td><strong>物化</strong></td>
+<td>齐物论</td>
+<td>界限可转化，见于梦蝶</td>
+</tr>
+<tr>
+<td><strong>缘督以为经</strong></td>
+<td>养生主</td>
+<td>循中虚之道，不偏不争</td>
+</tr>
+<tr>
+<td><strong>依乎天理</strong></td>
+<td>养生主</td>
+<td>顺客观结构而非主观意志</td>
+</tr>
+<tr>
+<td><strong>心斋</strong></td>
+<td>人间世</td>
+<td>听之以气，虚而待物</td>
+</tr>
+<tr>
+<td><strong>安之若命</strong></td>
+<td>人间世、德充符</td>
+<td>对不可奈何者的接受</td>
+</tr>
+<tr>
+<td><strong>无用之用</strong></td>
+<td>逍遥游、人间世</td>
+<td>二义：超越之游 / 保身之全</td>
+</tr>
+<tr>
+<td><strong>才全而德不形</strong></td>
+<td>德充符</td>
+<td>内在完足而不外显</td>
+</tr>
+<tr>
+<td><strong>真人</strong></td>
+<td>大宗师</td>
+<td>息以踵、不悦生不恶死</td>
+</tr>
+<tr>
+<td><strong>坐忘</strong></td>
+<td>大宗师</td>
+<td>离形去知，同于大通</td>
+</tr>
+<tr>
+<td><strong>撄宁</strong></td>
+<td>大宗师</td>
+<td>在扰动中成就的宁定</td>
+</tr>
+<tr>
+<td><strong>用心若镜</strong></td>
+<td>应帝王</td>
+<td>应而不藏，胜物不伤</td>
+</tr>
+</tbody>
+</table>
+<h2 id="九、三处修养工夫详解">九、三处修养工夫详解</h2>
+<p>内七篇讲境界的地方很多，讲<strong>具体怎么做</strong>的只有三处：人间世的「心斋」、大宗师的「女偊七阶」、大宗师的「坐忘」。它们是庄子仅有的三套工夫论文本，值得逐字拆开看。</p>
+<p>先把骨架并排放着，便于记诵：</p>
+<pre><code>心斋  （人间世）：一志 → 无听之以耳 → 无听之以心 → 听之以气 → 虚 → 唯道集虚
+七阶  （大宗师）：外天下 → 外物 → 外生 → 朝彻 → 见独 → 无古今 → 不死不生
+坐忘  （大宗师）：忘仁义 → 忘礼乐 → 堕肢体黜聪明、离形去知 → 同于大通
+</code></pre>
+<p>三者皆为<strong>减法</strong>：不是增加什么，而是不断剥除。但减的东西各不相同，下面分说。</p>
+<h3 id="9-1-心斋——减掉认知的媒介">9.1 心斋——减掉认知的媒介</h3>
+<p><strong>上下文</strong>。颜回要去卫国劝谏暴君，先献三策：端而虚、勉而一（内直外曲）、成而上比（引古人以自重）。孔子一一否掉，说这些都是&quot;以火救火，以水救水&quot;，名之曰&quot;益多&quot;——越用力越糟。然后才提出心斋。<strong>心斋不是静修法门，是入险境之前的准备。</strong></p>
+<p><strong>原文</strong>：</p>
+<blockquote>
+<p>回曰：&quot;敢问心斋。&quot; 仲尼曰：&quot;若一志，无听之以耳而听之以心，无听之以心而听之以气。听止于耳，心止于符。气也者，虚而待物者也。唯道集虚。虚者，心斋也。&quot;</p>
+</blockquote>
+<p>（异文：通行本作&quot;听止于耳&quot;，俞樾据上下文改作&quot;耳止于听&quot;，今注多从之。两读皆指&quot;耳的功能到听为止&quot;，义无大别。）</p>
+<p><strong>逐级拆解</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>级</th>
+<th>原文</th>
+<th>拆解</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>①</td>
+<td>若一志</td>
+<td>收拢注意力。注意不是&quot;专注于某物&quot;——那仍是有对象的用心，而是<strong>不分散</strong>、不同时挂着几处</td>
+</tr>
+<tr>
+<td>②</td>
+<td>无听之以耳</td>
+<td>耳的功能到&quot;听&quot;为止。感官只搬运，不判断，停在这一层就只有信息没有理解</td>
+</tr>
+<tr>
+<td>③</td>
+<td>无听之以心</td>
+<td><strong>这一步最关键</strong>。心的作用是&quot;符&quot;——符即符合、印证：拿既有的概念去匹配眼前之物，对上了就叫&quot;懂了&quot;。这正是齐物论所说的&quot;成心&quot;。以心听，听到的永远是自己已有的东西</td>
+</tr>
+<tr>
+<td>④</td>
+<td>听之以气</td>
+<td>气在此是&quot;虚而待物者&quot;的代称——<strong>没有预设、不带框架地容纳</strong>。不是先有一个答案再去验证，而是让对方如其所是地进来</td>
+</tr>
+<tr>
+<td>⑤</td>
+<td>唯道集虚</td>
+<td>道只聚在空处。器满则不受，心满则不应</td>
+</tr>
+</tbody>
+</table>
+<p><strong>落点</strong>。心斋之后，孔子又说了三句，是心斋的实际效验，常被略过：</p>
+<blockquote>
+<p>瞻彼阕者，虚室生白，吉祥止止。 闻以有知知者矣，未闻以<strong>无知知者</strong>也。 入游其樊而无感其名，入则鸣，不入则止。</p>
+</blockquote>
+<p>&quot;虚室生白&quot;——空屋子自己会亮，不必往里搬灯。&quot;无知之知&quot;——不靠既有知识的那种知。&quot;入游其樊&quot;——进它的笼子里游，却不被它的名位牵动；能说就说，说不通就停。这才是心斋要解决的实际问题：<strong>怎么在暴君身边待着而不被同化，也不因刚直送命。</strong></p>
+<h3 id="9-2-女偊七阶——减掉关切的范围">9.2 女偊七阶——减掉关切的范围</h3>
+<p><strong>上下文</strong>。南伯子葵问女偊为何年老而色若孺子，女偊说自己&quot;闻道&quot;；又提到卜梁倚&quot;有圣人之才而无圣人之道&quot;，自己&quot;有圣人之道而无圣人之才&quot;，于是以道教之。这是内七篇<strong>唯一一处明确的传道程序</strong>，有师、有弟子、有天数。</p>
+<p><strong>原文</strong>：</p>
+<blockquote>
+<p>参（sān，通「三」）日而后能<strong>外天下</strong>；已外天下矣，吾又守之，七日而后能<strong>外物</strong>；已外物矣，吾又守之，九日而后能<strong>外生</strong>；已外生矣，而后能<strong>朝彻</strong>；朝彻，而后能<strong>见独</strong>；见独，而后能<strong>无古今</strong>；无古今，而后能入于<strong>不死不生</strong>。……其名为<strong>撄宁。撄宁也者，撄</strong>而后成者也。</p>
+</blockquote>
+<p><strong>逐级拆解</strong>：</p>
+<ul>
+<li><strong>外天下（三日）</strong>——&quot;外&quot;是&quot;置于身外&quot;，不是消灭。先卸掉最外的一圈：天下国家、时局成败。</li>
+<li><strong>外物（七日）</strong>——再卸日用之物、身外之得失。</li>
+<li><strong>外生（九日）</strong>——连自己这条命也置于身外。注意<strong>天数递增：3 → 7 → 9</strong>。越往内越难，所需的守持越久。这是文本自带的提示。</li>
+<li>前三级之间反复出现&quot;<strong>吾又守之</strong>&quot;——不是过了就算，每一级都要持续守住才能进下一级。工夫在&quot;守&quot;字上。</li>
+<li><strong>朝彻</strong>——如朝阳初启，豁然洞明。<strong>这是全序列的转折点</strong>：前三&quot;外&quot;都是减法，从朝彻起是所得。减到尽头不是空无，而是有东西显现。</li>
+<li><strong>见独</strong>——&quot;独&quot;是无对之称：不与任何他者相对的那一个。齐物论一直在拆&quot;彼/是&quot;之对，拆到底所见即&quot;独&quot;。</li>
+<li><strong>无古今</strong>——时间的分别也取消。</li>
+<li><strong>不死不生</strong>——不是长生不老，是<strong>生死这对分别不再成立</strong>。紧接的&quot;杀生者不死，生生者不生&quot;即此意。</li>
+<li><strong>撄宁</strong>——撄，扰动。名字起得极好：宁不在没有扰动的地方，是<strong>在扰动中成就的宁</strong>。&quot;撄而后成者也&quot;一句把前面所有阶次的性质点破了。</li>
+</ul>
+<h3 id="9-3-坐忘——减掉文化建构与身体">9.3 坐忘——减掉文化建构与身体</h3>
+<p><strong>上下文</strong>。颜回三次见孔子，每次都说&quot;回益矣&quot;（我又长进了），报出来的却全是&quot;忘&quot;。<strong>长进在减损里</strong>——这是文字上的一处机锋，也是三处工夫共同的底色。</p>
+<p><strong>原文</strong>：</p>
+<blockquote>
+<p>回忘仁义矣。——可矣，犹未也。 回忘礼乐矣。——可矣，犹未也。 回坐忘矣。——何谓坐忘？ <strong>堕肢体，黜聪明，离形去知，同于大通，此谓坐忘。</strong> 仲尼曰：&quot;同则无好也，化则无常也。而果其贤乎！丘也请从而后也。&quot;</p>
+</blockquote>
+<p><strong>逐级拆解</strong>：</p>
+<ul>
+<li><strong>忘仁义</strong>——先忘内在的价值德目。</li>
+<li><strong>忘礼乐</strong>——再忘外在的制度仪节。（次序有争议：有注家疑当先忘礼乐后忘仁义，由外而内才顺；通行本次序如上。无论哪种，指向都是<strong>先把儒家那套价值系统整体卸掉</strong>。庄子让颜回来卸，讽刺意味很足。）</li>
+<li><strong>堕肢体 / 离形</strong>——不以形体为&quot;我之所是&quot;。参德充符&quot;有人之形，无人之情&quot;、&quot;游于形骸之内&quot;。</li>
+<li><strong>黜聪明 / 去知</strong>——不以知见为把握世界的方式。参齐物论&quot;知也者，争之器也&quot;。</li>
+<li><strong>同于大通</strong>——&quot;大通&quot;即道。至此不是&quot;我懂了道&quot;，而是分别既去，本来就通。</li>
+<li>孔子的评语两句最要紧：<strong>&quot;同则无好&quot;</strong>——同于大通便无偏好（好恶是分别的产物）；<strong>&quot;化则无常&quot;</strong>——随化而行便无常执。最后&quot;丘也请从而后也&quot;，孔子请为弟子。</li>
+</ul>
+<h3 id="9-4-三者对照">9.4 三者对照</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>心斋</th>
+<th>女偊七阶</th>
+<th>坐忘</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>出处</td>
+<td>人间世</td>
+<td>大宗师</td>
+<td>大宗师</td>
+</tr>
+<tr>
+<td>场合</td>
+<td>将入危邦之前</td>
+<td>师徒传道</td>
+<td>弟子自述进境</td>
+</tr>
+<tr>
+<td>入手处</td>
+<td>一志（注意力）</td>
+<td>外天下（时局）</td>
+<td>忘仁义（价值）</td>
+</tr>
+<tr>
+<td><strong>所减者</strong></td>
+<td><strong>认知的媒介</strong>：耳 → 心 → 气</td>
+<td><strong>关切的范围</strong>：天下 → 物 → 生</td>
+<td><strong>文化建构与身体</strong>：仁义礼乐 → 形 → 知</td>
+</tr>
+<tr>
+<td>关节点</td>
+<td>虚</td>
+<td>朝彻</td>
+<td>离形去知</td>
+</tr>
+<tr>
+<td>终点</td>
+<td>唯道集虚 / 虚室生白</td>
+<td>不死不生 · 撄宁</td>
+<td>同于大通</td>
+</tr>
+<tr>
+<td>指向</td>
+<td>应世而不伤</td>
+<td>超越生死</td>
+<td>与道为一</td>
+</tr>
+</tbody>
+</table>
+<p><strong>最要紧的一点：三者不是同一把梯子的三种说法。</strong> 它们从三个不同维度做减法——心斋减的是&quot;用什么去接&quot;，七阶减的是&quot;还在乎多大范围&quot;，坐忘减的是&quot;我是谁、我靠什么认识&quot;。所以可以并用，也不必分先后。</p>
+<p><strong>三者共同的结构</strong>：减到尽头都出现一个转折，而且转折处都不是空无——</p>
+<pre><code>心斋：虚        → 虚室生白（空屋子自己亮）
+七阶：外生      → 朝彻（如朝阳初启）
+坐忘：离形去知  → 同于大通（本来就通）
+</code></pre>
+<p><strong>虚不是目的，虚是为了让东西自己显现。</strong> 这是庄子工夫论与单纯的禁欲、克己最根本的分别。可与老子&quot;为道日损&quot;对读——但庄子不像老子那样以&quot;损之又损，以至于无为&quot;收尾，他每一次都让减法之后长出点什么。</p>
+<h3 id="9-5-这三段最容易读错的地方">9.5 这三段最容易读错的地方</h3>
+<ol>
+<li><strong>&quot;听之以气&quot;不是练气功、不是呼吸法</strong>。原文自注得很清楚：&quot;气也者，虚而待物者也&quot;——气在此是&quot;虚&quot;的代称，是一种认知姿态，不是生理对象。后世内丹学接过这个词另作他解，与庄子原意不是一回事。</li>
+<li><strong>&quot;外生&quot;不是轻生</strong>。&quot;外&quot;是动词，置于身外，与&quot;外天下&quot;&quot;外物&quot;同一用法。是不以生为可执之物，不是不要命。</li>
+<li><strong>&quot;堕肢体&quot;不是自残，也不是感觉不到身体</strong>。是不以形体为自我认同的根据。参德充符全篇——那里的人形体都残缺，德却完足。</li>
+<li><strong>不是三个先后阶段</strong>。文本中没有&quot;先心斋、再七阶、后坐忘&quot;的意思，它们分属不同篇、不同语境。</li>
+<li><strong>&quot;心斋&quot;不是退隐</strong>。它出现在一篇讲<strong>怎么去见暴君</strong>的文字里，是入世的技术，不是出世的姿态。</li>
+</ol>
+<h3 id="可琢磨的问题-v8">可琢磨的问题</h3>
+<ul>
+<li>心斋说&quot;无听之以心&quot;，坐忘说&quot;黜聪明、去知&quot;，但庄子自己在写极精密的论辩（齐物论）。要被减掉的&quot;知&quot;，和写出齐物论所用的&quot;知&quot;，是不是同一种？——线索在&quot;未闻以无知知者也&quot;：庄子否定的是&quot;以符验为知&quot;，不是否定一切分辨力。</li>
+<li>&quot;撄宁&quot;与&quot;用心若镜&quot;（应帝王）是什么关系？一个说宁在扰中成，一个说应而不藏。两句合起来，大概就是庄子给出的全部答案。</li>
+<li>女偊有道无才、卜梁倚有才无道——庄子为什么要加这一笔？工夫可传，还是终究不可传？（参&quot;道可传而不可受&quot;。）</li>
+</ul>
+<h2 id="十、常见误读辨析">十、常见误读辨析</h2>
+<ol>
+<li><strong>&quot;相濡以沫&quot;不是褒义</strong>。原文重点在&quot;不如相忘于江湖&quot;。引用时若取温情义，正好与庄子本意相反。</li>
+<li><strong>&quot;无用之用&quot;不等于无能</strong>。栎社树是&quot;求无所可用久矣&quot;——主动脱离被使用的价值体系，是策略而非天赋缺陷。</li>
+<li><strong>&quot;齐物&quot;不是&quot;都一样&quot;</strong>。庄子从不否认差异（&quot;周与胡蝶，则必有分矣&quot;），他否认的是<strong>某一差异可作为绝对标准</strong>。</li>
+<li><strong>&quot;无情&quot;不是冷漠</strong>。德充符明确界定为&quot;不以好恶内伤其身&quot;，即感受不转为自伤。</li>
+<li><strong>&quot;逍遥&quot;不等于随心所欲</strong>。逍遥的前提是&quot;无待&quot;，而无待要经过心斋、坐忘的长期剥除。把逍遥读成任性，是最流行的误读。</li>
+<li><strong>庄子不反对技艺与努力</strong>。庖丁十九年解数千牛，列子三年不出为妻爨。&quot;无为&quot;是不妄为、不违物性，不是不做事。</li>
+<li><strong>内七篇之外要慎用</strong>。&quot;庄周贷粟&quot;&quot;鼓盆而歌&quot;&quot;濠梁之辩&quot;&quot;庄子将死&quot;等名段皆在外杂篇，思想上大体一贯，但不宜与内篇等同引证。</li>
+</ol>
+<h2 id="十一、注本与读法建议">十一、注本与读法建议</h2>
+<h3 id="注本层次">注本层次</h3>
+<ul>
+<li>郭象《庄子注》 + 成玄英《疏》——历史影响最大，但郭象有强烈的&quot;适性即逍遥&quot;立场，实为借庄子立己说，读时需分清哪是庄子哪是郭象。</li>
+<li>王先谦《庄子集解》——简明，适合快速通读。</li>
+<li>郭庆藩（fán）《庄子集释》——清代集大成，郭注成疏 + 陆德明《释文》 + 校勘，考据首选。</li>
+<li>王夫之《庄子解》——义理最深，对内七篇结构的把握尤佳。</li>
+<li>陈鼓应《庄子今注今译》——今人最通行，白话对照，入门与复读皆宜。</li>
+<li>钱穆《庄老通辨》、刘笑敢《庄子哲学及其演变》——前者辨庄老先后，后者辨内外杂篇作者，读完可避免许多常见混淆。</li>
+</ul>
+<h3 id="反复阅读的几种路径">反复阅读的几种路径</h3>
+<ol>
+<li><strong>通读式</strong>：一年一遍七篇，只读白文，不看注，看每次的理解差别。</li>
+<li><strong>专题式</strong>：抽一个概念（如&quot;命&quot;、&quot;无用&quot;、&quot;忘&quot;）横贯七篇，做索引卡片。</li>
+<li><strong>对读式</strong>：与《论语》《孟子》对读&quot;知其不可&quot;；与《老子》对读&quot;无为&quot;；与《世说新语》对读魏晋人的实际用法。</li>
+<li><strong>背诵式</strong>：内七篇中值得成诵的不过十余段——逍遥游开篇、庖丁解牛、心斋、才全德不形、女偊七阶、坐忘、浑沌之死。背下来，日常自然会浮出来。</li>
+</ol>
+<h3 id="一个建议的最短复读单元（20-分钟）">一个建议的最短复读单元（20 分钟）</h3>
+<blockquote>
+<p>齐物论&quot;吾丧我&quot;段 → 养生主庖丁解牛全文 → 人间世心斋段 → 大宗师坐忘段 → 应帝王浑沌段。</p>
+</blockquote>
+<p>这五段串起来，即是内七篇的骨架。</p>
+<h2 id="附录一-·-生僻字音义表">附录一 · 生僻字音义表</h2>
+<p>按篇排列，便于对着原文查检。正文首次出现处已就地标注，此处备复查。</p>
+<h3 id="逍遥游">逍遥游</h3>
+<table>
+<thead>
+<tr>
+<th>字词</th>
+<th>音</th>
+<th>义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>鲲</td>
+<td>kūn</td>
+<td>本指鱼子，庄子反用为巨鱼之名</td>
+</tr>
+<tr>
+<td>蜩</td>
+<td>tiáo</td>
+<td>蝉</td>
+</tr>
+<tr>
+<td>鴳（斥鴳）</td>
+<td>yàn</td>
+<td>小雀，一作「鷃」</td>
+</tr>
+<tr>
+<td>蟪蛄</td>
+<td>huì gū</td>
+<td>夏生秋死的蝉</td>
+</tr>
+<tr>
+<td>晦朔</td>
+<td>huì shuò</td>
+<td>月末与月初</td>
+</tr>
+<tr>
+<td>椿（大椿）</td>
+<td>chūn</td>
+<td>传说中的长寿之木</td>
+</tr>
+<tr>
+<td>樗</td>
+<td>chū</td>
+<td>臭椿，木质松散不中用</td>
+</tr>
+<tr>
+<td>瓠</td>
+<td>hù</td>
+<td>葫芦</td>
+</tr>
+<tr>
+<td>洴澼絖</td>
+<td>píng pì kuàng</td>
+<td>在水中漂洗丝絮；絖同「纩」，丝绵</td>
+</tr>
+<tr>
+<td>鹪鹩</td>
+<td>jiāo liáo</td>
+<td>一种极小的鸟</td>
+</tr>
+<tr>
+<td>偃鼠</td>
+<td>yǎn shǔ</td>
+<td>鼹鼠</td>
+</tr>
+<tr>
+<td>章甫</td>
+<td>zhāng fǔ</td>
+<td>殷商式样的礼帽</td>
+</tr>
+<tr>
+<td>沮（不加沮）</td>
+<td>jǔ</td>
+<td>沮丧</td>
+</tr>
+<tr>
+<td>泠然</td>
+<td>líng rán</td>
+<td>轻妙之貌</td>
+</tr>
+</tbody>
+</table>
+<h3 id="齐物论">齐物论</h3>
+<table>
+<thead>
+<tr>
+<th>字词</th>
+<th>音</th>
+<th>义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>子綦</td>
+<td>qí</td>
+<td>人名用字</td>
+</tr>
+<tr>
+<td>荅焉</td>
+<td>dá yān</td>
+<td>解体忘身之貌，一说通「嗒」</td>
+</tr>
+<tr>
+<td>耦</td>
+<td>ǒu</td>
+<td>同「偶」，匹对；此指形与神相对</td>
+</tr>
+<tr>
+<td>籁</td>
+<td>lài</td>
+<td>箫，引申为一切孔窍发出的声响</td>
+</tr>
+<tr>
+<td>眹</td>
+<td>zhèn</td>
+<td>征兆、端倪（与「朕」形近易混）</td>
+</tr>
+<tr>
+<td>狙</td>
+<td>jū</td>
+<td>猕猴</td>
+</tr>
+<tr>
+<td>芧</td>
+<td>xù</td>
+<td>橡子</td>
+</tr>
+<tr>
+<td>罔两</td>
+<td>wǎng liǎng</td>
+<td>影子边缘的淡影，影外微阴</td>
+</tr>
+<tr>
+<td>嫱（毛嫱）</td>
+<td>qiáng</td>
+<td>古美女名</td>
+</tr>
+<tr>
+<td>麋</td>
+<td>mí</td>
+<td>麋鹿</td>
+</tr>
+<tr>
+<td>决骤</td>
+<td>jué zhòu</td>
+<td>疾奔</td>
+</tr>
+<tr>
+<td>刍豢</td>
+<td>chú huàn</td>
+<td>草食之牲与谷食之牲，泛指美食</td>
+</tr>
+<tr>
+<td>蕲</td>
+<td>qí</td>
+<td>求</td>
+</tr>
+<tr>
+<td>曼衍</td>
+<td>màn yǎn</td>
+<td>变化流转，不拘一端</td>
+</tr>
+<tr>
+<td>天倪</td>
+<td>tiān ní</td>
+<td>自然的分际</td>
+</tr>
+</tbody>
+</table>
+<h3 id="养生主">养生主</h3>
+<table>
+<thead>
+<tr>
+<th>字词</th>
+<th>音</th>
+<th>义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>缘督</td>
+<td>yuán dū</td>
+<td>督，身后中脉；缘督即循中虚之道</td>
+</tr>
+<tr>
+<td>庖</td>
+<td>páo</td>
+<td>厨子</td>
+</tr>
+<tr>
+<td>騞然</td>
+<td>huō rán</td>
+<td>刀解物的声响</td>
+</tr>
+<tr>
+<td>郤</td>
+<td>xì</td>
+<td>通「隙」，骨节间的缝隙</td>
+</tr>
+<tr>
+<td>窾</td>
+<td>kuǎn</td>
+<td>空处、中空的地方</td>
+</tr>
+<tr>
+<td>硎</td>
+<td>xíng</td>
+<td>磨刀石</td>
+</tr>
+<tr>
+<td>怵然</td>
+<td>chù rán</td>
+<td>警惕戒惧</td>
+</tr>
+<tr>
+<td>族</td>
+<td>zú</td>
+<td>筋骨交错聚结之处（另有「族庖」之族，义为「众」）</td>
+</tr>
+<tr>
+<td>謋然</td>
+<td>huò rán</td>
+<td>骨肉分离的声响</td>
+</tr>
+<tr>
+<td>雉</td>
+<td>zhì</td>
+<td>野鸡</td>
+</tr>
+<tr>
+<td>樊</td>
+<td>fán</td>
+<td>笼</td>
+</tr>
+<tr>
+<td>介者</td>
+<td>jiè</td>
+<td>受过刖刑、只剩一足的人</td>
+</tr>
+</tbody>
+</table>
+<h3 id="人间世">人间世</h3>
+<table>
+<thead>
+<tr>
+<th>字词</th>
+<th>音</th>
+<th>义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>心斋</td>
+<td>zhāi</td>
+<td>斋，斋戒、清虚</td>
+</tr>
+<tr>
+<td>阕</td>
+<td>què</td>
+<td>空、尽；「瞻彼阕者」即看那空处</td>
+</tr>
+<tr>
+<td>颜阖</td>
+<td>yán hé</td>
+<td>人名</td>
+</tr>
+<tr>
+<td>螳臂</td>
+<td>táng bì</td>
+<td>螳螂之臂</td>
+</tr>
+<tr>
+<td>辙</td>
+<td>zhé</td>
+<td>车轮碾出的轨迹</td>
+</tr>
+<tr>
+<td>蚊虻</td>
+<td>wén méng</td>
+<td>虻，吸血的大苍蝇</td>
+</tr>
+<tr>
+<td>仆缘</td>
+<td>pú yuán</td>
+<td>附着攀爬</td>
+</tr>
+<tr>
+<td>蜃</td>
+<td>shèn</td>
+<td>大蛤；此指蛤壳做的盛器</td>
+</tr>
+<tr>
+<td>缺衔</td>
+<td>quē xián</td>
+<td>咬断马嚼子</td>
+</tr>
+<tr>
+<td>栎</td>
+<td>lì</td>
+<td>栎树，木材粗劣</td>
+</tr>
+<tr>
+<td>轧</td>
+<td>yà</td>
+<td>倾轧</td>
+</tr>
+<tr>
+<td>膏火</td>
+<td>gāo huǒ</td>
+<td>油脂燃灯，膏因可燃而自煎</td>
+</tr>
+</tbody>
+</table>
+<h3 id="德充符">德充符</h3>
+<table>
+<thead>
+<tr>
+<th>字词</th>
+<th>音</th>
+<th>义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>兀者</td>
+<td>wù zhě</td>
+<td>断去一足的人</td>
+</tr>
+<tr>
+<td>王骀</td>
+<td>wáng tái</td>
+<td>人名</td>
+</tr>
+<tr>
+<td>哀骀它</td>
+<td>āi tái tuō</td>
+<td>人名，貌极丑</td>
+</tr>
+<tr>
+<td>闉跂支离无脤</td>
+<td>yīn qí zhī lí wú shèn</td>
+<td>曲足、伛偻、豁唇者，以形残为名</td>
+</tr>
+<tr>
+<td>瓮㼜大瘿</td>
+<td>wèng àng dà yǐng</td>
+<td>颈生大瘤如瓮盎者；㼜通「盎」</td>
+</tr>
+<tr>
+<td>灵府</td>
+<td>líng fǔ</td>
+<td>心</td>
+</tr>
+<tr>
+<td>形骸</td>
+<td>xíng hái</td>
+<td>形体</td>
+</tr>
+<tr>
+<td>滑（滑和）</td>
+<td>gǔ</td>
+<td>扰乱</td>
+</tr>
+</tbody>
+</table>
+<h3 id="大宗师">大宗师</h3>
+<table>
+<thead>
+<tr>
+<th>字词</th>
+<th>音</th>
+<th>义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>女偊</td>
+<td>rǔ yǔ</td>
+<td>人名；女读 rǔ</td>
+</tr>
+<tr>
+<td>南伯子葵</td>
+<td>nán bó zǐ kuí</td>
+<td>人名</td>
+</tr>
+<tr>
+<td>卜梁倚</td>
+<td>bǔ liáng yǐ</td>
+<td>人名</td>
+</tr>
+<tr>
+<td>撄宁</td>
+<td>yīng níng</td>
+<td>撄，扰动；在扰动中成就的宁定</td>
+</tr>
+<tr>
+<td>呴（相呴以湿）</td>
+<td>xǔ</td>
+<td>张口吐气以相润</td>
+</tr>
+<tr>
+<td>濡</td>
+<td>rú</td>
+<td>沾湿</td>
+</tr>
+<tr>
+<td>壑</td>
+<td>hè</td>
+<td>山沟、深谷</td>
+</tr>
+<tr>
+<td>子舆</td>
+<td>zǐ yú</td>
+<td>人名</td>
+</tr>
+<tr>
+<td>偻</td>
+<td>lǚ</td>
+<td>驼背</td>
+</tr>
+<tr>
+<td>颐</td>
+<td>yí</td>
+<td>下巴</td>
+</tr>
+<tr>
+<td>浸假</td>
+<td>jìn jiǎ</td>
+<td>假令、假使</td>
+</tr>
+<tr>
+<td>时夜</td>
+<td>shí yè</td>
+<td>即「司夜」，报晓的公鸡</td>
+</tr>
+<tr>
+<td>鸮炙</td>
+<td>xiāo zhì</td>
+<td>烤鸮（一种鸟）</td>
+</tr>
+<tr>
+<td>镆铘</td>
+<td>mò yé</td>
+<td>古宝剑名，一作「莫邪」</td>
+</tr>
+<tr>
+<td>大冶</td>
+<td>dà yě</td>
+<td>铸工</td>
+</tr>
+<tr>
+<td>黜</td>
+<td>chù</td>
+<td>屏除、废去</td>
+</tr>
+<tr>
+<td>踵</td>
+<td>zhǒng</td>
+<td>脚后跟</td>
+</tr>
+</tbody>
+</table>
+<h3 id="应帝王">应帝王</h3>
+<table>
+<thead>
+<tr>
+<th>字词</th>
+<th>音</th>
+<th>义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>啮缺</td>
+<td>niè quē</td>
+<td>人名</td>
+</tr>
+<tr>
+<td>王倪</td>
+<td>wáng ní</td>
+<td>人名</td>
+</tr>
+<tr>
+<td>接舆</td>
+<td>jiē yú</td>
+<td>楚狂，人名</td>
+</tr>
+<tr>
+<td>瘳</td>
+<td>chōu</td>
+<td>病愈</td>
+</tr>
+<tr>
+<td>杜德机</td>
+<td>dù dé jī</td>
+<td>闭塞生机之象</td>
+</tr>
+<tr>
+<td>委蛇</td>
+<td>wēi yí</td>
+<td>随顺周旋，不执一态</td>
+</tr>
+<tr>
+<td>弟靡</td>
+<td>tuí mí</td>
+<td>弟通「颓」；颓然随物而靡</td>
+</tr>
+<tr>
+<td>爨</td>
+<td>cuàn</td>
+<td>烧火做饭</td>
+</tr>
+<tr>
+<td>豕</td>
+<td>shǐ</td>
+<td>猪</td>
+</tr>
+<tr>
+<td>块然</td>
+<td>kuài rán</td>
+<td>孤立独存之貌</td>
+</tr>
+<tr>
+<td>儵</td>
+<td>shū</td>
+<td>同「倏」，急速</td>
+</tr>
+<tr>
+<td>浑沌</td>
+<td>hùn dùn</td>
+<td>未分化的整全</td>
+</tr>
+<tr>
+<td>朕（游无朕）</td>
+<td>zhèn</td>
+<td>迹象、端倪</td>
+</tr>
+<tr>
+<td>名尸</td>
+<td>míng shī</td>
+<td>尸，主；不为名之主</td>
+</tr>
+</tbody>
+</table>
+<h3 id="注家人名">注家人名</h3>
+<p>郭象（xiàng）· 成玄英 · 陆德明 · 王先谦（qiān）· 郭庆藩（fán）· 俞樾（yuè）· 王夫之 · 支遁（dùn）· 陈鼓应 · 刘笑敢（gǎn）</p>
+<h2 id="附录二-·-最易读错的字">附录二 · 最易读错的字</h2>
+<p>这一类比生僻字更麻烦——<strong>你以为你认识它</strong>。多为通假、古今异读或多音字，读错往往连带解错。</p>
+<table>
+<thead>
+<tr>
+<th>词</th>
+<th>易误读</th>
+<th>正读</th>
+<th>说明</th>
+<th>出处</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>不<strong>龟</strong>手</td>
+<td>guī</td>
+<td><strong>jūn</strong></td>
+<td>通「皲」，皮肤冻裂</td>
+<td>逍遥游</td>
+</tr>
+<tr>
+<td>藐姑<strong>射</strong></td>
+<td>shè</td>
+<td><strong>yè</strong></td>
+<td>山名</td>
+<td>逍遥游</td>
+</tr>
+<tr>
+<td><strong>恶</strong>乎待哉</td>
+<td>è</td>
+<td><strong>wū</strong></td>
+<td>何、哪里</td>
+<td>逍遥游</td>
+</tr>
+<tr>
+<td>六气之<strong>辩</strong></td>
+<td>辩论</td>
+<td>biàn，通「<strong>变</strong>」</td>
+<td>六气之变化</td>
+<td>逍遥游</td>
+</tr>
+<tr>
+<td>小<strong>知</strong>不及大知</td>
+<td>zhī</td>
+<td><strong>zhì</strong></td>
+<td>通「智」</td>
+<td>逍遥游</td>
+</tr>
+<tr>
+<td>大<strong>知</strong>闲闲</td>
+<td>zhī</td>
+<td><strong>zhì</strong></td>
+<td>通「智」；下文「小知<strong>间</strong>间」间读 jiàn</td>
+<td>齐物论</td>
+</tr>
+<tr>
+<td>罔两问<strong>景</strong></td>
+<td>jǐng</td>
+<td><strong>yǐng</strong></td>
+<td>通「影」</td>
+<td>齐物论</td>
+</tr>
+<tr>
+<td>天<strong>钧</strong></td>
+<td>—</td>
+<td>jūn，通「<strong>均</strong>」</td>
+<td>自然的平衡</td>
+<td>齐物论</td>
+</tr>
+<tr>
+<td><strong>大</strong>山为小</td>
+<td>dà</td>
+<td><strong>tài</strong></td>
+<td>通「太」，即泰山</td>
+<td>齐物论</td>
+</tr>
+<tr>
+<td>帝之<strong>县</strong>解</td>
+<td>xiàn</td>
+<td><strong>xuán</strong></td>
+<td>通「悬」，解其倒悬</td>
+<td>养生主</td>
+</tr>
+<tr>
+<td><strong>叶</strong>公子高</td>
+<td>yè</td>
+<td><strong>shè</strong></td>
+<td>古邑名</td>
+<td>人间世</td>
+</tr>
+<tr>
+<td>以蜃盛<strong>溺</strong></td>
+<td>nì</td>
+<td><strong>niào</strong></td>
+<td>通「尿」</td>
+<td>人间世</td>
+</tr>
+<tr>
+<td>哀骀<strong>它</strong></td>
+<td>tā</td>
+<td><strong>tuō</strong></td>
+<td>人名用字</td>
+<td>德充符</td>
+</tr>
+<tr>
+<td>不足以<strong>滑</strong>和</td>
+<td>huá</td>
+<td><strong>gǔ</strong></td>
+<td>扰乱</td>
+<td>德充符</td>
+</tr>
+<tr>
+<td><strong>说</strong>卫灵公</td>
+<td>shuō</td>
+<td><strong>shuì</strong></td>
+<td>游说</td>
+<td>德充符</td>
+</tr>
+<tr>
+<td><strong>女</strong>偊</td>
+<td>nǘ</td>
+<td><strong>rǔ</strong></td>
+<td>人名，女读 rǔ</td>
+<td>大宗师</td>
+</tr>
+<tr>
+<td><strong>参</strong>日而后</td>
+<td>cān</td>
+<td><strong>sān</strong></td>
+<td>通「三」</td>
+<td>大宗师</td>
+</tr>
+<tr>
+<td><strong>朝</strong>彻</td>
+<td>cháo</td>
+<td><strong>zhāo</strong></td>
+<td>早晨；如朝阳初启</td>
+<td>大宗师</td>
+</tr>
+<tr>
+<td><strong>堕</strong>肢体</td>
+<td>duò</td>
+<td><strong>huī</strong></td>
+<td>通「隳」，毁弃</td>
+<td>大宗师</td>
+</tr>
+<tr>
+<td>颐隐于<strong>齐</strong></td>
+<td>qí（整齐）</td>
+<td>qí，通「<strong>脐</strong>」</td>
+<td>肚脐</td>
+<td>大宗师</td>
+</tr>
+<tr>
+<td><strong>委蛇</strong></td>
+<td>wěi shé</td>
+<td><strong>wēi yí</strong></td>
+<td>随顺周旋</td>
+<td>应帝王</td>
+</tr>
+<tr>
+<td><strong>弟</strong>靡</td>
+<td>dì</td>
+<td><strong>tuí</strong></td>
+<td>通「颓」</td>
+<td>应帝王</td>
+</tr>
+<tr>
+<td><strong>食</strong>豕如<strong>食</strong>人</td>
+<td>shí</td>
+<td><strong>sì</strong></td>
+<td>喂养；两处皆读 sì</td>
+<td>应帝王</td>
+</tr>
+</tbody>
+</table>
+<p><strong>一条通例</strong>：内七篇里凡是句子读不通的地方，先怀疑通假，再怀疑异读，最后才怀疑错简。庄子用字奇但不乱，绝大多数难处是音的问题，不是义的问题。</p>
+
+    </div>
+</article>
+
+<!-- 文章导航 -->
+
+    <nav class="mt-20 grid grid-cols-1 sm:grid-cols-2 gap-px border-t border-hairline">
+        <div class="py-6 sm:pr-8">
+            
+        </div>
+
+        <div class="py-6 sm:pl-8 sm:text-right sm:border-l border-hairline">
+            
+                <a href="/2026/03/18/%E7%BB%99-Claude-Code-%E9%85%8D%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%9C%8B%E7%9A%84-tmux-%E7%8A%B6%E6%80%81%E6%A0%8F/" class="group block">
+                    <span class="mono-label block mb-2 group-hover:text-accent transition-colors">下一篇 →</span>
+                    <span class="block text-[0.95rem] font-medium text-theme line-clamp-2 group-hover:text-accent transition-colors">
+                        给 Claude Code 配一个好看的 tmux 状态栏
+                    </span>
+                </a>
+            
+        </div>
+    </nav>
+
+
+<script>
+    (function () {
+        function readingTime() {
+            const content = document.getElementById('post-content');
+            const slot = document.querySelector('[data-reading-time]');
+            if (!content || !slot) return;
+            const text = content.textContent || '';
+            const cjk = (text.match(/[一-龥]/g) || []).length;
+            const words = (text.replace(/[一-龥]/g, ' ').match(/[A-Za-z0-9]+/g) || []).length;
+            const minutes = Math.max(1, Math.round(cjk / 400 + words / 220));
+            slot.textContent = minutes + ' 分钟阅读';
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', readingTime);
+        } else {
+            readingTime();
+        }
+    })();
+</script>
+
+                    </div>
+
+                    
+                        <aside class="main-toc">
+                            <div id="toc-rail" class="toc-rail" hidden>
+    <span class="toc-rail-heading">On this page</span>
+    <nav class="toc-nav" data-toc></nav>
+</div>
+
+<script>
+    (function () {
+        function initTOC() {
+            const postContent = document.getElementById('post-content');
+            const targets = document.querySelectorAll('[data-toc]');
+            if (!postContent || !targets.length) return;
+
+            const headings = Array.from(postContent.querySelectorAll('h1, h2, h3'))
+                .filter(function (h) { return (h.textContent || '').trim().length > 0; });
+
+            if (headings.length < 2) return;
+
+            // 扁平列表 —— 让左侧发丝线保持连续，靠缩进表达层级
+            const items = headings.map(function (heading, index) {
+                if (!heading.id) heading.id = 'toc-' + index;
+                const level = parseInt(heading.tagName.charAt(1), 10);
+                return {
+                    id: heading.id,
+                    level: level,
+                    text: (heading.textContent || '').trim(),
+                    el: heading
+                };
+            });
+
+            const html = '<ul class="toc-list">' + items.map(function (item) {
+                return '<li class="toc-item toc-level-' + item.level + '">' +
+                    '<a class="toc-link" href="#' + item.id + '" data-target="' + item.id + '">' +
+                    '<span class="toc-text">' + item.text.replace(/[&<>"]/g, function (c) {
+                        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+                    }) + '</span></a></li>';
+            }).join('') + '</ul>';
+
+            targets.forEach(function (nav) { nav.innerHTML = html; });
+
+            const rail = document.getElementById('toc-rail');
+            if (rail) rail.hidden = false;
+            document.querySelectorAll('[data-toc-wrapper]').forEach(function (el) { el.hidden = false; });
+
+            const links = Array.from(document.querySelectorAll('.toc-link'));
+
+            function setActive(id) {
+                links.forEach(function (link) {
+                    link.classList.toggle('active', link.getAttribute('data-target') === id);
+                });
+            }
+
+            // 点击平滑滚动（考虑固定头部）
+            document.querySelectorAll('[data-toc]').forEach(function (nav) {
+                nav.addEventListener('click', function (e) {
+                    const link = e.target.closest('.toc-link');
+                    if (!link) return;
+                    e.preventDefault();
+                    const target = document.getElementById(link.getAttribute('data-target'));
+                    if (!target) return;
+                    const top = target.getBoundingClientRect().top + window.pageYOffset - 88;
+                    window.scrollTo({ top: top, behavior: 'smooth' });
+                    setActive(link.getAttribute('data-target'));
+                    history.replaceState(null, '', '#' + link.getAttribute('data-target'));
+                });
+            });
+
+            // 滚动高亮 + 目录自动跟随滚动
+            let ticking = false;
+
+            function onScroll() {
+                if (ticking) return;
+                ticking = true;
+                requestAnimationFrame(function () {
+                    let activeId = items[0].id;
+                    for (let i = items.length - 1; i >= 0; i--) {
+                        if (items[i].el.getBoundingClientRect().top <= 100) {
+                            activeId = items[i].id;
+                            break;
+                        }
+                    }
+                    setActive(activeId);
+
+                    // 让高亮项始终留在可视区内
+                    const nav = rail && rail.querySelector('[data-toc]');
+                    if (nav && nav.scrollHeight > nav.clientHeight) {
+                        const active = nav.querySelector('.toc-link.active');
+                        if (active) {
+                            const navRect = nav.getBoundingClientRect();
+                            const linkRect = active.getBoundingClientRect();
+                            if (linkRect.top < navRect.top || linkRect.bottom > navRect.bottom) {
+                                nav.scrollTop += linkRect.top - navRect.top - nav.clientHeight / 2;
+                            }
+                        }
+                    }
+
+                    ticking = false;
+                });
+            }
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initTOC);
+        } else {
+            initTOC();
+        }
+    })();
+</script>
+
+                        </aside>
+                    
+                </div>
+            </div>
+        </main>
+
+        <footer class="border-t border-hairline mt-20">
+    <div class="mx-auto w-full max-w-6xl px-5 sm:px-8 py-10">
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <p class="mono-meta">
+                Postdare @ All Rights Reserved 2026
+            </p>
+            <div class="flex items-center gap-5">
+                
+                    <a href="/atom.xml" class="mono-label hover:text-accent transition-colors">RSS</a>
+                
+                
+                    <span class="mono-meta"><a href="https://beian.miit.gov.cn" target="_blank">陕ICP备16008414号-4</a></span>
+                
+            </div>
+        </div>
+    </div>
+</footer>
+
+<button id="back-to-top"
+    class="fixed bottom-8 right-8 z-50 flex h-10 w-10 items-center justify-center rounded-sm border border-hairline-strong bg-surface text-muted transition-all duration-300 opacity-0 invisible hover:text-accent hover:border-hairline-strong"
+    aria-label="回到顶部">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18"></path></svg>
+</button>
+
+    </div>
+
+    <script src="/js/plugins.js" defer></script>
+    
+        <script src="/js/mermaid.min.js"></script>
+        <script src="/js/mermaid-init.js"></script>
+        
+<link rel="stylesheet" href="/css/mermaid.css">
+
+    
+</body>
+</html>
