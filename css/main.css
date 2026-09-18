@@ -813,8 +813,8 @@ hr {
   color: var(--accent);
 }
 
-/* hover 时 OST / ARE 横向塌缩，只剩双色 PD —— 即 favicon 里的那个 mark。
-     字标里藏着标识。 */
+/* 滚动离顶后 OST / ARE 横向塌缩，只剩双色 PD —— 即 favicon 里的那个 mark。
+     is-collapsed 由 plugins.js 的滚动监听切换。 */
 
 .logo-fold {
   display: inline-block;
@@ -827,8 +827,7 @@ hr {
                 opacity 0.22s ease;
 }
 
-.logo-link:hover .logo-fold,
-  .logo-link:focus-visible .logo-fold {
+.logo-wordmark.is-collapsed .logo-fold {
   max-width: 0;
   opacity: 0;
 }
