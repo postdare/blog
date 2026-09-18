@@ -1346,54 +1346,90 @@ figure.highlight {
 }
 
 .post-content .code-content {
-  display: flex;
+  display: block;
   background: transparent;
   min-width: 0;
-  overflow: hidden;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
-.post-content .line-numbers {
+.post-content .modern-code-block.is-wrapped .code-content {
+  overflow-x: hidden;
+}
+
+.post-content .code-lines {
   display: flex;
   flex-direction: column;
-  background: transparent;
-  border: none;
-  border-right: 1px solid var(--hairline);
-  padding: 0.875rem 0;
+  padding: 0;
+  min-width: 100%;
+  width: -moz-max-content;
+  width: max-content;
+}
+
+.post-content .modern-code-block.is-wrapped .code-lines {
+  width: 100%;
+  min-width: 0;
+}
+
+.post-content .code-row {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  min-width: 0;
+}
+
+.post-content .modern-code-block.is-wrapped .code-row {
+  width: 100%;
+}
+
+.post-content .line-number {
+  display: block;
+  flex-shrink: 0;
+  width: 2.75rem;
   min-width: 2.75rem;
+  padding: 0 0.625rem;
+  text-align: right;
+  color: var(--text-muted);
+  opacity: 0.55;
+  font-size: 12.5px;
+  line-height: 1.6;
+  border-right: 1px solid var(--hairline);
+  background: var(--bg-alt);
+  position: sticky;
+  left: 0;
+  z-index: 2;
   -webkit-user-select: none;
   -moz-user-select: none;
        user-select: none;
 }
 
-.post-content .line-number {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 0 0.625rem;
-  color: var(--text-muted);
-  opacity: 0.55;
-  font-size: 12.5px;
-  line-height: 1.6;
-  height: 1.6em;
-}
-
-.post-content .code-lines {
-  flex: 1;
-  overflow-x: auto;
-  padding: 0.875rem 0;
-  min-width: 0;
-}
-
 .post-content .code-line {
-  display: flex;
-  align-items: center;
+  flex: 1;
+  min-width: 0;
   padding: 0 1rem;
   color: var(--text);
   font-size: 12.5px;
   line-height: 1.6;
-  height: 1.6em;
   min-height: 1.6em;
   white-space: pre;
+  word-break: normal;
+}
+
+.post-content .modern-code-block.is-wrapped .code-line {
+  white-space: pre-wrap;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+}
+
+.post-content .code-row:first-child .line-number,
+  .post-content .code-row:first-child .code-line {
+  padding-top: 0.875rem;
+}
+
+.post-content .code-row:last-child .line-number,
+  .post-content .code-row:last-child .code-line {
+  padding-bottom: 0.875rem;
 }
 
 .post-content .code-line:hover {
@@ -1503,23 +1539,28 @@ figure.highlight {
     margin: 1.25rem 0;
   }
 
-  .post-content .line-numbers {
-    min-width: 2.25rem;
-    padding: 0.625rem 0;
-  }
-
   .post-content .line-number {
-    padding: 0 0.375rem;
+    width: 2.25rem;
+    min-width: 2.25rem;
+    padding-left: 0.375rem;
+    padding-right: 0.375rem;
     font-size: 12px;
-  }
-
-  .post-content .code-lines {
-    padding: 0.625rem 0;
   }
 
   .post-content .code-line {
-    padding: 0 0.625rem;
+    padding-left: 0.625rem;
+    padding-right: 0.625rem;
     font-size: 12px;
+  }
+
+  .post-content .code-row:first-child .line-number,
+    .post-content .code-row:first-child .code-line {
+    padding-top: 0.625rem;
+  }
+
+  .post-content .code-row:last-child .line-number,
+    .post-content .code-row:last-child .code-line {
+    padding-bottom: 0.625rem;
   }
 
   .post-content .code-format-btn span,
