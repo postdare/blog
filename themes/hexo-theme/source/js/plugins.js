@@ -120,19 +120,18 @@ document.addEventListener('DOMContentLoaded', function() {
         // 处理代码内容
         const codeText = lines.join('\n');
         
-        // 创建行号和代码行
-        const lineNumbersEl = document.createElement('div');
-        lineNumbersEl.className = 'line-numbers';
-        
+        // 创建代码行容器（行包装器保证行号与代码行一一对应且自适应换行高度）
         const codeLinesContainer = document.createElement('div');
         codeLinesContainer.className = 'code-lines';
         
-        // 直接使用原始行号和代码行一一对应
         lines.forEach((line, index) => {
+            const codeRow = document.createElement('div');
+            codeRow.className = 'code-row';
+
             const lineNumber = document.createElement('div');
             lineNumber.className = 'line-number';
             lineNumber.textContent = sourceLineNumbers[index] || (index + 1);
-            lineNumbersEl.appendChild(lineNumber);
+            codeRow.appendChild(lineNumber);
             
             // 代码行
             const codeLine = document.createElement('div');
@@ -140,10 +139,11 @@ document.addEventListener('DOMContentLoaded', function() {
             const lineHtml = lineHtmls[index] || '';
             // 保留原始语法高亮token结构，空行用nbsp占位
             codeLine.innerHTML = lineHtml.trim() === '' ? '&nbsp;' : lineHtml;
-            codeLinesContainer.appendChild(codeLine);
+            codeRow.appendChild(codeLine);
+
+            codeLinesContainer.appendChild(codeRow);
         });
         
-        codeContent.appendChild(lineNumbersEl);
         codeContent.appendChild(codeLinesContainer);
         
         // 组装代码块
@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 codeContentEl.style.display = 'none';
                 svg.style.transform = 'rotate(0deg)';
             } else {
-                codeContentEl.style.display = 'flex';
+                codeContentEl.style.display = '';
                 svg.style.transform = 'rotate(90deg)';
             }
         });
@@ -181,30 +181,15 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // 添加自动换行功能
         const wrapBtn = codeContainer.querySelector('.code-wrap-btn'); // 自动换行按钮
-        const codeLines = codeContainer.querySelector('.code-lines');
         let isWrapped = false;
         
         wrapBtn.addEventListener('click', function() {
             isWrapped = !isWrapped;
-            const allCodeLines = codeContainer.querySelectorAll('.code-line');
             const wrapText = wrapBtn.querySelector('span');
-            
-            if (isWrapped) {
-                allCodeLines.forEach(line => {
-                    line.style.whiteSpace = 'pre-wrap';
-                    line.style.wordBreak = 'break-word';
-                });
-                codeLines.style.overflowX = 'visible';
-                wrapBtn.classList.add('active');
-                wrapText.textContent = '取消自动换行';
-            } else {
-                allCodeLines.forEach(line => {
-                    line.style.whiteSpace = 'pre';
-                    line.style.wordBreak = 'normal';
-                });
-                codeLines.style.overflowX = 'auto';
-                wrapBtn.classList.remove('active');
-                wrapText.textContent = '自动换行';
+            codeContainer.classList.toggle('is-wrapped', isWrapped);
+            wrapBtn.classList.toggle('active', isWrapped);
+            if (wrapText) {
+                wrapText.textContent = isWrapped ? '取消自动换行' : '自动换行';
             }
         });
         
